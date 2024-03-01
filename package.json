@@ -11,7 +11,12 @@
   },
   "keywords": [],
   "author": "Cedric Geissmann <cedric.geissmann@sbl.ch>",
-  "contributors": [],
+  "contributors": [
+    "Luka Adjancic <e236879@sbl.ch>",
+    "Max Favor <e282234@sbl.ch>",
+    "Levent Bal <e227405@sbl.ch>",
+    "Dishan Selvanantham <e227493@sbl.ch>"
+  ],
   "license": "ISC",
   "devDependencies": {
     "eslint": "^8.57.0",
