@@ -12,3 +12,7 @@
 - [ ] Spielkomponenten verstehen, und neue erstellen (`src/player.js` und
       `src/maps.js`)
 - [ ] Präsentation für das Endprodukt in (`pres.html`) anpassen
+- [ ] Hintergrund fertig skalieren (Levent)
+- [ ] Die Kamera fertig machen (Max)
+- [ ] Die Map bearbeiten (Dishan)
+- [ ] NPC 1 in bewegung setzten (Luka)
