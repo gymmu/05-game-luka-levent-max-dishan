@@ -3,7 +3,7 @@
 - [ ] README.md erstellen
 - [x] Contributors ausfüllen in `package.json` (gleiches Format wie author)
 - [ ] Dokumentation vollständig durchlesen
-- [ ] Name des Spiels ändern
+- [x] Name des Spiels ändern
 - [ ] Spielidee auf der Webseite beschreiben (kann später noch erweitert werden)
 - [ ] Bewegung des Spielcharakters verstehen (`onKeyDown` und ähnliche)
 - [ ] Spritesheets verstehen (Dokumentation und die Datei `src/sprites.js`)
@@ -12,8 +12,8 @@
 - [ ] Spielkomponenten verstehen, und neue erstellen (`src/player.js` und
       `src/maps.js`)
 - [ ] Präsentation für das Endprodukt in (`pres.html`) anpassen
-- [ ] Hintergrund fertig skalieren (Levent)
-- [ ] Die Kamera fertig machen (Max)
+- [x] Hintergrund fertig skalieren (Levent)
+- [x] Die Kamera fertig machen (Max)
 - [x] Die Map bearbeiten (Dishan)
 - [ ] NPC 1 in bewegung setzten (Luka)
 - [x] Fullscreen (Luka)
