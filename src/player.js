@@ -52,7 +52,7 @@ export default function createPlayer() {
       if (counter < 63) {
         counter++
         k.camPos(player.pos)
-      } else if (counter > 65) {
+      } else if (counter > 64) {
         k.camPos(player.pos)
       } else {
         counter++
