@@ -35,6 +35,10 @@ export function loadKeyboardJumpAndRun() {
   k.onKeyPress("space", () => {
     if (player.isGrounded()) player.jump()
   })
+
+  onKeyPress("f", (c) => {
+    setFullscreen(!isFullscreen())
+  })
 }
 
 /**

@@ -5,3 +5,5 @@
 - Die Datei `changes.md` hinzugefügt.
 - Contributors ausgefüllt.
 - NPC1 Spritesheet erstellt.
+
+- Vollbildschirm eingebaut
