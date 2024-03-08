@@ -3,10 +3,9 @@ import createPlayer from "../player.js"
 import { generateMapJumpAndRun } from "../map.js"
 import { loadKeyboardJumpAndRun } from "../keyboard.js"
 
-import "./level-02.js"
-import "./lose.js"
+import "./finish.js"
 
-/** Das ist unser erstes Level. Hier können wir Dinge einstellen die nur für
+/** Das ist unser drittes Level. Hier können wir Dinge einstellen die nur für
  * dieses Level gelten sollen, und aber auch Funktionen verwenden die in allen
  * Levels gleich sind.
  *
@@ -19,7 +18,7 @@ import "./lose.js"
  * wir einige spezialisierte Funktionen verwenden.
  *
  */
-k.scene("level-01", async () => {
+k.scene("level-03", async () => {
   // Wir stellen die Gravitation ein, damit es sich um ein Jump'n'Run-Spiel
   // handelt.
   k.setGravity(1200)
@@ -35,13 +34,6 @@ k.scene("level-01", async () => {
   // Position vom Spieler richtig gesetzt werden kann.
   await generateMapJumpAndRun("maps/level-01.txt")
 
-  k.add([
-    k.sprite("background", { width: k.width(), height: k.height() }),
-    k.pos(0, 0),
-    k.z("-100"),
-    k.fixed(),
-  ])
-
   // Hier laden wir die generelle Spiellogik. Also was passieren soll wenn
   // der Spieler mit einem Objekt kollidiert.
   addGeneralGameLogic()
@@ -51,7 +43,7 @@ k.scene("level-01", async () => {
   // Hier ist es so das wenn der Spieler mit dem "goal" kollidiert, dann
   // kommen wir ins nächste Level.
   k.onCollide("player", "goal", () => {
-    k.go("level-02")
+    k.go("level-03")
   })
 
   // Diese Funktion wird bei jedem Frame ausgeführt. Bei einem Jump'n'Run ist
