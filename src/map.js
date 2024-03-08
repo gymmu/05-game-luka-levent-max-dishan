@@ -85,7 +85,9 @@ export async function generateMapRPG(mapfile) {
       } else if (char === "w") {
         GameObjects.wallRPG(x, y)
       } else if (char === "c") {
-        GameObjects.caveRPG(x, y)
+        GameObjects.caveRPG(x, y, 1)
+      } else if (char === "C") {
+        GameObjects.caveRPG(x, y, 2)
       } else if (char === "T") {
         GameObjects.trunkRPG(x, y)
       } else if (char === "t") {

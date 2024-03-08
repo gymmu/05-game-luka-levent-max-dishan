@@ -169,13 +169,16 @@ export function wallRPG(x, y) {
 /**
  *  Ein Spielobjekt Höhle. Kann verwendet werden um ein neues Level zu betreten.
  */
-export function caveRPG(x, y) {
+export function caveRPG(x, y, door) {
   k.add([
     k.sprite("cave"),
     k.pos(x * TILESIZE, y * TILESIZE),
     k.body({ isStatic: true }),
     k.area(),
     "cave",
+    {
+      door: door,
+    },
   ])
 }
 
