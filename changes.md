@@ -7,3 +7,4 @@
 - NPC1 Spritesheet erstellt.
 - Vollbildschirm eingebaut
 - Level 3 erstellt
+- Hintergrund scaliert und angepasst
