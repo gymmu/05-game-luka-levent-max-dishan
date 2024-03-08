@@ -34,6 +34,25 @@ export default function loadSprites() {
     },
   })
 
+  k.loadSpriteAtlas("sprites/npc1.png", {
+    npc1: {
+      // Alles war hier kommt, gehört zum Sprite `hero`
+      x: 0, // x-Koordinate des Pixels wo das Sprite beginnt.
+      y: 0, // y-Koordinate des Pixels wo das Sprite beginnt.
+      width: 3 * TS, // Die Breite des Sprites in Pixeln. Hier sind jeweils 3 Animationen nebeneinander, deshalb 3 * TILESIZE
+      height: 2 * TS, // Die Höhe des Sprites in Pixeln. Hier sind die 4 Laufrichtungen untereinander, deshalb 4 * TILESIZE
+      sliceX: 3, // In der x-Richtung sind es 3 Kacheln, so wird es gleichmässig aufgeteilt.
+      sliceY: 2, // In der y-Richtung sind es 4 Kacheln, so wird es gleichmässig aufgeteilt.
+      anims: {
+        // Hier werden die verschiedenen Animationen definiert.
+        runLeft: { from: 0, to: 2, loop: true, speed: 10 }, // Die Geschwindigkeit der Animation kann auch verändert werden.
+        idleLeft: 0,
+        runRight: { from: 3, to: 5, loop: true },
+        idleRight: 3,
+      },
+    },
+  })
+
   /**
    * Hier werden alle sprites für die statischen Spielobjekte geladen.
    */
@@ -46,5 +65,13 @@ export default function loadSprites() {
     tree: { x: 1 * TS, y: 1 * TS, width: TS, height: TS },
     cave: { x: 2 * TS, y: 1 * TS, width: TS, height: TS },
     wall: { x: 3 * TS, y: 1 * TS, width: TS, height: TS },
+  })
+
+  k.loadSpriteAtlas("sprites/ground2.png", {
+    bog_grass: { x: 0, y: 0, width: TS, height: TS }, // Hier geben wir in Pixeln an, wo die Grafik für das Spielobjekt anfängt, und aufhört (oben-links bis unten-rechts).
+    bog_vines: { x: 0 * TS, y: 1 * TS, width: TS, height: TS }, // Wir verwenden hier TILESIZE, weil all unsere Grafiken im Moment genau 32x32 Pixel sind.
+  })
+  k.loadSpriteAtlas("sprites/background.png", {
+    background: { x: 0, y: 0, width: 1920, height: 1080 }, // Hier geben wir in Pixeln an, wo die Grafik für das Spielobjekt anfängt, und aufhört (oben-links bis unten-rechts).
   })
 }
