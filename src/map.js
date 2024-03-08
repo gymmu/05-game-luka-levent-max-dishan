@@ -50,6 +50,10 @@ export async function generateMapJumpAndRun(mapfile) {
         GameObjects.goalJumpAndRun(x, y)
       } else if (char === "e") {
         GameObjects.npc1(x, y)
+      } else if (char === "+") {
+        GameObjects.bogGrass(x, y)
+      } else if (char === "v") {
+        GameObjects.bogVines(x, y)
       }
     }
   }

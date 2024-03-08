@@ -66,4 +66,9 @@ export default function loadSprites() {
     cave: { x: 2 * TS, y: 1 * TS, width: TS, height: TS },
     wall: { x: 3 * TS, y: 1 * TS, width: TS, height: TS },
   })
+
+  k.loadSpriteAtlas("sprites/ground2.png", {
+    bog_grass: { x: 0, y: 0, width: TS, height: TS }, // Hier geben wir in Pixeln an, wo die Grafik für das Spielobjekt anfängt, und aufhört (oben-links bis unten-rechts).
+    bog_vines: { x: 0 * TS, y: 1 * TS, width: TS, height: TS }, // Wir verwenden hier TILESIZE, weil all unsere Grafiken im Moment genau 32x32 Pixel sind.
+  })
 }

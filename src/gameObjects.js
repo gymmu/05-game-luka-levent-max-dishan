@@ -59,6 +59,26 @@ export function mushroomJumpAndRun(x, y) {
   ])
 }
 
+export function bogGrass(x, y) {
+  k.add([
+    k.sprite("bog_grass"),
+    k.pos(k.vec2(x, y).scale(TILESIZE)),
+    k.body({ isStatic: true }),
+    k.area(),
+    "ground",
+  ])
+}
+
+export function bogVines(x, y) {
+  k.add([
+    k.sprite("bog_vines"),
+    k.pos(k.vec2(x, y).scale(TILESIZE)),
+    k.body({ isStatic: true }),
+    k.area(),
+    "ground",
+  ])
+}
+
 /**
  * Ein Spielobjekt Blume, das den Spieler heilt.
  */
