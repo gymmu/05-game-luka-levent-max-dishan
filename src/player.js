@@ -46,14 +46,17 @@ export default function createPlayer() {
   let counter = 0
   player.onUpdate(() => {
     if (player.isGrounded(false)) {
-      if (counter < 50) {
-        counter++
-      } else {
-        k.camPos(player.pos)
-      }
-    } else {
       k.camPos(player.pos)
-      counter = counter * 0
+      counter = 0
+    } else {
+      if (counter < 63) {
+        counter++
+        k.camPos(player.pos)
+      } else if (counter > 65) {
+        k.camPos(player.pos)
+      } else {
+        counter++
+      }
     }
   })
 }
