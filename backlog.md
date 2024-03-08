@@ -16,3 +16,4 @@
 - [ ] Die Kamera fertig machen (Max)
 - [ ] Die Map bearbeiten (Dishan)
 - [ ] NPC 1 in bewegung setzten (Luka)
+- [ ] Fullscreen (Luka)
