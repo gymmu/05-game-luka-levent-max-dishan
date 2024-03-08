@@ -14,6 +14,6 @@
 - [ ] Präsentation für das Endprodukt in (`pres.html`) anpassen
 - [ ] Hintergrund fertig skalieren (Levent)
 - [ ] Die Kamera fertig machen (Max)
-- [ ] Die Map bearbeiten (Dishan)
+- [x] Die Map bearbeiten (Dishan)
 - [ ] NPC 1 in bewegung setzten (Luka)
 - [x] Fullscreen (Luka)

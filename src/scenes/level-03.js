@@ -3,6 +3,7 @@ import createPlayer from "../player.js"
 import { generateMapJumpAndRun } from "../map.js"
 import { loadKeyboardJumpAndRun } from "../keyboard.js"
 
+import "./lose.js"
 import "./finish.js"
 
 /** Das ist unser drittes Level. Hier können wir Dinge einstellen die nur für
@@ -32,7 +33,7 @@ k.scene("level-03", async () => {
   // Hier lassen wir die Spielwelt erstellen.
   // Wir müssen dieser Funktion auch den Spieler übergeben, damit die
   // Position vom Spieler richtig gesetzt werden kann.
-  await generateMapJumpAndRun("maps/level-01.txt")
+  await generateMapJumpAndRun("maps/level-03.txt")
 
   // Hier laden wir die generelle Spiellogik. Also was passieren soll wenn
   // der Spieler mit einem Objekt kollidiert.
@@ -43,7 +44,7 @@ k.scene("level-03", async () => {
   // Hier ist es so das wenn der Spieler mit dem "goal" kollidiert, dann
   // kommen wir ins nächste Level.
   k.onCollide("player", "goal", () => {
-    k.go("level-03")
+    k.go("finish.js")
   })
 
   // Diese Funktion wird bei jedem Frame ausgeführt. Bei einem Jump'n'Run ist
