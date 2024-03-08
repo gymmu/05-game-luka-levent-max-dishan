@@ -76,6 +76,20 @@ export function flowerJumpAndRun(x, y) {
   ])
 }
 
+export function npc1(x, y) {
+  k.add([
+    k.sprite("npc1", { anim: "runLeft" }),
+    k.pos(k.vec2(x, y).scale(TILESIZE)),
+    k.body(),
+    k.area(),
+    "obstacle",
+    "npc",
+    {
+      dmgAmount: 5,
+    },
+  ])
+}
+
 /**
  * Ein Spielobjekt Ziel, das vom Spieler erreicht werden muss.
  */

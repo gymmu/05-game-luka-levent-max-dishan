@@ -34,6 +34,25 @@ export default function loadSprites() {
     },
   })
 
+  k.loadSpriteAtlas("sprites/npc1.png", {
+    npc1: {
+      // Alles war hier kommt, gehört zum Sprite `hero`
+      x: 0, // x-Koordinate des Pixels wo das Sprite beginnt.
+      y: 0, // y-Koordinate des Pixels wo das Sprite beginnt.
+      width: 3 * TS, // Die Breite des Sprites in Pixeln. Hier sind jeweils 3 Animationen nebeneinander, deshalb 3 * TILESIZE
+      height: 2 * TS, // Die Höhe des Sprites in Pixeln. Hier sind die 4 Laufrichtungen untereinander, deshalb 4 * TILESIZE
+      sliceX: 3, // In der x-Richtung sind es 3 Kacheln, so wird es gleichmässig aufgeteilt.
+      sliceY: 2, // In der y-Richtung sind es 4 Kacheln, so wird es gleichmässig aufgeteilt.
+      anims: {
+        // Hier werden die verschiedenen Animationen definiert.
+        runLeft: { from: 0, to: 2, loop: true, speed: 10 }, // Die Geschwindigkeit der Animation kann auch verändert werden.
+        idleLeft: 0,
+        runRight: { from: 3, to: 5, loop: true },
+        idleRight: 3,
+      },
+    },
+  })
+
   /**
    * Hier werden alle sprites für die statischen Spielobjekte geladen.
    */
