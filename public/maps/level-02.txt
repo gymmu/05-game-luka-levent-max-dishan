@@ -1,20 +1,3 @@
-<<<<<<< HEAD
-
-
-swwwwwwwwwwwwcwwwws
-s.................s
-s.................s
-s......tttttttt...s
-s......tmmmmmmt...s
-s......t......t...s
-s.............TTTTs
-s...........f.....s
-s.................s
-s.................s
-s.................s
-s.........p.......s
-sssssssssssssssssss
-=======
 swwwwwwwwwwwwwwwwwsssstssstt
 s..........................t
 s..........................t
@@ -28,4 +11,3 @@ s.....t.c...Css.s..........t
 s.....t....................t
 s.....t...p.ts..sC.........t
 ssssssssssssssssssssssssssst
->>>>>>> bff885599fe78c54ef49c92fbebc613e2117d366
