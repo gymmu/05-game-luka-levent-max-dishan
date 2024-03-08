@@ -71,4 +71,7 @@ export default function loadSprites() {
     bog_grass: { x: 0, y: 0, width: TS, height: TS }, // Hier geben wir in Pixeln an, wo die Grafik für das Spielobjekt anfängt, und aufhört (oben-links bis unten-rechts).
     bog_vines: { x: 0 * TS, y: 1 * TS, width: TS, height: TS }, // Wir verwenden hier TILESIZE, weil all unsere Grafiken im Moment genau 32x32 Pixel sind.
   })
+  k.loadSpriteAtlas("sprites/background.png", {
+    background: { x: 0, y: 0, width: 1920, height: 1080 }, // Hier geben wir in Pixeln an, wo die Grafik für das Spielobjekt anfängt, und aufhört (oben-links bis unten-rechts).
+  })
 }
