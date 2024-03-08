@@ -43,8 +43,21 @@ export default function createPlayer() {
   /* Immer wenn sich die Position des Spielers ändert, wird die Kamera so
    * geschoben, dass der Spieler in der Mitte ist.
    */
+  let counter = 0
   player.onUpdate(() => {
-    k.camPos(player.pos)
+    if (player.isGrounded(false)) {
+      k.camPos(player.pos)
+      counter = 0
+    } else {
+      if (counter < 63) {
+        counter++
+        k.camPos(player.pos)
+      } else if (counter > 65) {
+        k.camPos(player.pos)
+      } else {
+        counter++
+      }
+    }
   })
 }
 
