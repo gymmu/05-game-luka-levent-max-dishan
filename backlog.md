@@ -15,5 +15,6 @@
 - [x] Hintergrund fertig skalieren (Levent)
 - [x] Die Kamera fertig machen (Max)
 - [x] Die Map bearbeiten (Dishan)
-- [ ] NPC 1 in bewegung setzten (Luka)
+- [x] NPC 1 in bewegung setzten (Max)
 - [x] Fullscreen (Luka)
+- [x] Basic Combat Mechanic

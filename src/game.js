@@ -21,7 +21,6 @@ import loadSprites from "./sprites.js"
 import { TILESIZE } from "./globals.js"
 
 import { getPlayer } from "./player.js"
-import { npc1 } from "./gameObjects.js"
 
 /**
  * Hier wird die GameEngine initialisiert. Wir können hier verschiedene Dinge
@@ -74,16 +73,15 @@ export function addGeneralGameLogic() {
 
   k.onUpdate("npc", (npc) => {
     if (player.pos.x > npc.pos.x) {
-      npc.move(10, 0)
+      npc.move(100, 0)
     } else {
-      npc.move(-10, 0)
+      npc.move(-100, 0)
     }
-    if (player.pos.y > npc.pos.y) {
-      npc.move(0, 10)
-    } else {
-      npc.move(0, -10)
+    if (player.pos.y < npc.pos.y && npc.isGrounded()) {
+      npc.jump()
     }
   })
+
   /**
    * Wenn der Spieler mit einem Hindernis kollidiert, wird dem Spieler so viel
    * Schaden zugefügt, wie das Hindernis `dmgAmount` hat. Hat das Hindernis

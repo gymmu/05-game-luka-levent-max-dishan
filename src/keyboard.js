@@ -1,5 +1,6 @@
 import { k } from "./game.js"
 import { getPlayer } from "./player.js"
+import { slash } from "./Combat.js"
 
 /**
  * Diese Funktion lädt die Tastenbelegung wie sie pro Level sein soll. Die
@@ -33,7 +34,13 @@ export function loadKeyboardJumpAndRun() {
   })
 
   k.onKeyPress("space", () => {
-    if (player.isGrounded()) player.jump()
+    if (player.isGrounded()) {
+      player.jump()
+    }
+  })
+
+  k.onKeyPress("h", () => {
+    slash()
   })
 
   onKeyPress("f", (c) => {
