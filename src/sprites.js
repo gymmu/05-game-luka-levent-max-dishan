@@ -74,4 +74,7 @@ export default function loadSprites() {
   k.loadSpriteAtlas("sprites/background.png", {
     background: { x: 0, y: 0, width: 1920, height: 1080 }, // Hier geben wir in Pixeln an, wo die Grafik für das Spielobjekt anfängt, und aufhört (oben-links bis unten-rechts).
   })
+  k.loadSpriteAtlas("sprites/game_menu.png", {
+    game_menu: { x: 0, y: 0, width: 800, height: 600 }, // Hier geben wir in Pixeln an, wo die Grafik für das Spielobjekt anfängt, und aufhört (oben-links bis unten-rechts).
+  })
 }
