@@ -22,6 +22,9 @@ k.scene("intro", () => {
   // Position der Text sein soll. Mit `anchor` können wir angeben wie das
   // Objekt verankert werden soll. Versuchen Sie mal was passiert wenn Sie
   // `anchor("botright)` verwenden.
+
+  k.add([k.sprite("game_menu", { width: k.width(), height: k.height() })])
+
   k.add([
     k.text("Press SPACE to start", { size: 32 }),
     k.pos(k.width() / 2, k.height() / 2),
