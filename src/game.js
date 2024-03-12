@@ -71,6 +71,17 @@ export function addGeneralGameLogic() {
     }
   })
 
+  k.onUpdate("npc", (npc) => {
+    if (player.pos.x > npc.pos.x) {
+      npc.move(100, 0)
+    } else {
+      npc.move(-100, 0)
+    }
+    if (player.pos.y < npc.pos.y && npc.isGrounded()) {
+      npc.jump()
+    }
+  })
+
   /**
    * Wenn der Spieler mit einem Hindernis kollidiert, wird dem Spieler so viel
    * Schaden zugefügt, wie das Hindernis `dmgAmount` hat. Hat das Hindernis
