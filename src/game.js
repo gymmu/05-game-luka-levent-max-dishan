@@ -71,11 +71,14 @@ export function addGeneralGameLogic() {
     }
   })
 
+  //This code will run every frame
   k.onUpdate("npc", (npc) => {
+    // If the players x position is greater than the Npc's postion, the npc will move left.
+    // If not, it will move right
     if (player.pos.x > npc.pos.x) {
-      npc.move(100, 0)
+      npc.move(40, 0)
     } else {
-      npc.move(-100, 0)
+      npc.move(-40, 0)
     }
     if (player.pos.y < npc.pos.y && npc.isGrounded()) {
       npc.jump()

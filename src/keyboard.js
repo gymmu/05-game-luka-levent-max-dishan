@@ -7,30 +7,58 @@ import { slash } from "./Combat.js"
  * generelle Steuerung für ein Jump'n'Run-Level ist immer etwa gleich, deshalb
  * laden wir sie hier in einer eigenen Funktion.
  */
+
+// These are used for keeping track if the player is moving or not.
+let movingLeft = false
+let movingRight = false
 export function loadKeyboardJumpAndRun() {
   const player = getPlayer()
-  // Wenn die Taste gedrückt wird, dann soll die Animation abgespielt werden.
+  // On key press left, the player will play the runLeft animation.
+  // If the code detects that the player should be moving left and right at the same time,
+  // then the idleLeft animation will be played.
   k.onKeyPress("left", () => {
     player.play("runLeft")
+    //This set movingLeft to true, storing that the player should now be moving left.
+    movingLeft = true
+    if (movingLeft === true && movingRight === true) {
+      player.play("idleLeft")
+    }
   })
   // Solange wie die Taste gedrückt wird, wird der Spieler in jedem Frame nach
   // links verschoben.
   k.onKeyDown("left", () => {
     player.move(k.LEFT.scale(player.speed))
   })
-  // Wenn die Taste losgelassen wird, wird die idleAnimation abgespielt.
+  // When the left key is released, the player will play the moving right animation,
+  // if moveingRight is true.
   k.onKeyRelease("left", () => {
-    player.play("idleLeft")
+    if (movingRight === true) {
+      player.play("runRight")
+    } else {
+      player.play("idleLeft")
+    }
+    //Because the key is now released, movingLeft is set to false.
+    movingLeft = false
   })
 
   k.onKeyPress("right", () => {
     player.play("runRight")
+    movingRight = true
+    if (movingLeft === true && movingRight === true) {
+      player.play("idleRight")
+    }
   })
+
   k.onKeyDown("right", () => {
     player.move(k.RIGHT.scale(player.speed))
   })
   k.onKeyRelease("right", () => {
-    player.play("idleRight")
+    if (movingLeft === true) {
+      player.play("runLeft")
+    } else {
+      player.play("idleRight")
+    }
+    movingRight = false
   })
 
   k.onKeyPress("space", () => {
