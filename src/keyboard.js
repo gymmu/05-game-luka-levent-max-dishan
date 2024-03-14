@@ -1,6 +1,6 @@
 import { k } from "./game.js"
 import { getPlayer } from "./player.js"
-import { slash } from "./Combat.js"
+import { leftSlash, rightSlash } from "./Combat.js"
 
 /**
  * Diese Funktion lädt die Tastenbelegung wie sie pro Level sein soll. Die
@@ -11,6 +11,10 @@ import { slash } from "./Combat.js"
 // These are used for keeping track if the player is moving or not.
 let movingLeft = false
 let movingRight = false
+// These are used to keep track of where the player is facing.
+// whenever an idle animation is played, "facingRight" and "facingLeft" are updated
+let facingRight = true
+let facingLeft = false
 export function loadKeyboardJumpAndRun() {
   const player = getPlayer()
   // On key press left, the player will play the runLeft animation.
@@ -22,6 +26,8 @@ export function loadKeyboardJumpAndRun() {
     movingLeft = true
     if (movingLeft === true && movingRight === true) {
       player.play("idleLeft")
+      facingLeft = true
+      facingRight = false
     }
   })
   // Solange wie die Taste gedrückt wird, wird der Spieler in jedem Frame nach
@@ -36,6 +42,8 @@ export function loadKeyboardJumpAndRun() {
       player.play("runRight")
     } else {
       player.play("idleLeft")
+      facingLeft = true
+      facingRight = false
     }
     //Because the key is now released, movingLeft is set to false.
     movingLeft = false
@@ -46,6 +54,8 @@ export function loadKeyboardJumpAndRun() {
     movingRight = true
     if (movingLeft === true && movingRight === true) {
       player.play("idleRight")
+      facingRight = true
+      facingLeft = false
     }
   })
 
@@ -57,6 +67,8 @@ export function loadKeyboardJumpAndRun() {
       player.play("runLeft")
     } else {
       player.play("idleRight")
+      facingRight = true
+      facingLeft = false
     }
     movingRight = false
   })
@@ -68,7 +80,11 @@ export function loadKeyboardJumpAndRun() {
   })
 
   k.onKeyPress("h", () => {
-    slash()
+    if (facingRight === true) {
+      rightSlash()
+    } else if (facingLeft === true) {
+      leftSlash()
+    }
   })
 
   onKeyPress("f", (c) => {
