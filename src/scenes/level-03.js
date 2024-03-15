@@ -3,7 +3,7 @@ import { generateMapJumpAndRun } from "../map.js"
 import { loadKeyboardJumpAndRun } from "../keyboard.js"
 
 import "./lose.js"
-import "./finish.js"
+import "./level-04.js"
 
 /** Das ist unser drittes Level. Hier können wir Dinge einstellen die nur für
  * dieses Level gelten sollen, und aber auch Funktionen verwenden die in allen
@@ -40,7 +40,7 @@ k.scene("level-03", async () => {
   // Hier ist es so das wenn der Spieler mit dem "goal" kollidiert, dann
   // kommen wir ins nächste Level.
   k.onCollide("player", "goal", () => {
-    k.go("finish")
+    k.go("level-04")
   })
 
   // Diese Funktion wird bei jedem Frame ausgeführt. Bei einem Jump'n'Run ist
