@@ -1,6 +1,11 @@
 import { k } from "./game.js"
 import { getPlayer } from "./player.js"
-import { leftSlash, rightSlash } from "./Combat.js"
+import {
+  leftSlash,
+  rightSlash,
+  leftProjectile,
+  rightProjectile,
+} from "./Combat.js"
 
 /**
  * Diese Funktion lädt die Tastenbelegung wie sie pro Level sein soll. Die
@@ -84,6 +89,14 @@ export function loadKeyboardJumpAndRun() {
       rightSlash()
     } else if (facingLeft === true) {
       leftSlash()
+    }
+  })
+
+  k.onKeyPress("j", () => {
+    if (facingRight === true) {
+      rightProjectile()
+    } else {
+      leftProjectile()
     }
   })
 
