@@ -101,13 +101,82 @@ export function loadKeyboardJumpAndRun() {
  * extra eine weitere Funktion erstellt, wo all diese Funktionen drin sind, wie
  * zum Beispiel nach oben oder unten laufen.
  */
+
 export function loadKeyboardRPG() {
+  let southCollision = false
+  let westCollision = false
+  let northCollision = false
+  let eastCollision = false
+
+  onUpdate(() => {
+    add([
+      // every frame this code will generate a rectangle that is slightly offset from the player
+      // in this case, it is slightly below the player.
+      // if this box collides with a wall, the southCollision variable will be set to true
+      // when this is set to true, the player cannot move south
+      // this makes it much harder to glitch through walls, and makes the camera more steady
+      pos(player.pos.x + 6, player.pos.y + 20),
+      area({ shape: new Rect(vec2(0), 20, 13) }),
+      lifespan(1),
+      "southCollisionBox",
+    ])
+    onCollide("southCollisionBox", "wall", () => {
+      southCollision = true
+      return
+    })
+    southCollision = false
+  })
+
+  onUpdate(() => {
+    add([
+      pos(player.pos.x, player.pos.y + 6),
+      area({ shape: new Rect(vec2(0), 13, 20) }),
+      lifespan(1),
+      "westCollisionBox",
+    ])
+    onCollide("westCollisionBox", "wall", () => {
+      westCollision = true
+      return
+    })
+    westCollision = false
+  })
+
+  onUpdate(() => {
+    add([
+      pos(player.pos.x + 6, player.pos.y),
+      area({ shape: new Rect(vec2(0), 20, 13) }),
+      lifespan(1),
+      "northCollisionBox",
+    ])
+    onCollide("northCollisionBox", "wall", () => {
+      northCollision = true
+      return
+    })
+    northCollision = false
+  })
+
+  onUpdate(() => {
+    add([
+      pos(player.pos.x + 20, player.pos.y + 6),
+      area({ shape: new Rect(vec2(0), 13, 20) }),
+      lifespan(1),
+      "eastCollisionBox",
+    ])
+    onCollide("eastCollisionBox", "wall", () => {
+      eastCollision = true
+      return
+    })
+    eastCollision = false
+  })
+
   const player = getPlayer()
   k.onKeyPress("left", () => {
     player.play("runLeft")
   })
   k.onKeyDown("left", () => {
-    player.move(k.LEFT.scale(player.speed))
+    if (westCollision === false) {
+      player.move(k.LEFT.scale(player.speed))
+    }
   })
   k.onKeyRelease("left", () => {
     player.play("idleLeft")
@@ -117,7 +186,9 @@ export function loadKeyboardRPG() {
     player.play("runRight")
   })
   k.onKeyDown("right", () => {
-    player.move(k.RIGHT.scale(player.speed))
+    if (eastCollision === false) {
+      player.move(k.RIGHT.scale(player.speed))
+    }
   })
   k.onKeyRelease("right", () => {
     player.play("idleRight")
@@ -127,7 +198,9 @@ export function loadKeyboardRPG() {
     player.play("runUp")
   })
   k.onKeyDown("up", () => {
-    player.move(k.UP.scale(player.speed))
+    if (northCollision === false) {
+      player.move(k.UP.scale(player.speed))
+    }
   })
   k.onKeyRelease("up", () => {
     player.play("idleUp")
@@ -137,7 +210,9 @@ export function loadKeyboardRPG() {
     player.play("runDown")
   })
   k.onKeyDown("down", () => {
-    player.move(k.DOWN.scale(player.speed))
+    if (southCollision === false) {
+      player.move(k.DOWN.scale(player.speed))
+    }
   })
   k.onKeyRelease("down", () => {
     player.play("idleDown")

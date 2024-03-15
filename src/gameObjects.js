@@ -149,6 +149,7 @@ export function stoneRPG(x, y) {
     k.pos(x * TILESIZE, y * TILESIZE),
     k.body({ isStatic: true }),
     k.area(),
+    "wall",
   ])
 }
 
@@ -163,6 +164,7 @@ export function wallRPG(x, y) {
     k.pos(x * TILESIZE, y * TILESIZE),
     k.body({ isStatic: true }),
     k.area(),
+    "wall",
   ])
 }
 
@@ -192,6 +194,7 @@ export function trunkRPG(x, y) {
     k.pos(x * TILESIZE, y * TILESIZE),
     k.body({ isStatic: true }),
     k.area(),
+    "wall",
   ])
 }
 
@@ -204,6 +207,7 @@ export function treeRPG(x, y) {
     k.pos(x * TILESIZE, y * TILESIZE),
     k.body({ isStatic: true }),
     k.area(),
+    "wall",
   ])
 }
 

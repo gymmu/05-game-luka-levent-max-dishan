@@ -6,10 +6,9 @@ export function rightSlash() {
   // This will act as a hitbox for the slash.
   add([
     pos(player.pos.add(0, 5)),
-    rect(80, 20),
-    outline(4),
-    area(10),
+    area({ shape: new Rect(vec2(0), 80, 20) }),
     lifespan(0.1),
+    rect(80, 20),
     "slashHitBox",
   ])
   // When the rectangle collides with an npc, the npc will be destroyed.
@@ -23,9 +22,8 @@ export function leftSlash() {
   // This will act as a hitbox for the slash.
   add([
     pos(player.pos.add(-50, 5)),
+    area({ shape: new Rect(vec2(0), 80, 20) }),
     rect(80, 20),
-    outline(4),
-    area(10),
     lifespan(0.1),
     "slashHitBox",
   ])
