@@ -110,6 +110,24 @@ export function npc1(x, y) {
   ])
 }
 
+export function spider(x, y) {
+  k.add([
+    k.sprite("npc1", { anim: "runLeft" }),
+    k.pos(k.vec2(x, y).scale(TILESIZE)),
+    k.body(),
+    k.area(),
+    "obstacle",
+    "spider",
+    {
+      dmgAmount: 5,
+    },
+  ])
+}
+
+export function getSpider() {
+  return k.get("spider")[0]
+}
+
 /**
  * Ein Spielobjekt Ziel, das vom Spieler erreicht werden muss.
  */

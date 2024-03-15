@@ -49,7 +49,9 @@ export async function generateMapJumpAndRun(mapfile) {
       } else if (char === "g") {
         GameObjects.goalJumpAndRun(x, y)
       } else if (char === "e") {
-        GameObjects.npc1(x, y)
+        GameObjects.spider(x, y)
+      } else if (char === "r") {
+        GameObjects.spider(x, y)
       } else if (char === "+") {
         GameObjects.bogGrass(x, y)
       } else if (char === "v") {

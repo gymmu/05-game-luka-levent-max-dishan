@@ -1,4 +1,5 @@
 import { getPlayer } from "./player.js"
+import { getSpider } from "./gameObjects.js"
 
 export function rightSlash() {
   const player = getPlayer()
@@ -54,6 +55,36 @@ export function rightProjectile() {
   const player = getPlayer()
   add([
     pos(player.pos.add(0, 5)),
+    rect(10, 10),
+    area(),
+    lifespan(2),
+    "projectile",
+    move(0, 230),
+  ])
+  onCollide("npc", "projectile", (npc) => {
+    npc.destroy()
+  })
+}
+
+export function spiderLeftProjectile() {
+  const spider = getSpider()
+  add([
+    pos(spider.pos.add(0, 5)),
+    rect(10, 10),
+    area(),
+    lifespan(2),
+    "projectile",
+    move(0, 230),
+  ])
+  onCollide("npc", "projectile", (npc) => {
+    npc.destroy()
+  })
+}
+
+export function spiderRightProjectile() {
+  const spider = getSpider()
+  add([
+    pos(spider.pos.add(0, 5)),
     rect(10, 10),
     area(),
     lifespan(2),

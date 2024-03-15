@@ -1,6 +1,7 @@
 import { k } from "./game.js"
 import { TILESIZE } from "./globals.js"
 import { getPlayer } from "./player.js"
+import { spiderLeftProjectile, spiderRightProjectile } from "./Combat.js"
 
 export function entityLogic() {
   //This code will run every frame
@@ -16,6 +17,28 @@ export function entityLogic() {
     if (npc.isGrounded()) {
       k.loop(360, () => {
         npc.jump()
+      })
+    }
+  })
+
+  k.onUpdate("spider", (spider) => {
+    let projectileCountdown = 0
+    if (player.pos.x > spider.pos.x) {
+      if ((projectileCountdown = 0)) {
+        spiderLeftProjectile()
+        projectileCountdown = 60
+      }
+      projectileCountdown = projectileCountdown - 1
+    } else {
+      if (projectileCountdown === 0) {
+        spiderRightProjectile()
+        projectileCountdown = 60
+      }
+      projectileCountdown = projectileCountdown - 1
+    }
+    if (spider.isGrounded()) {
+      k.loop(360, () => {
+        spider.jump()
       })
     }
   })
