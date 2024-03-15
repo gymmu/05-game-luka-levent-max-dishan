@@ -117,7 +117,7 @@ export function loadKeyboardRPG() {
       // this makes it much harder to glitch through walls, and makes the camera more steady
       pos(player.pos.x + 6, player.pos.y + 20),
       area({ shape: new Rect(vec2(0), 20, 13) }),
-      lifespan(1),
+      lifespan(0.1),
       "southCollisionBox",
     ])
     onCollide("southCollisionBox", "wall", () => {
@@ -131,7 +131,7 @@ export function loadKeyboardRPG() {
     add([
       pos(player.pos.x, player.pos.y + 6),
       area({ shape: new Rect(vec2(0), 13, 20) }),
-      lifespan(1),
+      lifespan(0.1),
       "westCollisionBox",
     ])
     onCollide("westCollisionBox", "wall", () => {
@@ -145,7 +145,7 @@ export function loadKeyboardRPG() {
     add([
       pos(player.pos.x + 6, player.pos.y),
       area({ shape: new Rect(vec2(0), 20, 13) }),
-      lifespan(1),
+      lifespan(0.1),
       "northCollisionBox",
     ])
     onCollide("northCollisionBox", "wall", () => {
@@ -159,7 +159,7 @@ export function loadKeyboardRPG() {
     add([
       pos(player.pos.x + 20, player.pos.y + 6),
       area({ shape: new Rect(vec2(0), 13, 20) }),
-      lifespan(1),
+      lifespan(0.1),
       "eastCollisionBox",
     ])
     onCollide("eastCollisionBox", "wall", () => {
