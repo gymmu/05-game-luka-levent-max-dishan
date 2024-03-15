@@ -2,8 +2,6 @@ import { k, addGeneralGameLogic } from "../game.js"
 import { generateMapRPG } from "../map.js"
 import { loadKeyboardRPG } from "../keyboard.js"
 
-import "./finish.js"
-
 /**
  * Szene für das Level 2.
  *
