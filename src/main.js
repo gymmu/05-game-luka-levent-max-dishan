@@ -8,6 +8,7 @@ import { k } from "./game.js"
 import "./scenes/intro.js"
 import "./scenes/level-02.js"
 import "./scenes/level-03.js"
+import "./scenes/level-04.js"
 
 // Mit der `k.go` Funktion, können wir Kaboom sagen zu welcher Scene wir als
 // nächstes gehen möchten. In diesem Fall laden wir die `intro` Scene.
