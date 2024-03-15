@@ -32,3 +32,35 @@ export function leftSlash() {
     npc.destroy()
   })
 }
+
+export function leftProjectile() {
+  const player = getPlayer()
+  add([
+    // a square is created that will move to the left at a rate of 230 per second
+    pos(player.pos.add(0, 5)),
+    rect(10, 10),
+    area(),
+    // it will disapear after 2 seconds
+    lifespan(2),
+    "projectile",
+    move(0, -230),
+  ])
+  onCollide("npc", "projectile", (npc) => {
+    npc.destroy()
+  })
+}
+
+export function rightProjectile() {
+  const player = getPlayer()
+  add([
+    pos(player.pos.add(0, 5)),
+    rect(10, 10),
+    area(),
+    lifespan(2),
+    "projectile",
+    move(0, 230),
+  ])
+  onCollide("npc", "projectile", (npc) => {
+    npc.destroy()
+  })
+}
