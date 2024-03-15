@@ -18,3 +18,4 @@
 - [x] NPC 1 in bewegung setzten (Max)
 - [x] Fullscreen (Luka)
 - [x] Basic Combat Mechanic
+- [x] Level 3 ändern (Dishan)

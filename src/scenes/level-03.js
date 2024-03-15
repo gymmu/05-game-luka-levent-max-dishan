@@ -40,7 +40,7 @@ k.scene("level-03", async () => {
   // Hier ist es so das wenn der Spieler mit dem "goal" kollidiert, dann
   // kommen wir ins nächste Level.
   k.onCollide("player", "goal", () => {
-    k.go("finish.js")
+    k.go("finish")
   })
 
   // Diese Funktion wird bei jedem Frame ausgeführt. Bei einem Jump'n'Run ist
