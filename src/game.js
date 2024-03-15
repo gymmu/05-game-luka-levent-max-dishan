@@ -1,4 +1,5 @@
 import kaboom from "kaboom"
+import { entityLogic } from "./entities.js"
 
 /**
  *  Hier werden Funktionen aus den eigenen Datein eingebunden.
@@ -59,6 +60,7 @@ export function addGeneralGameLogic() {
 
   // Erstelle das UI-Element HP-Balken
   createHPBar()
+  entityLogic()
 
   /** Wenn der Spieler mit einem Spielobjekt mit dem Tag `heal` kollidiert, wird
    * der Spieler um `healAmount` von dem Spielobjekt geheilt. Hat das
@@ -68,20 +70,6 @@ export function addGeneralGameLogic() {
     player.heal(heal.healAmount)
     if (heal.isConsumable === true) {
       heal.destroy()
-    }
-  })
-
-  //This code will run every frame
-  k.onUpdate("npc", (npc) => {
-    // If the players x position is greater than the Npc's postion, the npc will move left.
-    // If not, it will move right
-    if (player.pos.x > npc.pos.x) {
-      npc.move(40, 0)
-    } else {
-      npc.move(-40, 0)
-    }
-    if (player.pos.y < npc.pos.y && npc.isGrounded()) {
-      npc.jump()
     }
   })
 
@@ -105,7 +93,7 @@ export function addGeneralGameLogic() {
     const oldSpeed = player.speed
     player.speed *= 2
     k.wait(1, () => {
-      player.speed = oldSpeed
+      player.speed = TILESIZE * 5
     })
   })
 

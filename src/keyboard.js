@@ -1,6 +1,11 @@
 import { k } from "./game.js"
 import { getPlayer } from "./player.js"
-import { leftSlash, rightSlash } from "./Combat.js"
+import {
+  leftSlash,
+  rightSlash,
+  leftProjectile,
+  rightProjectile,
+} from "./Combat.js"
 
 /**
  * Diese Funktion lädt die Tastenbelegung wie sie pro Level sein soll. Die
@@ -24,6 +29,8 @@ export function loadKeyboardJumpAndRun() {
     player.play("runLeft")
     //This set movingLeft to true, storing that the player should now be moving left.
     movingLeft = true
+    facingRight = false
+    facingLeft = true
     if (movingLeft === true && movingRight === true) {
       player.play("idleLeft")
       facingLeft = true
@@ -52,6 +59,8 @@ export function loadKeyboardJumpAndRun() {
   k.onKeyPress("right", () => {
     player.play("runRight")
     movingRight = true
+    facingRight = true
+    facingLeft = false
     if (movingLeft === true && movingRight === true) {
       player.play("idleRight")
       facingRight = true
@@ -87,6 +96,14 @@ export function loadKeyboardJumpAndRun() {
     }
   })
 
+  k.onKeyPress("j", () => {
+    if (facingRight === true) {
+      rightProjectile()
+    } else {
+      leftProjectile()
+    }
+  })
+
   onKeyPress("f", (c) => {
     setFullscreen(!isFullscreen())
   })
@@ -117,7 +134,7 @@ export function loadKeyboardRPG() {
       // this makes it much harder to glitch through walls, and makes the camera more steady
       pos(player.pos.x + 6, player.pos.y + 20),
       area({ shape: new Rect(vec2(0), 20, 13) }),
-      lifespan(1),
+      lifespan(0.1),
       "southCollisionBox",
     ])
     onCollide("southCollisionBox", "wall", () => {
@@ -131,7 +148,7 @@ export function loadKeyboardRPG() {
     add([
       pos(player.pos.x, player.pos.y + 6),
       area({ shape: new Rect(vec2(0), 13, 20) }),
-      lifespan(1),
+      lifespan(0.1),
       "westCollisionBox",
     ])
     onCollide("westCollisionBox", "wall", () => {
@@ -145,7 +162,7 @@ export function loadKeyboardRPG() {
     add([
       pos(player.pos.x + 6, player.pos.y),
       area({ shape: new Rect(vec2(0), 20, 13) }),
-      lifespan(1),
+      lifespan(0.1),
       "northCollisionBox",
     ])
     onCollide("northCollisionBox", "wall", () => {
@@ -159,7 +176,7 @@ export function loadKeyboardRPG() {
     add([
       pos(player.pos.x + 20, player.pos.y + 6),
       area({ shape: new Rect(vec2(0), 13, 20) }),
-      lifespan(1),
+      lifespan(0.1),
       "eastCollisionBox",
     ])
     onCollide("eastCollisionBox", "wall", () => {
