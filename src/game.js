@@ -1,4 +1,5 @@
 import kaboom from "kaboom"
+import { entityLogic } from "./entities.js"
 
 /**
  *  Hier werden Funktionen aus den eigenen Datein eingebunden.
@@ -59,6 +60,7 @@ export function addGeneralGameLogic() {
 
   // Erstelle das UI-Element HP-Balken
   createHPBar()
+  entityLogic()
 
   /** Wenn der Spieler mit einem Spielobjekt mit dem Tag `heal` kollidiert, wird
    * der Spieler um `healAmount` von dem Spielobjekt geheilt. Hat das
