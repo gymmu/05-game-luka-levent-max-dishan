@@ -98,7 +98,7 @@ export function flowerJumpAndRun(x, y) {
 
 export function npc1(x, y) {
   k.add([
-    k.sprite("npc1", { anim: "runLeft" }),
+    k.sprite("npc1", { anim: "runLeft", anim: "runRight" }),
     k.pos(k.vec2(x, y).scale(TILESIZE)),
     k.body(),
     k.area(),
