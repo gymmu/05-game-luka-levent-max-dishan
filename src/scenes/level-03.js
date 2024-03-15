@@ -32,7 +32,7 @@ k.scene("level-03", async () => {
   await generateMapJumpAndRun("maps/level-03.txt")
 
   k.add([
-    k.sprite("background2s", { width: k.width(), height: k.height() }),
+    k.sprite("background", { width: k.width(), height: k.height() }),
     k.pos(0, 0),
     k.z("-100"),
     k.fixed(),
