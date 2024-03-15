@@ -20,12 +20,9 @@
 - [x] Basic Combat Mechanic
 - [x] Level 3 ändern (Dishan)
 - [x] Level 4 erstellen (Dishan)
-<<<<<<< HEAD
-=======
-- [ ] Map bearbeiten (Dishan)
-- [ ] NPC behavior fix (Luka)
+- [x] Map bearbeiten (Dishan)
+- [1/2] NPC behavior fix (Luka)
 - [ ] Finish sword (Max)
-- [ ] Add projectiles (Max)
-- [ ] New Enemy (Max/Luka)
+- [x] Add projectiles (Max)
+- [1/2] New Enemy (Max/Luka)
 - [ ] Dokumention(Dishan)
->>>>>>> 6c20a62043923d371e369a312a59d318d4583fbc
