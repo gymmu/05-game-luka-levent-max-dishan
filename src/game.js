@@ -105,7 +105,7 @@ export function addGeneralGameLogic() {
     const oldSpeed = player.speed
     player.speed *= 2
     k.wait(1, () => {
-      player.speed = oldSpeed
+      player.speed = TILESIZE * 5
     })
   })
 
