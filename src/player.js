@@ -44,6 +44,8 @@ export default function createPlayer() {
    * geschoben, dass der Spieler in der Mitte ist.
    */
   let counter = 0
+  // this will skip the one frame after 63 frames have passed.
+  // The 64th frame is usually the frame in which the camera glitches.
   player.onUpdate(() => {
     if (player.isGrounded(false)) {
       k.camPos(player.pos)
