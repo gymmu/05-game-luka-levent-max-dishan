@@ -35,10 +35,12 @@ export function entityLogic() {
       }
       projectileCountdown = projectileCountdown - 1
     }
-    if (spider.isGrounded() && rand(20) > 19.3) {
-      loop(360, () => {
-        spider.jump()
-      })
+    if (spider.isGrounded() && rand(20) > 18.6 && player.pos.y < spider.pos.y) {
+      spider.jump()
     }
+  })
+  onCollide("spiderProjectile", "player", (spiderProjectile, player) => {
+    player.hurt(5)
+    shake(5)
   })
 }

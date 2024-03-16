@@ -73,8 +73,11 @@ export function spiderLeftProjectile() {
     rect(10, 10),
     area(),
     lifespan(2),
-    "projectile",
+    "spiderProjectile",
     move(0, 230),
+    {
+      dmgAmount: 5,
+    },
   ])
 }
 
@@ -85,7 +88,10 @@ export function spiderRightProjectile() {
     rect(10, 10),
     area(),
     lifespan(2),
-    "projectile",
+    "spiderProjectile",
     move(0, -230),
+    {
+      dmgAmount: 5,
+    },
   ])
 }

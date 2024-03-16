@@ -104,6 +104,7 @@ export function npc1(x, y) {
     k.area(),
     "obstacle",
     "npc",
+    k.health(5),
     {
       dmgAmount: 5,
     },
@@ -118,6 +119,7 @@ export function spider(x, y) {
     k.area(),
     "obstacle",
     "spider",
+    k.health(5),
     {
       dmgAmount: 5,
     },
