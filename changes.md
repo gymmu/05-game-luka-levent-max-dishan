@@ -1,14 +1,9 @@
 # Änderungen
 
-## Version 0.1.6
+## Version 0.1.7
 
-- Die Datei `changes.md` hinzugefügt.
-- Contributors ausgefüllt.
-- NPC1 Spritesheet erstellt.
-- Vollbildschirm eingebaut
-- Level 3 erstellt
-- Hintergrund scaliert und angepasst
-- Added projectiles
-- Added spider enemy
-- fixed wall glitching in
-- created Combat.js
+- Every spider enemy can now shoot projectiles.
+- All enemies now have health and attacks by player will now deal damage.
+- Added sprite for sword slash.
+- The screen will shake when the player comes in contact with an enemy
+  projectile.
