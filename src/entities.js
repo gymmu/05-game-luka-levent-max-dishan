@@ -14,24 +14,24 @@ export function entityLogic() {
     } else {
       npc.move(-40, 0)
     }
-    if (npc.isGrounded()) {
-      k.loop(360, () => {
+    if (npc.isGrounded() && rand(20) > 19.3) {
+      loop(360, () => {
         npc.jump()
       })
     }
   })
-  let projectileCountdown = 240
+  let projectileCountdown = 60
   k.onUpdate("spider", (spider) => {
     if (player.pos.x > spider.pos.x) {
       if (projectileCountdown === 0) {
         spiderLeftProjectile()
-        projectileCountdown = 240
+        projectileCountdown = 60
       }
       projectileCountdown = projectileCountdown - 1
     } else {
       if (projectileCountdown === 0) {
         spiderRightProjectile()
-        projectileCountdown = 240
+        projectileCountdown = 60
       }
       projectileCountdown = projectileCountdown - 1
     }
