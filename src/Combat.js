@@ -69,25 +69,29 @@ export function rightProjectile() {
 }
 
 export function spiderLeftProjectile() {
-  const spider = getSpider()
-  add([
-    pos(spider.pos.add(0, 5)),
-    rect(10, 10),
-    area(),
-    lifespan(2),
-    "spiderProjectile",
-    move(0, 230),
-  ])
+  // Generated the following line from codium
+  // This will now add a projectile to all spiders instead of just one
+  get("spider").forEach((spider) => {
+    add([
+      pos(spider.pos.add(0, 5)),
+      rect(10, 10),
+      area(),
+      lifespan(2),
+      "spiderProjectile",
+      move(0, 230),
+    ])
+  })
 }
 
 export function spiderRightProjectile() {
-  const spider = getSpider()
-  add([
-    pos(spider.pos.add(0, 5)),
-    rect(10, 10),
-    area(),
-    lifespan(2),
-    "spiderProjectile",
-    move(0, -230),
-  ])
+  get("spider").forEach((spider) => {
+    add([
+      pos(spider.pos.add(0, 5)),
+      rect(10, 10),
+      area(),
+      lifespan(2),
+      "spiderProjectile",
+      move(0, -230),
+    ])
+  })
 }
