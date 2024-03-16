@@ -76,9 +76,6 @@ export function spiderLeftProjectile() {
     "projectile",
     move(0, 230),
   ])
-  onCollide("npc", "projectile", (npc) => {
-    npc.destroy()
-  })
 }
 
 export function spiderRightProjectile() {
@@ -89,9 +86,6 @@ export function spiderRightProjectile() {
     area(),
     lifespan(2),
     "projectile",
-    move(0, 230),
+    move(0, -230),
   ])
-  onCollide("npc", "projectile", (npc) => {
-    npc.destroy()
-  })
 }

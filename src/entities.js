@@ -20,24 +20,23 @@ export function entityLogic() {
       })
     }
   })
-
+  let projectileCountdown = 240
   k.onUpdate("spider", (spider) => {
-    let projectileCountdown = 0
     if (player.pos.x > spider.pos.x) {
-      if ((projectileCountdown = 0)) {
+      if (projectileCountdown === 0) {
         spiderLeftProjectile()
-        projectileCountdown = 60
+        projectileCountdown = 240
       }
       projectileCountdown = projectileCountdown - 1
     } else {
       if (projectileCountdown === 0) {
         spiderRightProjectile()
-        projectileCountdown = 60
+        projectileCountdown = 240
       }
       projectileCountdown = projectileCountdown - 1
     }
-    if (spider.isGrounded()) {
-      k.loop(360, () => {
+    if (spider.isGrounded() && rand(20) > 19.3) {
+      loop(360, () => {
         spider.jump()
       })
     }
