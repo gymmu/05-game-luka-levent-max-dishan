@@ -1,34 +1,40 @@
 import { getPlayer } from "./player.js"
 import { getSpider, getEnemy } from "./gameObjects.js"
+import { k } from "./game.js"
 
 export function rightSlash() {
   const player = getPlayer()
-  // This will add a rectangle which is offset from the player's position by 20 on the x axis.
-  // This will act as a hitbox for the slash.
   add([
-    pos(player.pos.add(0, 5)),
+    // This will add the sword sprite for the left half of the sword
+    k.sprite("swordRight1"),
+    // This will add the sword's position to the player's position
+    // The numbers which follows will change how much it is offset from the player
+    pos(player.pos.add(6, 2)),
+    // This will generate an invisible rectangle which is used as a hitbox
     area({ shape: new Rect(vec2(0), 80, 20) }),
+    // Both the sprite and the rectangle will last .1 seconds
     lifespan(0.1),
-    rect(80, 20),
     "slashHitBox",
   ])
-  // When the rectangle collides with an npc, the npc will be destroyed.
+  // This adds the right half of the sword sprite. It does not have a hitbox.
+  add([k.sprite("swordRight2"), pos(player.pos.add(38, 2)), lifespan(0.1)])
+
+  // When the hitbox collides with an npc, the npc will be destroyed.
   onCollide("enemy", "slashHitBox", (enemy) => {
     enemy.hurt(5)
   })
 }
 export function leftSlash() {
   const player = getPlayer()
-  // This will add a rectangle which is offset from the player's position by 20 on the x axis.
-  // This will act as a hitbox for the slash.
+  // This is the same code, but it uses the left sprites and offsets everything in the opposite direction.
   add([
-    pos(player.pos.add(-50, 5)),
+    k.sprite("swordLeft2"),
+    pos(player.pos.add(-10, 2)),
     area({ shape: new Rect(vec2(0), 80, 20) }),
-    rect(80, 20),
     lifespan(0.1),
     "slashHitBox",
   ])
-  // When the rectangle collides with an npc, the npc will be destroyed.
+  add([k.sprite("swordLeft1"), pos(player.pos.add(-42, 2)), lifespan(0.1)])
   onCollide("enemy", "slashHitBox", (enemy) => {
     enemy.hurt(5)
   })

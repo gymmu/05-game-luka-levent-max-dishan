@@ -77,4 +77,12 @@ export default function loadSprites() {
   k.loadSpriteAtlas("sprites/game_menu.png", {
     game_menu: { x: 0, y: 0, width: 800, height: 600 }, // Hier geben wir in Pixeln an, wo die Grafik für das Spielobjekt anfängt, und aufhört (oben-links bis unten-rechts).
   })
+  k.loadSpriteAtlas("sprites/swordRight.png", {
+    swordRight1: { x: 0, y: 0, width: 32, height: 32 },
+    swordRight2: { x: 32, y: 0, width: 32, height: 32 },
+  })
+  k.loadSpriteAtlas("sprites/swordLeft.png", {
+    swordLeft1: { x: 0, y: 0, width: 32, height: 32 },
+    swordLeft2: { x: 32, y: 0, width: 32, height: 32 },
+  })
 }
