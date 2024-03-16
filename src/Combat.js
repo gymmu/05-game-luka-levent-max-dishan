@@ -1,5 +1,5 @@
 import { getPlayer } from "./player.js"
-import { getSpider } from "./gameObjects.js"
+import { getSpider, getEnemy } from "./gameObjects.js"
 
 export function rightSlash() {
   const player = getPlayer()
@@ -13,8 +13,8 @@ export function rightSlash() {
     "slashHitBox",
   ])
   // When the rectangle collides with an npc, the npc will be destroyed.
-  onCollide("npc", "slashHitBox", (npc) => {
-    npc.destroy()
+  onCollide("enemy", "slashHitBox", (enemy) => {
+    enemy.hurt(5)
   })
 }
 export function leftSlash() {
@@ -29,8 +29,8 @@ export function leftSlash() {
     "slashHitBox",
   ])
   // When the rectangle collides with an npc, the npc will be destroyed.
-  onCollide("npc", "slashHitBox", (npc) => {
-    npc.destroy()
+  onCollide("enemy", "slashHitBox", (enemy) => {
+    enemy.hurt(5)
   })
 }
 
@@ -46,8 +46,9 @@ export function leftProjectile() {
     "projectile",
     move(0, -230),
   ])
-  onCollide("npc", "projectile", (npc) => {
-    npc.destroy()
+  onCollide("enemy", "projectile", (enemy, projectile) => {
+    enemy.hurt(10)
+    destroy(projectile)
   })
 }
 
@@ -61,8 +62,9 @@ export function rightProjectile() {
     "projectile",
     move(0, 230),
   ])
-  onCollide("npc", "projectile", (npc) => {
-    npc.destroy()
+  onCollide("enemy", "projectile", (enemy, projectile) => {
+    enemy.hurt(10)
+    destroy(projectile)
   })
 }
 
@@ -75,9 +77,6 @@ export function spiderLeftProjectile() {
     lifespan(2),
     "spiderProjectile",
     move(0, 230),
-    {
-      dmgAmount: 5,
-    },
   ])
 }
 
@@ -90,8 +89,5 @@ export function spiderRightProjectile() {
     lifespan(2),
     "spiderProjectile",
     move(0, -230),
-    {
-      dmgAmount: 5,
-    },
   ])
 }

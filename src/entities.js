@@ -2,10 +2,12 @@ import { k } from "./game.js"
 import { TILESIZE } from "./globals.js"
 import { getPlayer } from "./player.js"
 import { spiderLeftProjectile, spiderRightProjectile } from "./Combat.js"
+import { getSpider, getEnemy } from "./gameObjects.js"
 
 export function entityLogic() {
   //This code will run every frame
   const player = getPlayer()
+  const enemy = getEnemy()
   k.onUpdate("npc", (npc) => {
     // If the players x position is greater than the Npc's postion, the npc will move left.
     // If not, it will move right
@@ -35,12 +37,15 @@ export function entityLogic() {
       }
       projectileCountdown = projectileCountdown - 1
     }
-    if (spider.isGrounded() && rand(20) > 18.6 && player.pos.y < spider.pos.y) {
+    if (spider.isGrounded() && rand(20) > 19 && player.pos.y < spider.pos.y) {
       spider.jump()
     }
   })
   onCollide("spiderProjectile", "player", (spiderProjectile, player) => {
     player.hurt(5)
     shake(5)
+  })
+  k.on("death", "enemy", (enemy) => {
+    destroy(enemy)
   })
 }

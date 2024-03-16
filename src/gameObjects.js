@@ -102,12 +102,10 @@ export function npc1(x, y) {
     k.pos(k.vec2(x, y).scale(TILESIZE)),
     k.body(),
     k.area(),
+    k.health(5),
     "obstacle",
     "npc",
-    k.health(5),
-    {
-      dmgAmount: 5,
-    },
+    "enemy",
   ])
 }
 
@@ -117,17 +115,19 @@ export function spider(x, y) {
     k.pos(k.vec2(x, y).scale(TILESIZE)),
     k.body(),
     k.area(),
+    k.health(50),
     "obstacle",
     "spider",
-    k.health(5),
-    {
-      dmgAmount: 5,
-    },
+    "enemy",
   ])
 }
 
 export function getSpider() {
   return k.get("spider")[0]
+}
+
+export function getEnemy() {
+  return k.get("enemy")[0]
 }
 
 /**
