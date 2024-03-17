@@ -88,19 +88,33 @@ export function loadKeyboardJumpAndRun() {
     }
   })
 
+  // Used codium to generate a code limiting the amount of attacks per second.
+  let lastAttackTime = 0
   k.onKeyPress("h", () => {
-    if (facingRight === true) {
-      rightSlash()
-    } else if (facingLeft === true) {
-      leftSlash()
+    // This will fetch the current time in milliseconds
+    const currentTime = Date.now()
+    // If the current time in milliseconds has a difference of more than 500 milliseconds than lastAttackTime, the player can attack
+    if (currentTime - lastAttackTime > 500) {
+      // This will set lastAttackTime to the current time
+      lastAttackTime = currentTime
+      if (facingRight === true) {
+        rightSlash()
+      } else if (facingLeft === true) {
+        leftSlash()
+      }
     }
   })
 
+  let lastProjectileTime = 0
   k.onKeyPress("j", () => {
-    if (facingRight === true) {
-      rightProjectile()
-    } else {
-      leftProjectile()
+    const currentTime = Date.now()
+    if (currentTime - lastProjectileTime > 500) {
+      lastProjectileTime = currentTime
+      if (facingRight === true) {
+        rightProjectile()
+      } else {
+        leftProjectile()
+      }
     }
   })
 
