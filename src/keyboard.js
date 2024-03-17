@@ -5,6 +5,7 @@ import {
   rightSlash,
   leftProjectile,
   rightProjectile,
+  upwardSlash,
 } from "./Combat.js"
 
 /**
@@ -88,19 +89,31 @@ export function loadKeyboardJumpAndRun() {
     }
   })
 
+  let lookingUp = false
+  k.onKeyPress("up", () => {
+    lookingUp = true
+  })
+
+  k.onKeyRelease("up", () => {
+    lookingUp = false
+  })
   // Used codium to generate a code limiting the amount of attacks per second.
   let lastAttackTime = 0
   k.onKeyPress("h", () => {
     // This will fetch the current time in milliseconds
     const currentTime = Date.now()
     // If the current time in milliseconds has a difference of more than 500 milliseconds than lastAttackTime, the player can attack
-    if (currentTime - lastAttackTime > 500) {
+    if (currentTime - lastAttackTime > 300) {
       // This will set lastAttackTime to the current time
+
       lastAttackTime = currentTime
-      if (facingRight === true) {
-        rightSlash()
+
+      if (lookingUp === true) {
+        upwardSlash()
       } else if (facingLeft === true) {
         leftSlash()
+      } else if (facingRight === true) {
+        rightSlash()
       }
     }
   })

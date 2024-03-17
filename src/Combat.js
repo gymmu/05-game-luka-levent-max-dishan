@@ -1,6 +1,7 @@
 import { getPlayer } from "./player.js"
 import { getSpider, getEnemy } from "./gameObjects.js"
 import { k } from "./game.js"
+import { TILESIZE } from "./globals.js"
 
 export function rightSlash() {
   const player = getPlayer()
@@ -8,33 +9,69 @@ export function rightSlash() {
     // This will add the sword sprite for the left half of the sword
     k.sprite("swordRight1"),
     // This will add the sword's position to the player's position
-    // The numbers which follows will change how much it is offset from the player
+    // The numbers will change how much it is offset from the player
     pos(player.pos.add(6, 2)),
-    // This will generate an invisible rectangle which is used as a hitbox
-    area({ shape: new Rect(vec2(0), 80, 20) }),
-    // Both the sprite and the rectangle will last .1 seconds
+    // The sprite will last .1 seconds
     lifespan(0.1),
-    "slashHitBox",
   ])
   // This adds the right half of the sword sprite. It does not have a hitbox.
   add([k.sprite("swordRight2"), pos(player.pos.add(38, 2)), lifespan(0.1)])
+  add([
+    pos(player.pos.add(19, 8)),
+    //This will had the hitbox, which is invisible
+    area({ shape: new Rect(vec2(0), 60, 20) }),
+    // Remove the slashes on the following line to see the hitbox
+    // rect(60, 20),
+    lifespan(0.1),
+    "slashHitBox",
+  ])
 
-  // When the hitbox collides with an npc, the npc will be destroyed.
+  // When the hitbox collides with an enemy, the enemy will be hurt. .
   onCollide("enemy", "slashHitBox", (enemy) => {
     enemy.hurt(5)
   })
 }
 export function leftSlash() {
   const player = getPlayer()
-  // This is the same code, but it uses the left sprites and offsets everything in the opposite direction.
+  // This code is the same, but in the other direction
+  // However, the hitbox is added in a seperate add function
+  add([k.sprite("swordLeft2"), pos(player.pos.add(-10, 2)), lifespan(0.1)])
+  add([k.sprite("swordLeft1"), pos(player.pos.add(-42, 2)), lifespan(0.1)])
   add([
-    k.sprite("swordLeft2"),
-    pos(player.pos.add(-10, 2)),
-    area({ shape: new Rect(vec2(0), 80, 20) }),
+    pos(player.pos.add(-47, 8)),
+    // rect(60, 20),
+    area({ shape: new Rect(vec2(0), 60, 20) }),
     lifespan(0.1),
     "slashHitBox",
   ])
-  add([k.sprite("swordLeft1"), pos(player.pos.add(-42, 2)), lifespan(0.1)])
+  onCollide("enemy", "slashHitBox", (enemy) => {
+    enemy.hurt(5)
+  })
+}
+
+export function upwardSlash() {
+  const player = getPlayer()
+  // This code is the same, but in the other direction
+  // However, the hitbox is added in a seperate add function
+  add([
+    k.sprite("swordLeft2"),
+    pos(player.pos.add(TILESIZE, -8)),
+    rotate(90),
+    lifespan(0.1),
+  ])
+  add([
+    k.sprite("swordLeft1"),
+    pos(player.pos.add(TILESIZE, -8 - TILESIZE)),
+    rotate(90),
+    lifespan(0.1),
+  ])
+  add([
+    pos(player.pos.add(6, TILESIZE * -1.25)),
+    area({ shape: new Rect(vec2(0), 20, 50) }),
+    // rect(20, 50),
+    lifespan(0.1),
+    "slashHitBox",
+  ])
   onCollide("enemy", "slashHitBox", (enemy) => {
     enemy.hurt(5)
   })
