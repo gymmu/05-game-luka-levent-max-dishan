@@ -47,23 +47,14 @@ export default function createPlayer() {
   // this will skip one frame after 63 frames have passed.
   // The 64th frame is usually the frame in which the camera glitches.
   player.onUpdate(() => {
-    if (player.isGrounded(false)) {
+    if (player.pos.y < TILESIZE * 9.5) {
       k.camPos(player.pos)
-      k.camScale(1.5)
-      counter = 0
     } else {
-      if (counter < 63) {
-        counter++
-        k.camPos(player.pos)
-      } else if (counter > 64) {
-        k.camPos(player.pos)
-      } else {
-        counter++
-      }
+      k.camPos(player.pos.x, TILESIZE * 9.5)
     }
+    k.camScale(1.5)
   })
 }
-
 /**
  *  Hilfsfunktion um das Spielobjekt von `player` einfach zu bekommen.
  */
