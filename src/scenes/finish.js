@@ -19,4 +19,7 @@ k.scene("finish", () => {
   k.onKeyPress("space", () => {
     k.go("intro")
   })
+  k.onKeyPress("f", (c) => {
+    setFullscreen(!isFullscreen())
+  })
 })

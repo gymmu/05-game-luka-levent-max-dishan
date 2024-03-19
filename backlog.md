@@ -32,3 +32,4 @@
       npc's and a cave entrance(Dishan/Levent)
 - [ ] An ending (?)
 - [ ] Stop enemies from walking off the edge of the map (Max)
+- [x] Add sound effects(Luka)

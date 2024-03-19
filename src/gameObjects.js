@@ -91,7 +91,7 @@ export function flowerJumpAndRun(x, y) {
     "heal",
     {
       isConsumable: true,
-      healAmount: 5,
+      healAmount: 10,
     },
   ])
 }
@@ -104,6 +104,9 @@ export function npc1(x, y) {
     k.area(),
     k.health(5),
     "obstacle",
+    {
+      dmgAmount: 20,
+    },
     "npc",
     "enemy",
   ])

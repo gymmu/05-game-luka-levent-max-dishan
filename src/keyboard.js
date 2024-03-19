@@ -86,6 +86,7 @@ export function loadKeyboardJumpAndRun() {
   k.onKeyPress("space", () => {
     if (player.isGrounded()) {
       player.jump()
+      k.play("jump", { volume: 0.5 })
     }
   })
 

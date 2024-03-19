@@ -52,8 +52,10 @@ export function entityLogic() {
     }
   })
   onCollide("spiderProjectile", "player", (spiderProjectile, player) => {
-    player.hurt(5)
+    k.play("hit", { volume: 0.5 })
+    player.hurt(10)
     shake(5)
+    destroy(spiderProjectile)
   })
   k.on("death", "enemy", (enemy) => {
     destroy(enemy)

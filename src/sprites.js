@@ -64,7 +64,7 @@ export default function loadSprites() {
       sliceY: 1, // In der y-Richtung sind es 4 Kacheln, so wird es gleichmässig aufgeteilt.
       anims: {
         // Hier werden die verschiedenen Animationen definiert.
-        idle: { from: 0, to: 3, loop: true, speed: 10 }, // Die Geschwindigkeit der Animation kann auch verändert werden.
+        idle: { from: 0, to: 3, loop: true, speed: 5 }, // Die Geschwindigkeit der Animation kann auch verändert werden.
       },
     },
   })

@@ -17,6 +17,7 @@ k.scene("level-02", async () => {
 
   k.onCollide("player", "cave", (player) => {
     if (player.hasFlower === true) {
+      k.play("teleport", { volume: 0.5 })
       k.go("level-03")
       player.pos = k.vec2(64, 128)
     }

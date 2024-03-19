@@ -1,7 +1,11 @@
 # Änderungen
 
-## Version 0.1.8
+## Version 0.1.9
 
-- a button that brings you back to the website
-- projectille, spider, door sprites were added
-- arrow keys were changed to AWSD
+- added soundeffects in sounds.js
+- added ladybug sprite
+- fullscreen can now be toggled in start screen and finish screen
+- projectiles from the spider get destroyed after hitting the player
+- flowers heal more
+- ants do more damage
+- spider projectiles do more damage
