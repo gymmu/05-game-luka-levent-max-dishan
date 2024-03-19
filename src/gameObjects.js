@@ -105,7 +105,10 @@ export function ant(x, y) {
     k.health(5),
     "obstacle",
     "ant",
+    // This defines anything that is an enemy
     "enemy",
+    // This Tag will be used to define anything you are not meant to walk through
+    "wall",
   ])
 }
 
@@ -263,6 +266,8 @@ export function mushroomRPG(x, y) {
 }
 let NPC_Number = 0
 // The following functions are NPC's
+// Each function is the same except for the "npc_X"
+// This tag will be used to distinguish between the different NPCs within the game
 export function npc(x, y) {
   NPC_Number += 1
   if (NPC_Number == 1) {
@@ -273,6 +278,7 @@ export function npc(x, y) {
       k.area(),
       "npc",
       "npc_1",
+      "wall",
     ])
   }
   if (NPC_Number == 2) {
@@ -283,6 +289,7 @@ export function npc(x, y) {
       k.area(),
       "npc",
       "npc_2",
+      "wall",
     ])
   }
   if (NPC_Number == 3) {
@@ -293,6 +300,7 @@ export function npc(x, y) {
       k.area(),
       "npc",
       "npc_3",
+      "wall",
     ])
   }
 }

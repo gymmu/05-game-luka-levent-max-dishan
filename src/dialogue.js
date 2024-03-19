@@ -3,9 +3,10 @@ import { getPlayer } from "./player.js"
 
 export function dialogue() {
   const player = getPlayer()
-  onCollide("player", "npc_1", (player) => {
+  onCollideUpdate("player", "npc_1", (player) => {
+    destroyAll("dialogue")
     add([
-      pos(player.pos.x - TILESIZE * 8, player.pos.y - TILESIZE * 5),
+      pos(player.pos.x - TILESIZE * 8, player.pos.y - TILESIZE * 7),
       z(2),
       color(0, 0, 0),
       text(
@@ -16,13 +17,17 @@ export function dialogue() {
           font: "sans-serif", // specify any font you loaded or browser built-in
         },
       ),
+      "dialogue",
     ])
     add([
       rect(TILESIZE * 16 + 4, TILESIZE * 3 + 4),
       outline(1),
       color(210, 180, 140),
-      pos(player.pos.x - TILESIZE * 8 - 2, player.pos.y - TILESIZE * 5 - 2),
+      pos(player.pos.x - TILESIZE * 8 - 2, player.pos.y - TILESIZE * 7 - 2),
+      "dialogue",
     ])
-    shake(5)
+    onCollideEnd("player", "npc_1", () => {
+      destroyAll("dialogue")
+    })
   })
 }
