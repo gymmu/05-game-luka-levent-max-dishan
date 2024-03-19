@@ -59,6 +59,11 @@ main > section > h2 {
   box-shadow: 2px 2px 5px black;
 }
 
+#zurück {
+  margin-top: 1vh;
+  margin-left: 1vw;
+}
+
 .margin-tb {
   margin-top: 2rem;
   margin-bottom: 2rem;

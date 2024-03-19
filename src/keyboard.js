@@ -26,7 +26,7 @@ export function loadKeyboardJumpAndRun() {
   // On key press left, the player will play the runLeft animation.
   // If the code detects that the player should be moving left and right at the same time,
   // then the idleLeft animation will be played.
-  k.onKeyPress("left", () => {
+  k.onKeyPress("a", () => {
     player.play("runLeft")
     //This set movingLeft to true, storing that the player should now be moving left.
     movingLeft = true
@@ -40,12 +40,12 @@ export function loadKeyboardJumpAndRun() {
   })
   // Solange wie die Taste gedrückt wird, wird der Spieler in jedem Frame nach
   // links verschoben.
-  k.onKeyDown("left", () => {
+  k.onKeyDown("a", () => {
     player.move(k.LEFT.scale(player.speed))
   })
   // When the left key is released, the player will play the moving right animation,
   // if moveingRight is true.
-  k.onKeyRelease("left", () => {
+  k.onKeyRelease("a", () => {
     if (movingRight === true) {
       player.play("runRight")
     } else {
@@ -57,7 +57,7 @@ export function loadKeyboardJumpAndRun() {
     movingLeft = false
   })
 
-  k.onKeyPress("right", () => {
+  k.onKeyPress("d", () => {
     player.play("runRight")
     movingRight = true
     facingRight = true
@@ -69,10 +69,10 @@ export function loadKeyboardJumpAndRun() {
     }
   })
 
-  k.onKeyDown("right", () => {
+  k.onKeyDown("d", () => {
     player.move(k.RIGHT.scale(player.speed))
   })
-  k.onKeyRelease("right", () => {
+  k.onKeyRelease("d", () => {
     if (movingLeft === true) {
       player.play("runLeft")
     } else {
@@ -90,11 +90,11 @@ export function loadKeyboardJumpAndRun() {
   })
 
   let lookingUp = false
-  k.onKeyPress("up", () => {
+  k.onKeyPress("w", () => {
     lookingUp = true
   })
 
-  k.onKeyRelease("up", () => {
+  k.onKeyRelease("w", () => {
     lookingUp = false
   })
   // Used codium to generate a code limiting the amount of attacks per second.
@@ -214,51 +214,55 @@ export function loadKeyboardRPG() {
   })
 
   const player = getPlayer()
-  k.onKeyPress("left", () => {
+  k.onKeyPress("a", () => {
     player.play("runLeft")
   })
-  k.onKeyDown("left", () => {
+  k.onKeyDown("a", () => {
     if (westCollision === false) {
       player.move(k.LEFT.scale(player.speed))
     }
   })
-  k.onKeyRelease("left", () => {
+  k.onKeyRelease("a", () => {
     player.play("idleLeft")
   })
 
-  k.onKeyPress("right", () => {
+  k.onKeyPress("d", () => {
     player.play("runRight")
   })
-  k.onKeyDown("right", () => {
+  k.onKeyDown("d", () => {
     if (eastCollision === false) {
       player.move(k.RIGHT.scale(player.speed))
     }
   })
-  k.onKeyRelease("right", () => {
+  k.onKeyRelease("d", () => {
     player.play("idleRight")
   })
 
-  k.onKeyPress("up", () => {
+  k.onKeyPress("w", () => {
     player.play("runUp")
   })
-  k.onKeyDown("up", () => {
+  k.onKeyDown("w", () => {
     if (northCollision === false) {
       player.move(k.UP.scale(player.speed))
     }
   })
-  k.onKeyRelease("up", () => {
+  k.onKeyRelease("w", () => {
     player.play("idleUp")
   })
 
-  k.onKeyPress("down", () => {
+  k.onKeyPress("s", () => {
     player.play("runDown")
   })
-  k.onKeyDown("down", () => {
+  k.onKeyDown("s", () => {
     if (southCollision === false) {
       player.move(k.DOWN.scale(player.speed))
     }
   })
-  k.onKeyRelease("down", () => {
+  k.onKeyRelease("s", () => {
     player.play("idleDown")
+  })
+
+  onKeyPress("f", (c) => {
+    setFullscreen(!isFullscreen())
   })
 }

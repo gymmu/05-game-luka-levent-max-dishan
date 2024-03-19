@@ -117,7 +117,8 @@ export function spiderLeftProjectile() {
   get("spider").forEach((spider) => {
     add([
       pos(spider.pos.add(0, 5)),
-      rect(10, 10),
+      sprite("silcRight"),
+      //rect(10, 10),
       area(),
       lifespan(2),
       "spiderProjectile",
@@ -130,7 +131,8 @@ export function spiderRightProjectile() {
   get("spider").forEach((spider) => {
     add([
       pos(spider.pos.add(0, 5)),
-      rect(10, 10),
+      sprite("silcLeft"),
+      //rect(10, 10),
       area(),
       lifespan(2),
       "spiderProjectile",

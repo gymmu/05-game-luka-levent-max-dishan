@@ -98,7 +98,7 @@ export function flowerJumpAndRun(x, y) {
 
 export function npc1(x, y) {
   k.add([
-    k.sprite("npc1", { anim: "runLeft", anim: "runRight" }),
+    k.sprite("npc1", { anim: "runLeft" }),
     k.pos(k.vec2(x, y).scale(TILESIZE)),
     k.body(),
     k.area(),
@@ -111,7 +111,7 @@ export function npc1(x, y) {
 
 export function spider(x, y) {
   k.add([
-    k.sprite("npc1", { anim: "runLeft" }),
+    k.sprite("spider", { anim: "idle" }),
     k.pos(k.vec2(x, y).scale(TILESIZE)),
     k.body(),
     k.area(),
@@ -135,7 +135,7 @@ export function getEnemy() {
  */
 export function goalJumpAndRun(x, y) {
   k.add([
-    k.sprite("cave"),
+    k.sprite("door"),
     k.pos(k.vec2(x, y).scale(TILESIZE)),
     k.body({ isStatic: true }),
     k.area(),

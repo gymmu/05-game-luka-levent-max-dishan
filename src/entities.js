@@ -13,8 +13,18 @@ export function entityLogic() {
     // If not, it will move right
     if (player.pos.x > npc.pos.x) {
       npc.move(40, 0)
+      if (rand(20) > 19.3) {
+        loop(360, () => {
+          npc.play("runRight")
+        })
+      }
     } else {
       npc.move(-40, 0)
+      if (rand(20) > 19.3) {
+        loop(360, () => {
+          npc.play("runLeft")
+        })
+      }
     }
     if (npc.isGrounded() && rand(20) > 19.3) {
       loop(360, () => {
