@@ -49,7 +49,7 @@ export async function generateMapJumpAndRun(mapfile) {
       } else if (char === "g") {
         GameObjects.goalJumpAndRun(x, y)
       } else if (char === "e") {
-        GameObjects.npc1(x, y)
+        GameObjects.ant(x, y)
       } else if (char === "r") {
         GameObjects.spider(x, y)
       } else if (char === "+") {
@@ -96,6 +96,8 @@ export async function generateMapRPG(mapfile) {
         GameObjects.flowerRPG(x, y)
       } else if (char === "m") {
         GameObjects.mushroomRPG(x, y)
+      } else if (char === "1") {
+        GameObjects.npc(x, y)
       }
     }
   }

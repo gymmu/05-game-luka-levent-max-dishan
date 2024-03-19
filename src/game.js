@@ -1,5 +1,6 @@
 import kaboom from "kaboom"
 import { entityLogic } from "./entities.js"
+import { dialogue } from "./dialogue.js"
 
 /**
  *  Hier werden Funktionen aus den eigenen Datein eingebunden.
@@ -46,7 +47,6 @@ export const k = kaboom({
  * aufrufen, damit die Graphiken auch verfügbar sind.
  */
 loadSprites()
-
 /**
  * Diese Funktion erstellt die generelle Spiellogik die in allen Levels gilt.
  *
@@ -61,6 +61,7 @@ export function addGeneralGameLogic() {
   // Erstelle das UI-Element HP-Balken
   createHPBar()
   entityLogic()
+  dialogue()
 
   /** Wenn der Spieler mit einem Spielobjekt mit dem Tag `heal` kollidiert, wird
    * der Spieler um `healAmount` von dem Spielobjekt geheilt. Hat das

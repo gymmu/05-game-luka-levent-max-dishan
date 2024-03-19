@@ -8,17 +8,17 @@ export function entityLogic() {
   //This code will run every frame
   const player = getPlayer()
   const enemy = getEnemy()
-  k.onUpdate("npc", (npc) => {
-    // If the players x position is greater than the Npc's postion, the npc will move left.
+  k.onUpdate("ant", (ant) => {
+    // If the players x position is greater than the ant's postion, the ant will move left.
     // If not, it will move right
-    if (player.pos.x > npc.pos.x) {
-      npc.move(40, 0)
+    if (player.pos.x > ant.pos.x) {
+      ant.move(40, 0)
     } else {
-      npc.move(-40, 0)
+      ant.move(-40, 0)
     }
-    if (npc.isGrounded() && rand(20) > 19.3) {
+    if (ant.isGrounded() && rand(20) > 19.3) {
       loop(360, () => {
-        npc.jump()
+        ant.jump()
       })
     }
   })

@@ -96,7 +96,7 @@ export function flowerJumpAndRun(x, y) {
   ])
 }
 
-export function npc1(x, y) {
+export function ant(x, y) {
   k.add([
     k.sprite("npc1", { anim: "runLeft", anim: "runRight" }),
     k.pos(k.vec2(x, y).scale(TILESIZE)),
@@ -104,7 +104,7 @@ export function npc1(x, y) {
     k.area(),
     k.health(5),
     "obstacle",
-    "npc",
+    "ant",
     "enemy",
   ])
 }
@@ -260,4 +260,39 @@ export function mushroomRPG(x, y) {
       isConsumable: true,
     },
   ])
+}
+let NPC_Number = 0
+// The following functions are NPC's
+export function npc(x, y) {
+  NPC_Number += 1
+  if (NPC_Number == 1) {
+    k.add([
+      k.sprite("npc1"),
+      k.pos(x * TILESIZE, y * TILESIZE),
+      k.body({ isStatic: true }),
+      k.area(),
+      "npc",
+      "npc_1",
+    ])
+  }
+  if (NPC_Number == 2) {
+    k.add([
+      k.sprite("npc1"),
+      k.pos(x * TILESIZE, y * TILESIZE),
+      k.body({ isStatic: true }),
+      k.area(),
+      "npc",
+      "npc_2",
+    ])
+  }
+  if (NPC_Number == 3) {
+    k.add([
+      k.sprite("npc1"),
+      k.pos(x * TILESIZE, y * TILESIZE),
+      k.body({ isStatic: true }),
+      k.area(),
+      "npc",
+      "npc_3",
+    ])
+  }
 }
