@@ -3,6 +3,7 @@ import { getPlayer } from "./player.js"
 
 export function dialogue() {
   const player = getPlayer()
+
   onCollideUpdate("player", "npc_1", (player) => {
     destroyAll("dialogue")
     add([

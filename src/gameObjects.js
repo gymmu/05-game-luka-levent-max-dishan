@@ -1,5 +1,6 @@
 import { k } from "./game.js"
 import { TILESIZE } from "./globals.js"
+import { getPlayer } from "./player.js"
 
 /**
  * Ein Spielobjekt das sich nicht bewegen lässt und der Spieler nicht
@@ -272,6 +273,18 @@ let NPC_Number = 0
 // The following functions are NPC's
 // Each function is the same except for the "npc_X"
 // This tag will be used to distinguish between the different NPCs within the game
+
+export function resetNPC() {
+  const player = getPlayer()
+  player.on("death", async () => {
+    NPC_Number = 0
+  })
+  k.onUpdate(() => {
+    if (player.pos.y > 720) {
+      NPC_Number = 0
+    }
+  })
+}
 export function npc(x, y) {
   NPC_Number += 1
   if (NPC_Number == 1) {
@@ -285,7 +298,7 @@ export function npc(x, y) {
       "wall",
     ])
   }
-  if (NPC_Number == 2) {
+  if (NPC_Number == 10) {
     k.add([
       k.sprite("npc1"),
       k.pos(x * TILESIZE, y * TILESIZE),
@@ -296,7 +309,7 @@ export function npc(x, y) {
       "wall",
     ])
   }
-  if (NPC_Number == 3) {
+  if (NPC_Number == 10) {
     k.add([
       k.sprite("npc1"),
       k.pos(x * TILESIZE, y * TILESIZE),
