@@ -1,13 +1,13 @@
 import { TILESIZE } from "./globals.js"
 import { getPlayer } from "./player.js"
-
+import { k } from "./game.js"
 export function dialogue() {
   const player = getPlayer()
 
   onCollideUpdate("player", "npc_1", (player) => {
     destroyAll("dialogue")
     add([
-      pos(player.pos.x - TILESIZE * 8, player.pos.y - TILESIZE * 5),
+      pos(k.camPos().x - TILESIZE * 8, k.camPos().y - TILESIZE * 4.5),
       z(2),
       color(0, 0, 0),
       text(
@@ -24,7 +24,7 @@ export function dialogue() {
       rect(TILESIZE * 16 + 4, TILESIZE * 3 + 4),
       outline(1),
       color(210, 180, 140),
-      pos(player.pos.x - TILESIZE * 8 - 2, player.pos.y - TILESIZE * 5 - 2),
+      pos(k.camPos().x - TILESIZE * 8, k.camPos().y - TILESIZE * 4.5),
       "dialogue",
     ])
     onCollideEnd("player", "npc_1", () => {
