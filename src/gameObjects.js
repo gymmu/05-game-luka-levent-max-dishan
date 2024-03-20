@@ -129,6 +129,19 @@ export function spider(x, y) {
   ])
 }
 
+export function evilLadybug(x, y) {
+  k.add([
+    k.sprite("ladybugEvil", { anim: "idle" }),
+    k.pos(k.vec2(x, y).scale(TILESIZE)),
+    k.body(),
+    k.area(),
+    k.health(50),
+    "obstacle",
+    "ladybug",
+    "enemy",
+  ])
+}
+
 export function getSpider() {
   return k.get("spider")[0]
 }

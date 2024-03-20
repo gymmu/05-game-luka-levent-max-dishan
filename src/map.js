@@ -56,6 +56,8 @@ export async function generateMapJumpAndRun(mapfile) {
         GameObjects.bogGrass(x, y)
       } else if (char === "v") {
         GameObjects.bogVines(x, y)
+      } else if (char === "2") {
+        GameObjects.evilLadybug(x, y)
       }
     }
   }

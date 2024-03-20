@@ -147,3 +147,50 @@ export function spiderRightProjectile() {
     ])
   })
 }
+
+export function ladybugLeftProjectile() {
+  get("ladybug").forEach((ladybug) => {
+    add([
+      pos(ladybug.pos.add(0, 5)),
+      sprite("silcRight"),
+      //rect(10, 10),
+      area(),
+      lifespan(2),
+      "ladybugProjectile",
+      move(0, 230),
+    ])
+  })
+}
+
+export function ladybugRightProjectile() {
+  get("ladybug").forEach((ladybug) => {
+    add([
+      pos(ladybug.pos.add(0, 5)),
+      sprite("silcLeft"),
+      //rect(10, 10),
+      area(),
+      lifespan(2),
+      "ladybugProjectile",
+      move(0, -230),
+    ])
+  })
+}
+
+export function ladybugLeftSlash() {
+  const ladybug = k.get("player")[0]
+  // This code is the same, but in the other direction
+  // However, the hitbox is added in a seperate add function
+  add([k.sprite("swordLeft2"), pos(player.pos.add(-10, 2)), lifespan(0.1)])
+  add([k.sprite("swordLeft1"), pos(player.pos.add(-42, 2)), lifespan(0.1)])
+  add([
+    pos(player.pos.add(-47, 8)),
+    // rect(60, 20),
+    area({ shape: new Rect(vec2(0), 60, 20) }),
+    lifespan(0.1),
+    "slashHitBox",
+  ])
+  onCollide("enemy", "slashHitBox", (enemy) => {
+    enemy.hurt(5)
+    k.play("slash", { volume: 0.3 })
+  })
+}

@@ -1,7 +1,12 @@
 import { k } from "./game.js"
 import { TILESIZE } from "./globals.js"
 import { getPlayer } from "./player.js"
-import { spiderLeftProjectile, spiderRightProjectile } from "./Combat.js"
+import {
+  spiderLeftProjectile,
+  spiderRightProjectile,
+  ladybugLeftProjectile,
+  ladybugRightProjectile,
+} from "./Combat.js"
 import { getSpider, getEnemy } from "./gameObjects.js"
 
 export function entityLogic() {
@@ -62,6 +67,28 @@ export function entityLogic() {
       }
     }
   })
+  let ladybugprojectileCountdown = 60
+  k.onUpdate("ladybug", (ladybug) => {
+    if (
+      ladybug.pos.x + TILESIZE * 10 > player.pos.x &&
+      ladybug.pos.x - TILESIZE * 10 < player.pos.x
+    ) {
+      if (player.pos.x > ladybug.pos.x) {
+        if (ladybugprojectileCountdown === 0) {
+          ladybugLeftProjectile()
+          ladybugprojectileCountdown = 60
+        }
+        ladybugprojectileCountdown = ladybugprojectileCountdown - 1
+      } else {
+        if (ladybugprojectileCountdown === 0) {
+          ladybugRightProjectile()
+          ladybugprojectileCountdown = 60
+        }
+        ladybugprojectileCountdown = ladybugprojectileCountdown - 1
+      }
+    }
+  })
+
   onCollide("spiderProjectile", "player", (spiderProjectile, player) => {
     k.play("hit", { volume: 1 })
     player.hurt(10)
