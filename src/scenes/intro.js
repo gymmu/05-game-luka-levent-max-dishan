@@ -35,6 +35,9 @@ k.scene("intro", () => {
   // pro Szene anders angegeben werden. Hier wird mit `space` zur nächsten
   // Szene gewechselt. In der nächsten Szene können wir `space` dann auch zum
   // Springen verwenden.
+  k.onKeyPress("f", (c) => {
+    setFullscreen(!isFullscreen())
+  })
   k.onKeyPress("space", () => {
     k.go("level-01")
   })

@@ -13,6 +13,8 @@ import { dialogue } from "./dialogue.js"
  */
 import loadSprites from "./sprites.js"
 
+import loadSounds from "./sounds.js"
+
 /**
  * Wir können auch einzelne Variablen importieren.
  * Das können wir verwenden um globale Konstanten zu definieren, die wir
@@ -47,6 +49,9 @@ export const k = kaboom({
  * aufrufen, damit die Graphiken auch verfügbar sind.
  */
 loadSprites()
+
+loadSounds()
+
 /**
  * Diese Funktion erstellt die generelle Spiellogik die in allen Levels gilt.
  *
@@ -80,6 +85,7 @@ export function addGeneralGameLogic() {
    * `isConsumable`, wird das Hindernis gelöscht.
    */
   k.onCollide("obstacle", "player", (obstacle, player) => {
+    k.play("hit", { volume: 0.5 })
     player.hurt(obstacle.dmgAmount)
     if (obstacle.isConsumable === true) {
       obstacle.destroy()
@@ -91,15 +97,12 @@ export function addGeneralGameLogic() {
    * gesetzt.
    */
   player.on("heal", () => {
-    const oldSpeed = player.speed
-    player.speed *= 2
-    k.wait(1, () => {
-      player.speed = TILESIZE * 5
-    })
+    k.play("heal", { volume: 0.5 })
   })
 
   player.on("death", async () => {
     await import("./scenes/lose.js")
+    k.play("death", { volume: 0.5 })
     k.go("lose")
   })
 }

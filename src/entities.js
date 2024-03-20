@@ -11,10 +11,20 @@ export function entityLogic() {
   k.onUpdate("ant", (ant) => {
     // If the players x position is greater than the ant's postion, the ant will move left.
     // If not, it will move right
-    if (player.pos.x > ant.pos.x) {
-      ant.move(40, 0)
+    if (player.pos.x > npc.pos.x) {
+      npc.move(40, 0)
+      if (rand(20) > 19.3) {
+        loop(360, () => {
+          npc.play("runRight")
+        })
+      }
     } else {
-      ant.move(-40, 0)
+      npc.move(-40, 0)
+      if (rand(20) > 19.3) {
+        loop(360, () => {
+          npc.play("runLeft")
+        })
+      }
     }
     if (ant.isGrounded() && rand(20) > 19.3) {
       loop(360, () => {
@@ -42,8 +52,10 @@ export function entityLogic() {
     }
   })
   onCollide("spiderProjectile", "player", (spiderProjectile, player) => {
-    player.hurt(5)
+    k.play("hit", { volume: 0.5 })
+    player.hurt(10)
     shake(5)
+    destroy(spiderProjectile)
   })
   k.on("death", "enemy", (enemy) => {
     destroy(enemy)

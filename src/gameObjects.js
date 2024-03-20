@@ -91,19 +91,23 @@ export function flowerJumpAndRun(x, y) {
     "heal",
     {
       isConsumable: true,
-      healAmount: 5,
+      healAmount: 10,
     },
   ])
 }
 
 export function ant(x, y) {
   k.add([
-    k.sprite("npc1", { anim: "runLeft", anim: "runRight" }),
+    k.sprite("npc1", { anim: "runLeft" }),
     k.pos(k.vec2(x, y).scale(TILESIZE)),
     k.body(),
     k.area(),
     k.health(5),
     "obstacle",
+    {
+      dmgAmount: 20,
+    },
+    "npc",
     "ant",
     // This defines anything that is an enemy
     "enemy",
@@ -114,7 +118,7 @@ export function ant(x, y) {
 
 export function spider(x, y) {
   k.add([
-    k.sprite("npc1", { anim: "runLeft" }),
+    k.sprite("spider", { anim: "idle" }),
     k.pos(k.vec2(x, y).scale(TILESIZE)),
     k.body(),
     k.area(),
@@ -138,7 +142,7 @@ export function getEnemy() {
  */
 export function goalJumpAndRun(x, y) {
   k.add([
-    k.sprite("cave"),
+    k.sprite("door"),
     k.pos(k.vec2(x, y).scale(TILESIZE)),
     k.body({ isStatic: true }),
     k.area(),

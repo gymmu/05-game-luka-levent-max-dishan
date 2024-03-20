@@ -29,6 +29,7 @@ export function rightSlash() {
   // When the hitbox collides with an enemy, the enemy will be hurt. .
   onCollide("enemy", "slashHitBox", (enemy) => {
     enemy.hurt(5)
+    k.play("slash", { volume: 0.3 })
   })
 }
 export function leftSlash() {
@@ -46,6 +47,7 @@ export function leftSlash() {
   ])
   onCollide("enemy", "slashHitBox", (enemy) => {
     enemy.hurt(5)
+    k.play("slash", { volume: 0.3 })
   })
 }
 
@@ -74,6 +76,7 @@ export function upwardSlash() {
   ])
   onCollide("enemy", "slashHitBox", (enemy) => {
     enemy.hurt(5)
+    k.play("slash", { volume: 0.3 })
   })
 }
 
@@ -82,7 +85,8 @@ export function leftProjectile() {
   add([
     // a square is created that will move to the left at a rate of 230 per second
     pos(player.pos.add(0, 5)),
-    rect(10, 10),
+    sprite("silcLeft"),
+    //rect(10, 10),
     area(),
     // it will disapear after 2 seconds
     lifespan(2),
@@ -90,7 +94,8 @@ export function leftProjectile() {
     move(0, -230),
   ])
   onCollide("enemy", "projectile", (enemy, projectile) => {
-    enemy.hurt(10)
+    k.play("hit", { volume: 0.5 })
+    enemy.hurt(5)
     destroy(projectile)
   })
 }
@@ -99,13 +104,15 @@ export function rightProjectile() {
   const player = getPlayer()
   add([
     pos(player.pos.add(0, 5)),
-    rect(10, 10),
+    sprite("silcLeft"),
+    //rect(10, 10),
     area(),
     lifespan(2),
     "projectile",
     move(0, 230),
   ])
   onCollide("enemy", "projectile", (enemy, projectile) => {
+    k.play("hit", { volume: 0.5 })
     enemy.hurt(10)
     destroy(projectile)
   })
@@ -117,7 +124,8 @@ export function spiderLeftProjectile() {
   get("spider").forEach((spider) => {
     add([
       pos(spider.pos.add(0, 5)),
-      rect(10, 10),
+      sprite("silcRight"),
+      //rect(10, 10),
       area(),
       lifespan(2),
       "spiderProjectile",
@@ -130,7 +138,8 @@ export function spiderRightProjectile() {
   get("spider").forEach((spider) => {
     add([
       pos(spider.pos.add(0, 5)),
-      rect(10, 10),
+      sprite("silcLeft"),
+      //rect(10, 10),
       area(),
       lifespan(2),
       "spiderProjectile",

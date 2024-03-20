@@ -47,6 +47,7 @@ k.scene("level-03", async () => {
   // Hier ist es so das wenn der Spieler mit dem "goal" kollidiert, dann
   // kommen wir ins nächste Level.
   k.onCollide("player", "goal", () => {
+    k.play("teleport", { volume: 0.5 })
     k.go("level-04")
   })
 
@@ -58,6 +59,7 @@ k.scene("level-03", async () => {
   k.onUpdate(() => {
     const player = k.get("player")[0]
     if (player.pos.y > 720) {
+      k.play("death", { volume: 0.5 })
       k.go("lose")
     }
   })
