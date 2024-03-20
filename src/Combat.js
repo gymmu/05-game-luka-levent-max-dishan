@@ -94,7 +94,7 @@ export function leftProjectile() {
     move(0, -230),
   ])
   onCollide("enemy", "projectile", (enemy, projectile) => {
-    k.play("hit", { volume: 0.5 })
+    k.play("hit", { volume: 1 })
     enemy.hurt(5)
     destroy(projectile)
   })
@@ -104,7 +104,7 @@ export function rightProjectile() {
   const player = getPlayer()
   add([
     pos(player.pos.add(0, 5)),
-    sprite("silcLeft"),
+    sprite("silcRight"),
     //rect(10, 10),
     area(),
     lifespan(2),
@@ -112,7 +112,7 @@ export function rightProjectile() {
     move(0, 230),
   ])
   onCollide("enemy", "projectile", (enemy, projectile) => {
-    k.play("hit", { volume: 0.5 })
+    k.play("hit", { volume: 1 })
     enemy.hurt(10)
     destroy(projectile)
   })
