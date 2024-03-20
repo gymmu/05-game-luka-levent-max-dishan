@@ -39,7 +39,7 @@ export function cameraLogic() {
   } else if (currentLevel === 2) {
     east = 29
   } else if (currentLevel === 3) {
-    east = 150
+    east = 205
   }
   // This centers the camera. The screen is 20 tiles wide.
   // East is later multiplied by the TileSize.
@@ -97,9 +97,16 @@ export function cameraLogic() {
   }
 
   player.onUpdate(() => {
+    // Increase this number once you have programmed maximum east and south value for a new map.
+    if (currentLevel > 3) {
+      k.camPos(player.pos)
+    }
     // The following functions will determine  if the player has reached the edge of the screen,
     // and then excute the respective function.
-    if (player.pos.y > TILESIZE * south && player.pos.x < TILESIZE * west) {
+    else if (
+      player.pos.y > TILESIZE * south &&
+      player.pos.x < TILESIZE * west
+    ) {
       limitSouthWest()
     } else if (
       player.pos.y < TILESIZE * north &&
