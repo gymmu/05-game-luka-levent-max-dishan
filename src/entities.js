@@ -11,18 +11,18 @@ export function entityLogic() {
   k.onUpdate("ant", (ant) => {
     // If the players x position is greater than the ant's postion, the ant will move left.
     // If not, it will move right
-    if (player.pos.x > npc.pos.x) {
-      npc.move(40, 0)
+    if (player.pos.x > ant.pos.x) {
+      ant.move(40, 0)
       if (rand(20) > 19.3) {
         loop(360, () => {
-          npc.play("runRight")
+          ant.play("runRight")
         })
       }
     } else {
-      npc.move(-40, 0)
+      ant.move(-40, 0)
       if (rand(20) > 19.3) {
         loop(360, () => {
-          npc.play("runLeft")
+          ant.play("runLeft")
         })
       }
     }

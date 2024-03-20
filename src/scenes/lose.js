@@ -8,8 +8,16 @@ import "./level-02.js"
  * Spieler gestorben ist.
  */
 k.scene("lose", () => {
-  const player = k.get("player")[0]
-  player.destroy()
+  const player = k.get("player")
+  // This code was giving an error when trying to destroy the player.
+  // I asked codium to fix the issue, and it returned the code seen here.
+  if (player.length > 0) {
+    player[0].destroy()
+  }
+  // If the const is: "const player = k.get("player")[0]", it will not work.
+  // Instead, you have to define "player" and then put a [0] after it, as seen above.
+  // The player.length must also be more than 0
+  // I don't fully understand why either of these things solve the problem, but they do.
 
   k.add([
     k.text("Game over", { size: 44 }),

@@ -107,7 +107,6 @@ export function ant(x, y) {
     {
       dmgAmount: 20,
     },
-    "npc",
     "ant",
     // This defines anything that is an enemy
     "enemy",
