@@ -69,6 +69,20 @@ export default function loadSprites() {
     },
   })
 
+  k.loadSpriteAtlas("sprites/ladybug.png", {
+    ladybug: {
+      x: 0,
+      y: 0,
+      width: 3 * TS,
+      height: 1 * TS,
+      sliceX: 3,
+      sliceY: 1,
+      anims: {
+        idle: { from: 0, to: 2, loop: true, speed: 5 },
+      },
+    },
+  })
+
   k.loadSpriteAtlas("sprites/door.png", {
     door: { x: 0 * TS, y: 0 * TS, width: TS, height: TS },
   })
