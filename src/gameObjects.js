@@ -204,6 +204,7 @@ export function caveRPG(x, y, door) {
     k.body({ isStatic: true }),
     k.area(),
     "cave",
+    "goal",
     {
       door: door,
     },

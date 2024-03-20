@@ -6,7 +6,7 @@ export function dialogue() {
   onCollideUpdate("player", "npc_1", (player) => {
     destroyAll("dialogue")
     add([
-      pos(player.pos.x - TILESIZE * 8, player.pos.y - TILESIZE * 7),
+      pos(player.pos.x - TILESIZE * 8, player.pos.y - TILESIZE * 5),
       z(2),
       color(0, 0, 0),
       text(
@@ -23,7 +23,7 @@ export function dialogue() {
       rect(TILESIZE * 16 + 4, TILESIZE * 3 + 4),
       outline(1),
       color(210, 180, 140),
-      pos(player.pos.x - TILESIZE * 8 - 2, player.pos.y - TILESIZE * 7 - 2),
+      pos(player.pos.x - TILESIZE * 8 - 2, player.pos.y - TILESIZE * 5 - 2),
       "dialogue",
     ])
     onCollideEnd("player", "npc_1", () => {

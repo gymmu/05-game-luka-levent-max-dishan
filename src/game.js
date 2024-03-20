@@ -1,6 +1,7 @@
 import kaboom from "kaboom"
 import { entityLogic } from "./entities.js"
 import { dialogue } from "./dialogue.js"
+import { cameraLogic } from "./Camera.js"
 
 /**
  *  Hier werden Funktionen aus den eigenen Datein eingebunden.
@@ -67,6 +68,7 @@ export function addGeneralGameLogic() {
   createHPBar()
   entityLogic()
   dialogue()
+  cameraLogic()
 
   /** Wenn der Spieler mit einem Spielobjekt mit dem Tag `heal` kollidiert, wird
    * der Spieler um `healAmount` von dem Spielobjekt geheilt. Hat das

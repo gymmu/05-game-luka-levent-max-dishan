@@ -18,7 +18,7 @@ export default function createPlayer() {
 
     // Gibt dem Spieler Lebenspunkte und die möglichkeit über die Funktionen
     // `hurt` und `heal` mit dem Spieler zu interagieren.
-    k.health(50),
+    k.health(5000),
 
     // Damit wird der Spieler nicht zerstört wenn die Szene gewechselt wird.
     // Der Spieler muss dann aber bei GameOver und ähnlichen Szenen von
@@ -46,14 +46,6 @@ export default function createPlayer() {
   let counter = 0
   // this will skip one frame after 63 frames have passed.
   // The 64th frame is usually the frame in which the camera glitches.
-  player.onUpdate(() => {
-    if (player.pos.y < TILESIZE * 9.5) {
-      k.camPos(player.pos)
-    } else {
-      k.camPos(player.pos.x, TILESIZE * 9.5)
-    }
-    k.camScale(1.5)
-  })
 }
 /**
  *  Hilfsfunktion um das Spielobjekt von `player` einfach zu bekommen.
