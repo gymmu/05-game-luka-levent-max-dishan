@@ -289,7 +289,7 @@ export function npc(x, y) {
   NPC_Number += 1
   if (NPC_Number == 1) {
     k.add([
-      k.sprite("npc1"),
+      k.sprite("ladybug", { anim: "idle" }),
       k.pos(x * TILESIZE, y * TILESIZE),
       k.body({ isStatic: true }),
       k.area(),
@@ -300,7 +300,7 @@ export function npc(x, y) {
   }
   if (NPC_Number == 10) {
     k.add([
-      k.sprite("npc1"),
+      k.sprite("ladybug", { anim: "idle" }),
       k.pos(x * TILESIZE, y * TILESIZE),
       k.body({ isStatic: true }),
       k.area(),
@@ -311,7 +311,7 @@ export function npc(x, y) {
   }
   if (NPC_Number == 10) {
     k.add([
-      k.sprite("npc1"),
+      k.sprite("ladybug", { anim: "idle" }),
       k.pos(x * TILESIZE, y * TILESIZE),
       k.body({ isStatic: true }),
       k.area(),
