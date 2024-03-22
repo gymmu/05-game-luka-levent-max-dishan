@@ -110,8 +110,30 @@ export function entityLogic() {
         }
       }
     }
-
     ladybugSwordCountdown = ladybugSwordCountdown - 1
+    const projectile = k.get("projectile")[0]
+    if (projectile === undefined) return
+    else if (
+      // These values make it so a projectile must be close to the ladybug for the ladybug to use its sword
+      ladybug.pos.x + TILESIZE * 2 > projectile.pos.x &&
+      ladybug.pos.x - TILESIZE * 2 < projectile.pos.x &&
+      ladybug.pos.y + TILESIZE * 1 > projectile.pos.y &&
+      ladybug.pos.y - TILESIZE * 1 < projectile.pos.y
+    ) {
+      if (player.pos.x < ladybug.pos.x) {
+        if (ladybugSwordCountdown <= 0) {
+          ladybugLeftSlash()
+          ladybugSwordCountdown = 90
+          destroy(projectile)
+        }
+      } else {
+        if (ladybugSwordCountdown <= 0) {
+          ladybugRightSlash()
+          ladybugSwordCountdown = 90
+          destroy(projectile)
+        }
+      }
+    }
   })
 
   onCollide("spiderProjectile", "player", (spiderProjectile, player) => {
