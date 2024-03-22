@@ -6,6 +6,8 @@ import {
   spiderRightProjectile,
   ladybugLeftProjectile,
   ladybugRightProjectile,
+  ladybugLeftSlash,
+  ladybugRightSlash,
 } from "./Combat.js"
 import { getSpider, getEnemy } from "./gameObjects.js"
 
@@ -67,24 +69,69 @@ export function entityLogic() {
       }
     }
   })
-  let ladybugprojectileCountdown = 60
+  let ladybugprojectileCountdown = 120
+  let ladybugSwordCountdown = 90
   k.onUpdate("ladybug", (ladybug) => {
     if (
       ladybug.pos.x + TILESIZE * 10 > player.pos.x &&
       ladybug.pos.x - TILESIZE * 10 < player.pos.x
     ) {
-      if (player.pos.x > ladybug.pos.x) {
+      if (player.pos.x < ladybug.pos.x) {
         if (ladybugprojectileCountdown === 0) {
           ladybugLeftProjectile()
-          ladybugprojectileCountdown = 60
+          ladybugprojectileCountdown = 120
         }
         ladybugprojectileCountdown = ladybugprojectileCountdown - 1
       } else {
         if (ladybugprojectileCountdown === 0) {
           ladybugRightProjectile()
-          ladybugprojectileCountdown = 60
+          ladybugprojectileCountdown = 120
         }
         ladybugprojectileCountdown = ladybugprojectileCountdown - 1
+      }
+    }
+
+    if (
+      // These values make it so the player must be close to the ladybug for the ladybug to use its sword
+      ladybug.pos.x + TILESIZE * 3 > player.pos.x &&
+      ladybug.pos.x - TILESIZE * 3 < player.pos.x &&
+      ladybug.pos.y + TILESIZE * 2 > player.pos.y &&
+      ladybug.pos.y - TILESIZE * 2 < player.pos.y
+    ) {
+      if (player.pos.x < ladybug.pos.x) {
+        if (ladybugSwordCountdown <= 0) {
+          ladybugLeftSlash()
+          ladybugSwordCountdown = 90
+        }
+      } else {
+        if (ladybugSwordCountdown <= 0) {
+          ladybugRightSlash()
+          ladybugSwordCountdown = 90
+        }
+      }
+    }
+    ladybugSwordCountdown = ladybugSwordCountdown - 1
+    const projectile = k.get("projectile")[0]
+    if (projectile === undefined) return
+    else if (
+      // These values make it so a projectile must be close to the ladybug for the ladybug to use its sword
+      ladybug.pos.x + TILESIZE * 2 > projectile.pos.x &&
+      ladybug.pos.x - TILESIZE * 2 < projectile.pos.x &&
+      ladybug.pos.y + TILESIZE * 1 > projectile.pos.y &&
+      ladybug.pos.y - TILESIZE * 1 < projectile.pos.y
+    ) {
+      if (player.pos.x < ladybug.pos.x) {
+        if (ladybugSwordCountdown <= 0) {
+          ladybugLeftSlash()
+          ladybugSwordCountdown = 90
+          destroy(projectile)
+        }
+      } else {
+        if (ladybugSwordCountdown <= 0) {
+          ladybugRightSlash()
+          ladybugSwordCountdown = 90
+          destroy(projectile)
+        }
       }
     }
   })
