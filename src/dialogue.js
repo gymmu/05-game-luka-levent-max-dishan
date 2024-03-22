@@ -4,7 +4,9 @@ import { k } from "./game.js"
 export function dialogue() {
   const player = getPlayer()
 
-  const dialogueState = 1
+  let dialogueState = 0
+
+  const dialogue = ["Hey, how are you?", "I'm fine, thank you. And you?"]
 
   onCollide("player", "npc_1", (player) => {
     k.add([
@@ -18,20 +20,17 @@ export function dialogue() {
   })
 
   onCollideUpdate("player", "npc_1", (player) => {
-    if (isKeyPressed("enter") && dialogueState == 1) {
+    if (isKeyReleased("enter")) {
       destroyAll("dialogue")
       add([
         pos(k.camPos().x - TILESIZE * 8, k.camPos().y - TILESIZE * 4.5),
         z(2),
         color(0, 0, 0),
-        text(
-          "ohhesifhrdgorfoiwhegoiwweoifheoighesroigjeof;heargoiesjrhgireahgehgoiwhegiowhegoiwehgi",
-          {
-            size: 20, // 48 pixels tall
-            width: TILESIZE * 16, // it'll wrap to next line when width exceeds this value
-            font: "sans-serif", // specify any font you loaded or browser built-in
-          },
-        ),
+        text(dialogue[dialogueState], {
+          size: 20, // 48 pixels tall
+          width: TILESIZE * 16, // it'll wrap to next line when width exceeds this value
+          font: "sans-serif", // specify any font you loaded or browser built-in
+        }),
         "dialogue",
       ])
       add([
@@ -44,7 +43,14 @@ export function dialogue() {
       ])
       onCollideEnd("player", "npc_1", () => {
         destroyAll("dialogue")
+        dialogueState = 0
       })
+
+      dialogueState++
+
+      if (dialogueState > dialogue.length) {
+        destroyAll("dialogue")
+      }
     }
     onCollideEnd("player", "npc_1", () => {
       destroyAll("enter")
