@@ -49,6 +49,7 @@ k.scene("level-03", async () => {
   k.onCollide("player", "goal", () => {
     k.play("teleport", { volume: 0.5 })
     k.go("level-04")
+    player.pos = k.vec2(64, 128)
   })
 
   // Diese Funktion wird bei jedem Frame ausgeführt. Bei einem Jump'n'Run ist

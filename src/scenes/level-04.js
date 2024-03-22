@@ -10,6 +10,13 @@ k.scene("level-04", async () => {
   loadKeyboardJumpAndRun()
   await generateMapJumpAndRun("maps/level-04.txt")
 
+  k.add([
+    k.sprite("background", { width: k.width(), height: k.height() }),
+    k.pos(0, 0),
+    k.z("-100"),
+    k.fixed(),
+  ])
+
   addGeneralGameLogic()
 
   k.onCollide("player", "goal", () => {
