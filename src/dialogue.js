@@ -10,7 +10,7 @@ export function dialogue() {
 
   onCollide("player", "npc_1", (player) => {
     k.add([
-      sprite("pressEnter", { anim: "idle", speed: 0.5 }),
+      sprite("pressEnter", { anim: "idle" }),
       pos(TILESIZE * 19, TILESIZE * 10),
       z(2),
       anchor("right"),

@@ -110,11 +110,38 @@ export default function loadSprites() {
       sliceX: 2,
       sliceY: 1,
       anims: {
-        idle: { from: 0, to: 1, loop: true, speed: 5 },
+        idle: { from: 0, to: 1, loop: true, speed: 1 },
       },
     },
   })
 
+  k.loadSpriteAtlas("sprites/pressH.png", {
+    pressH: {
+      x: 0,
+      y: 0,
+      width: 2 * TS,
+      height: 1 * TS,
+      sliceX: 2,
+      sliceY: 1,
+      anims: {
+        idle: { from: 0, to: 1, loop: true, speed: 1 },
+      },
+    },
+  })
+
+  k.loadSpriteAtlas("sprites/pressAWSD.png", {
+    pressAWSD: {
+      x: 0,
+      y: 0,
+      width: 2 * TS,
+      height: 1 * TS,
+      sliceX: 2,
+      sliceY: 1,
+      anims: {
+        idle: { from: 0, to: 1, loop: true, speed: 1 },
+      },
+    },
+  })
   /**
    * Hier werden alle sprites für die statischen Spielobjekte geladen.
    */
