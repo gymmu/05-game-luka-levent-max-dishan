@@ -1,6 +1,7 @@
 import { TILESIZE } from "./globals.js"
 import { getPlayer } from "./player.js"
 import { k } from "./game.js"
+export let movement = true
 export function dialogue() {
   const player = getPlayer()
 
@@ -8,7 +9,7 @@ export function dialogue() {
 
   const dialogue = ["Hey, how are you?", "I'm fine, thank you. And you?"]
 
-  onCollide("player", "npc_1", (player) => {
+  onCollide("player", "npc_1", () => {
     k.add([
       sprite("pressEnter", { anim: "idle", speed: 0.5 }),
       pos(TILESIZE * 19, TILESIZE * 10),
@@ -19,8 +20,9 @@ export function dialogue() {
     ])
   })
 
-  onCollideUpdate("player", "npc_1", (player) => {
+  onCollideUpdate("player", "npc_1", () => {
     if (isKeyReleased("enter")) {
+      movement = false
       destroyAll("dialogue")
       add([
         pos(k.camPos().x - TILESIZE * 8, k.camPos().y - TILESIZE * 4.5),
@@ -50,6 +52,8 @@ export function dialogue() {
 
       if (dialogueState > dialogue.length) {
         destroyAll("dialogue")
+        movement = true
+        destroyAll("enter")
       }
     }
     onCollideEnd("player", "npc_1", () => {
