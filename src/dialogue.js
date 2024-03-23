@@ -7,9 +7,16 @@ export function dialogue() {
 
   let dialogueState = 0
 
-  const dialogue = ["Hey, how are you?", "I'm fine, thank you. And you?"]
+  let dialogue = ["Hey, how are you?", "I'm fine, thank you. And you?"]
 
   onCollide("player", "npc_1", () => {
+    dialogue = ["Hey, how are you?", "I'm fine, thank you. And you?"]
+  })
+  onCollide("player", "npc_2", () => {
+    dialogue = ["E", "EEEEEEEEEEEEE"]
+  })
+
+  onCollide("player", "npc", () => {
     k.add([
       sprite("pressEnter", { anim: "idle" }),
       pos(TILESIZE * 19, TILESIZE * 10),
@@ -20,7 +27,7 @@ export function dialogue() {
     ])
   })
 
-  onCollideUpdate("player", "npc_1", () => {
+  onCollideUpdate("player", "npc", () => {
     if (isKeyReleased("enter")) {
       movement = false
       destroyAll("dialogue")
@@ -43,7 +50,7 @@ export function dialogue() {
         pos(k.camPos().x - TILESIZE * 8, k.camPos().y - TILESIZE * 4.5),
         "dialogue",
       ])
-      onCollideEnd("player", "npc_1", () => {
+      onCollideEnd("player", "npc", () => {
         destroyAll("dialogue")
         dialogueState = 0
       })
@@ -56,7 +63,7 @@ export function dialogue() {
         destroyAll("enter")
       }
     }
-    onCollideEnd("player", "npc_1", () => {
+    onCollideEnd("player", "npc", () => {
       destroyAll("enter")
     })
   })
