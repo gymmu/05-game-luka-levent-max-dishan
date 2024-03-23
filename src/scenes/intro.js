@@ -3,6 +3,7 @@ import "./level-01.js"
 import "./level-02.js"
 import "./level-03.js"
 import "./level-04.js"
+import "./level-05.js"
 
 /**
  * Die Funktion `scene` kommt von Kaboom, und erstellt uns einen
