@@ -3,7 +3,8 @@ import "./level-01.js"
 import "./level-02.js"
 import "./level-03.js"
 import "./level-04.js"
-
+import "./level-05.js"
+import "./level-06.js"
 /**
  * Die Funktion `scene` kommt von Kaboom, und erstellt uns einen
  * abgeschlossenen Teil von unserem Spiel. Wir können das auch wie ein Level in
