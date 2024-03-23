@@ -9,6 +9,6 @@ s.........................t
 s.ttttttttttttttttttttttttt
 s............f............t
 sttttttttttttttttttttttt..t
-s.........................t
+s....................c....t
 s.........p..s..s.........t
 wwwwwwwwwwwwwssssssssssssst

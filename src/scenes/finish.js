@@ -1,7 +1,7 @@
 import { k } from "../game.js"
 import { getPlayer } from "../player.js"
 import "./intro.js"
-import "./level-05.js"
+import "./level-06.js"
 
 /**
  * Dies ist eine weitere Szene die angezeigt wird wenn das Spiel vorbei bzw.
