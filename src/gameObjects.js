@@ -59,23 +59,6 @@ export function mushroomJumpAndRun(x, y) {
     },
   ])
 }
-export function coin(x, y) {
-  k.add([
-    k.sprite("mushroom"),
-    k.pos(k.vec2(x, y).scale(TILESIZE)),
-    k.body({ isStatic: true }),
-    k.area(),
-    "coin",
-    // Hier können wir zusätzliche Eigenschaften von einem Spielobjekt angeben.
-    // Mit `isConsumable` könnten wir prüfen das dieses Objekt nur
-    // aufgelesen wird, wenn der Spieler die Eigenschaft `kochen` erlernt
-    // hat.
-    {
-      isConsumable: true,
-      dmgAmount: 10,
-    },
-  ])
-}
 
 export function bogGrass(x, y) {
   k.add([
@@ -110,6 +93,48 @@ export function flowerJumpAndRun(x, y) {
     {
       isConsumable: true,
       healAmount: 10,
+    },
+  ])
+}
+
+export function coin(x, y) {
+  k.add([
+    k.sprite("coin", { anim: "idle" }),
+    k.pos(k.vec2(x, y).scale(TILESIZE)),
+    k.body({ isStatic: true }),
+    k.area(),
+    "score",
+    {
+      scoreAmount: 1,
+      isConsumable: true,
+    },
+  ])
+}
+
+export function rareCoin(x, y) {
+  k.add([
+    k.sprite("rareCoin", { anim: "idle" }),
+    k.pos(k.vec2(x, y).scale(TILESIZE)),
+    k.body({ isStatic: true }),
+    k.area(),
+    "score",
+    {
+      scoreAmount: 3,
+      isConsumable: true,
+    },
+  ])
+}
+
+export function bigCoin(x, y) {
+  k.add([
+    k.sprite("bigCoin", { anim: "idle" }),
+    k.pos(k.vec2(x, y).scale(TILESIZE)),
+    k.body({ isStatic: true }),
+    k.area(),
+    "score",
+    {
+      scoreAmount: 10,
+      isConsumable: true,
     },
   ])
 }

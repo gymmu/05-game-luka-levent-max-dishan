@@ -58,6 +58,12 @@ export async function generateMapJumpAndRun(mapfile) {
         GameObjects.bogVines(x, y)
       } else if (char === "2") {
         GameObjects.evilLadybug(x, y)
+      } else if (char === "c") {
+        GameObjects.coin(x, y)
+      } else if (char === "t") {
+        GameObjects.rareCoin(x, y)
+      } else if (char === "b") {
+        GameObjects.bigCoin(x, y)
       }
     }
   }
