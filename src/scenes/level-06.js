@@ -2,13 +2,13 @@ import { k, addGeneralGameLogic } from "../game.js"
 import { generateMapJumpAndRun } from "../map.js"
 import { loadKeyboardJumpAndRun } from "../keyboard.js"
 
-import "./level-05.js"
+import "./finish.js"
 import "./lose.js"
 
-k.scene("level-04", async () => {
+k.scene("level-06", async () => {
   k.setGravity(1200)
   loadKeyboardJumpAndRun()
-  await generateMapJumpAndRun("maps/level-04.txt")
+  await generateMapJumpAndRun("maps/level-06.txt")
 
   k.add([
     k.sprite("background", { width: k.width(), height: k.height() }),
@@ -21,7 +21,7 @@ k.scene("level-04", async () => {
 
   k.onCollide("player", "goal", () => {
     k.play("teleport", { volume: 0.5 })
-    k.go("level-05")
+    k.go("finish")
   })
 
   k.onUpdate(() => {

@@ -7,6 +7,7 @@ import {
   rightProjectile,
   upwardSlash,
 } from "./Combat.js"
+import { movement } from "./dialogue.js"
 
 /**
  * Diese Funktion lädt die Tastenbelegung wie sie pro Level sein soll. Die
@@ -219,7 +220,7 @@ export function loadKeyboardRPG() {
     player.play("runLeft")
   })
   k.onKeyDown("a", () => {
-    if (westCollision === false) {
+    if (westCollision === false && movement === true) {
       player.move(k.LEFT.scale(player.speed))
     }
   })
@@ -231,8 +232,8 @@ export function loadKeyboardRPG() {
     player.play("runRight")
   })
   k.onKeyDown("d", () => {
-    if (eastCollision === false) {
-      player.move(k.RIGHT.scale(player.speed))
+    if (eastCollision === false && movement === true) {
+      if (movement === true) player.move(k.RIGHT.scale(player.speed))
     }
   })
   k.onKeyRelease("d", () => {
@@ -243,7 +244,7 @@ export function loadKeyboardRPG() {
     player.play("runUp")
   })
   k.onKeyDown("w", () => {
-    if (northCollision === false) {
+    if (northCollision === false && movement === true) {
       player.move(k.UP.scale(player.speed))
     }
   })
@@ -255,7 +256,7 @@ export function loadKeyboardRPG() {
     player.play("runDown")
   })
   k.onKeyDown("s", () => {
-    if (southCollision === false) {
+    if (southCollision === false && movement === true) {
       player.move(k.DOWN.scale(player.speed))
     }
   })
