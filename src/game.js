@@ -91,6 +91,7 @@ export function addGeneralGameLogic() {
     if (score.isConsumable === true) {
       score.destroy()
     }
+    k.play("coin", { volume: 1 })
   })
 
   /**
