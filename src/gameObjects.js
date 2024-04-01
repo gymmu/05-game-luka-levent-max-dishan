@@ -103,7 +103,7 @@ export function coin(x, y) {
     k.pos(k.vec2(x, y).scale(TILESIZE)),
     k.body({ isStatic: true }),
     k.area(),
-    "coin",
+    "score",
     {
       scoreAmount: 1,
       isConsumable: true,
@@ -117,7 +117,7 @@ export function rareCoin(x, y) {
     k.pos(k.vec2(x, y).scale(TILESIZE)),
     k.body({ isStatic: true }),
     k.area(),
-    "coin",
+    "score",
     {
       scoreAmount: 3,
       isConsumable: true,
@@ -131,7 +131,7 @@ export function bigCoin(x, y) {
     k.pos(k.vec2(x, y).scale(TILESIZE)),
     k.body({ isStatic: true }),
     k.area(),
-    "coin",
+    "score",
     {
       scoreAmount: 10,
       isConsumable: true,

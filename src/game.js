@@ -73,6 +73,7 @@ export function addGeneralGameLogic() {
   dialogue()
   cameraLogic()
   resetNPC()
+  createScore()
 
   /** Wenn der Spieler mit einem Spielobjekt mit dem Tag `heal` kollidiert, wird
    * der Spieler um `healAmount` von dem Spielobjekt geheilt. Hat das
@@ -85,8 +86,8 @@ export function addGeneralGameLogic() {
     }
   })
 
-  k.onCollide("score", "player", (player) => {
-    score = score + score.scoreAmount
+  k.onCollide("score", "player", (score, player) => {
+    player.score += score.scoreAmount
     if (score.isConsumable === true) {
       score.destroy()
     }
@@ -156,6 +157,31 @@ function createHPBar() {
       update() {
         const player = getPlayer()
         this.width = (player.hp() / player.max_hp) * HP_BAR_WIDTH
+      },
+    },
+  ])
+}
+
+function createScore() {
+  const player = getPlayer()
+
+  const scoreboard = k.add([k.pos(50, 50), k.fixed(), k.z(10), "scoreboard"])
+
+  scoreboard.add([
+    k.sprite("coin", { anim: "idle" }),
+    k.scale(2.5),
+    k.anchor("right"),
+    k.pos(20, 0),
+  ])
+
+  scoreboard.add([
+    k.text(player.score + "x", { size: 15 }),
+    k.scale(2),
+    k.anchor("left"),
+    k.pos(10, 0),
+    {
+      update() {
+        this.text = player.score + "x"
       },
     },
   ])
