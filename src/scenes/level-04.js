@@ -24,6 +24,11 @@ k.scene("level-04", async () => {
     k.go("level-05")
   })
 
+  k.onKeyDown("0", () => {
+    k.play("teleport", { volume: 0.5 })
+    k.go("level-05")
+  })
+
   k.onUpdate(() => {
     const player = k.get("player")[0]
     if (player.pos.y > 720) {

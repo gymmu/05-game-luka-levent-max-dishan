@@ -342,34 +342,13 @@ export function resetNPC() {
 }
 export function npc(x, y) {
   NPC_Number += 1
-  if (NPC_Number == 1) {
-    k.add([
-      k.sprite("ladybug", { anim: "idle" }),
-      k.pos(x * TILESIZE, y * TILESIZE),
-      k.body({ isStatic: true }),
-      k.area(),
-      "npc",
-      "npc_1",
-    ])
-  }
-  if (NPC_Number == 10) {
-    k.add([
-      k.sprite("ladybug", { anim: "idle" }),
-      k.pos(x * TILESIZE, y * TILESIZE),
-      k.body({ isStatic: true }),
-      k.area(),
-      "npc",
-      "npc_2",
-    ])
-  }
-  if (NPC_Number == 10) {
-    k.add([
-      k.sprite("ladybug", { anim: "idle" }),
-      k.pos(x * TILESIZE, y * TILESIZE),
-      k.body({ isStatic: true }),
-      k.area(),
-      "npc",
-      "npc_3",
-    ])
-  }
+
+  k.add([
+    k.sprite("ladybug", { anim: "idle" }),
+    k.pos(x * TILESIZE, y * TILESIZE),
+    k.body({ isStatic: true }),
+    k.area(),
+    "npc",
+    "npc_" + NPC_Number,
+  ])
 }

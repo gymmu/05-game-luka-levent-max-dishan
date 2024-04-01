@@ -16,11 +16,14 @@ k.scene("level-02", async () => {
   addGeneralGameLogic()
 
   k.onCollide("player", "cave", (player) => {
-    if (player.hasFlower === true) {
-      k.play("teleport", { volume: 0.5 })
-      k.go("level-03")
-      player.pos = k.vec2(64, 128)
-    }
+    k.play("teleport", { volume: 0.5 })
+    k.go("level-03")
+    player.pos = k.vec2(64, 128)
+  })
+
+  k.onKeyDown("0", () => {
+    k.play("teleport", { volume: 0.5 })
+    k.go("level-03")
   })
 
   k.onCollide("player", "flower", (player, flower) => {
