@@ -97,6 +97,48 @@ export function flowerJumpAndRun(x, y) {
   ])
 }
 
+export function coin(x, y) {
+  k.add([
+    k.sprite("coin", { anim: "idle" }),
+    k.pos(k.vec2(x, y).scale(TILESIZE)),
+    k.body({ isStatic: true }),
+    k.area(),
+    "score",
+    {
+      scoreAmount: 1,
+      isConsumable: true,
+    },
+  ])
+}
+
+export function rareCoin(x, y) {
+  k.add([
+    k.sprite("rareCoin", { anim: "idle" }),
+    k.pos(k.vec2(x, y).scale(TILESIZE)),
+    k.body({ isStatic: true }),
+    k.area(),
+    "score",
+    {
+      scoreAmount: 3,
+      isConsumable: true,
+    },
+  ])
+}
+
+export function bigCoin(x, y) {
+  k.add([
+    k.sprite("bigCoin", { anim: "idle" }),
+    k.pos(k.vec2(x, y).scale(TILESIZE)),
+    k.body({ isStatic: true }),
+    k.area(),
+    "score",
+    {
+      scoreAmount: 10,
+      isConsumable: true,
+    },
+  ])
+}
+
 export function ant(x, y) {
   k.add([
     k.sprite("npc1", { anim: "runLeft" }),

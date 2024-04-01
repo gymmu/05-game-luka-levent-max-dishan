@@ -45,6 +45,8 @@ export const k = kaboom({
   canvas: document.getElementById("game-canvas"),
 })
 
+export let score = 0
+
 /**
  * Diese Funktion ladet die Graphiken und Animationen die wir später im Spiel
  * verwenden möchten. Wir müssen diese Funktion noch vor allen anderen
@@ -80,6 +82,13 @@ export function addGeneralGameLogic() {
     player.heal(heal.healAmount)
     if (heal.isConsumable === true) {
       heal.destroy()
+    }
+  })
+
+  k.onCollide("score", "player", (player) => {
+    score = score + score.scoreAmount
+    if (score.isConsumable === true) {
+      score.destroy()
     }
   })
 
