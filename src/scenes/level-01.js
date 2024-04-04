@@ -2,6 +2,8 @@ import { k, addGeneralGameLogic } from "../game.js"
 import createPlayer from "../player.js"
 import { generateMapJumpAndRun } from "../map.js"
 import { loadKeyboardJumpAndRun } from "../keyboard.js"
+import { getPlayer } from "../player.js"
+import { TILESIZE } from "../globals.js"
 
 import "./level-02.js"
 import "./lose.js"
@@ -42,6 +44,20 @@ k.scene("level-01", async () => {
     k.fixed(),
   ])
 
+  let oneTimeEvent = 0
+
+  onCollide("player", "ground", (player, ground) => {
+    if (oneTimeEvent < 1) {
+      k.add([
+        sprite("pressAD", { anim: "idle" }),
+        pos(player.pos.x + 1 * TILESIZE, player.pos.y),
+        z(-1),
+        anchor("right"),
+        scale(2),
+      ])
+      oneTimeEvent = oneTimeEvent + 1
+    }
+  })
   // Hier laden wir die generelle Spiellogik. Also was passieren soll wenn
   // der Spieler mit einem Objekt kollidiert.
   addGeneralGameLogic()
