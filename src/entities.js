@@ -45,36 +45,28 @@ export function entityLogic() {
       })
     }
   })
+
   let projectileCountdown = 60
   k.onUpdate(() => {
     //Codium fixed fixed this. I do not know what [if getSpider()] accomplishes. But it fixes the problem. Yay codium
     if (getSpider()) {
       const spider = getSpider()
       if (spider === undefined) return
-      if (
-        spider.pos.x + TILESIZE * 12 > player.pos.x &&
-        spider.pos.x - TILESIZE * 12 < player.pos.x
-      ) {
-        if (player.pos.x > spider.pos.x) {
-          if (projectileCountdown === 0) {
-            spiderLeftProjectile()
-            projectileCountdown = 60
-          }
-          projectileCountdown = projectileCountdown - 1
-        } else {
-          if (projectileCountdown === 0) {
-            spiderRightProjectile()
-            projectileCountdown = 60
-          }
-          projectileCountdown = projectileCountdown - 1
+      if (player.pos.x > spider.pos.x) {
+        if (projectileCountdown === 0) {
+          spiderLeftProjectile()
+          projectileCountdown = 60
         }
-        if (
-          spider.isGrounded() &&
-          rand(20) > 19 &&
-          player.pos.y < spider.pos.y
-        ) {
-          spider.jump()
+        projectileCountdown = projectileCountdown - 1
+      } else {
+        if (projectileCountdown === 0) {
+          spiderRightProjectile()
+          projectileCountdown = 60
         }
+        projectileCountdown = projectileCountdown - 1
+      }
+      if (spider.isGrounded() && rand(20) > 19 && player.pos.y < spider.pos.y) {
+        spider.jump()
       }
     }
   })
@@ -83,23 +75,18 @@ export function entityLogic() {
   k.onUpdate(() => {
     const ladybug = getLadybug()
     if (ladybug === undefined) return
-    if (
-      ladybug.pos.x + TILESIZE * 10 > player.pos.x &&
-      ladybug.pos.x - TILESIZE * 10 < player.pos.x
-    ) {
-      if (player.pos.x < ladybug.pos.x) {
-        if (ladybugprojectileCountdown === 0) {
-          ladybugLeftProjectile()
-          ladybugprojectileCountdown = 120
-        }
-        ladybugprojectileCountdown = ladybugprojectileCountdown - 1
-      } else {
-        if (ladybugprojectileCountdown === 0) {
-          ladybugRightProjectile()
-          ladybugprojectileCountdown = 120
-        }
-        ladybugprojectileCountdown = ladybugprojectileCountdown - 1
+    if (player.pos.x < ladybug.pos.x) {
+      if (ladybugprojectileCountdown === 0) {
+        ladybugLeftProjectile()
+        ladybugprojectileCountdown = 120
       }
+      ladybugprojectileCountdown = ladybugprojectileCountdown - 1
+    } else {
+      if (ladybugprojectileCountdown === 0) {
+        ladybugRightProjectile()
+        ladybugprojectileCountdown = 120
+      }
+      ladybugprojectileCountdown = ladybugprojectileCountdown - 1
     }
 
     if (

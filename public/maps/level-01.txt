@@ -8,7 +8,7 @@
 +++      +++++++           +++++++                    +++++++                        +++++++                  +++++++       +++++++ 
 
 
-               o           f                      f                o                    o                      o
+ r          r    o           f                      f                o                    o                      o
          ++++++++++++++      ++++                   +++              ++++                 ++++                   
     2        ffffff         oooo                   ooo               fff                  ooo                    ooo
   b   s p g         f         o     f    e   o       o         f    e          f      e                      e                   g
