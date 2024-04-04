@@ -249,6 +249,7 @@ export function goalJumpAndRun(x, y) {
     k.body({ isStatic: true }),
     k.area(),
     "goal",
+    "goal1",
   ])
 }
 
@@ -355,6 +356,7 @@ export function flowerRPG(x, y) {
     k.area(),
     "flower",
     "heal",
+    "dialogueFlower",
     {
       isConsumable: true,
     },
