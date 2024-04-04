@@ -192,6 +192,10 @@ export function getEnemy() {
   return k.get("enemy")[0]
 }
 
+export function getLadybug() {
+  return k.get("ladybug")[0]
+}
+
 /**
  * Ein Spielobjekt Ziel, das vom Spieler erreicht werden muss.
  */
