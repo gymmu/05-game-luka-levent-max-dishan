@@ -94,6 +94,22 @@ export function addGeneralGameLogic() {
     k.play("coin", { volume: 1 })
   })
 
+  k.onCollide("player", "swordGrounded", (player, swordGrounded) => {
+    if (swordGrounded.isConsumable === true) {
+      swordGrounded.destroy()
+    }
+    k.play("pickup", { volume: 1 })
+    player.swordUnlocked = true
+  })
+
+  k.onCollide("player", "projectileGrounded", (player, projectileGrounded) => {
+    if (projectileGrounded.isConsumable === true) {
+      projectileGrounded.destroy()
+    }
+    k.play("pickup", { volume: 1 })
+    player.projectileUnlocked = true
+  })
+
   /**
    * Wenn der Spieler mit einem Hindernis kollidiert, wird dem Spieler so viel
    * Schaden zugefügt, wie das Hindernis `dmgAmount` hat. Hat das Hindernis

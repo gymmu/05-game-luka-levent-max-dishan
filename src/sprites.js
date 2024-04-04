@@ -233,6 +233,9 @@ export default function loadSprites() {
     swordLeft1: { x: 0, y: 0, width: 32, height: 32 },
     swordLeft2: { x: 32, y: 0, width: 32, height: 32 },
   })
+  k.loadSpriteAtlas("sprites/swordRight.png", {
+    swordRight: { x: 0, y: 0, width: 64, height: 32 },
+  })
   k.loadSpriteAtlas("sprites/silcProjectile.png", {
     silcLeft: { x: 0, y: 0, width: 32, height: 32 },
   })

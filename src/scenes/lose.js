@@ -38,4 +38,8 @@ k.scene("lose", () => {
   k.onKeyPress("space", () => {
     k.go("level-01")
   })
+
+  k.onKeyPress("f", (c) => {
+    setFullscreen(!isFullscreen())
+  })
 })

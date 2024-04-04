@@ -7,5 +7,3 @@
  * Kachelgrösse auf 64 ändern möchten, müssen Sie das nur hier machen.
  */
 export const TILESIZE = 32
-export let projectileUnlocked = false
-export let swordUnlocked = false

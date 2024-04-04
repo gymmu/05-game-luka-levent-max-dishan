@@ -38,6 +38,8 @@ export default function createPlayer() {
       dead: false,
       max_hp: 100,
       score: 0,
+      swordUnlocked: false,
+      projectileUnlocked: false,
     },
   ])
 

@@ -8,4 +8,5 @@ export default function loadSounds() {
   k.loadSound("hit", "sounds/hit.wav")
   k.loadSound("heal", "sounds/heal.wav")
   k.loadSound("coin", "sounds/coin.wav")
+  k.loadSound("pickup", "sounds/pickup.wav")
 }

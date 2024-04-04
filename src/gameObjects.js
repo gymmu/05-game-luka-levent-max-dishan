@@ -114,6 +114,32 @@ export function flowerJumpAndRun(x, y) {
   ])
 }
 
+export function swordGrounded(x, y) {
+  k.add([
+    k.sprite("swordRight"),
+    k.pos(k.vec2(x, y).scale(TILESIZE)),
+    k.body(),
+    k.area(),
+    "swordGrounded",
+    {
+      isConsumable: true,
+    },
+  ])
+}
+
+export function projectileGrounded(x, y) {
+  k.add([
+    k.sprite("silcRight"),
+    k.pos(k.vec2(x, y).scale(TILESIZE)),
+    k.body(),
+    k.area(),
+    "projectileGrounded",
+    {
+      isConsumable: true,
+    },
+  ])
+}
+
 export function coin(x, y) {
   k.add([
     k.sprite("coin", { anim: "idle" }),

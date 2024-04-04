@@ -66,6 +66,10 @@ export async function generateMapJumpAndRun(mapfile) {
         GameObjects.bigCoin(x, y)
       } else if (char === "s") {
         GameObjects.spike(x, y)
+      } else if (char === "/") {
+        GameObjects.swordGrounded(x, y)
+      } else if (char === "|") {
+        GameObjects.projectileGrounded(x, y)
       }
     }
   }
