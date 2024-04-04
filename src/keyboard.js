@@ -8,6 +8,8 @@ import {
   upwardSlash,
 } from "./Combat.js"
 import { movement } from "./dialogue.js"
+import { projectileUnlocked } from "./globals.js"
+import { swordUnlocked } from "./globals.js"
 
 /**
  * Diese Funktion lädt die Tastenbelegung wie sie pro Level sein soll. Die
@@ -105,7 +107,7 @@ export function loadKeyboardJumpAndRun() {
     // This will fetch the current time in milliseconds
     const currentTime = Date.now()
     // If the current time in milliseconds has a difference of more than 500 milliseconds than lastAttackTime, the player can attack
-    if (currentTime - lastAttackTime > 300) {
+    if (currentTime - lastAttackTime > 300 && swordUnlocked === true) {
       // This will set lastAttackTime to the current time
 
       lastAttackTime = currentTime
@@ -123,7 +125,7 @@ export function loadKeyboardJumpAndRun() {
   let lastProjectileTime = 0
   k.onKeyPress("j", () => {
     const currentTime = Date.now()
-    if (currentTime - lastProjectileTime > 500) {
+    if (currentTime - lastProjectileTime > 500 && projectileUnlocked === true) {
       lastProjectileTime = currentTime
       if (facingRight === true) {
         rightProjectile()

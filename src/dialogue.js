@@ -1,13 +1,14 @@
 import { TILESIZE } from "./globals.js"
 import { getPlayer } from "./player.js"
 import { k } from "./game.js"
+
 export let movement = true
 export function dialogue() {
   const player = getPlayer()
 
   let dialogueState = 0
 
-  let dialogue = ["Hey, how are you?", "I'm fine, thank you. And you?"]
+  let dialogue = []
 
   onCollide("player", "npc_1", () => {
     dialogue = ["Hey, how are you?", "I'm fine, thank you. And you?"]
@@ -16,10 +17,10 @@ export function dialogue() {
     dialogue = ["E", "EEEEEEEEEEEEE"]
   })
 
-  onCollide("player", "npc", () => {
+  onCollide("player", "npc", (player, npc) => {
     k.add([
       sprite("pressEnter", { anim: "idle" }),
-      pos(TILESIZE * 19, TILESIZE * 10),
+      pos(npc.pos.x, npc.pos.y),
       z(2),
       anchor("right"),
       "enter",

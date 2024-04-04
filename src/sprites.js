@@ -129,8 +129,8 @@ export default function loadSprites() {
     },
   })
 
-  k.loadSpriteAtlas("sprites/pressAWSD.png", {
-    pressAWSD: {
+  k.loadSpriteAtlas("sprites/pressSpace.png", {
+    pressSpace: {
       x: 0,
       y: 0,
       width: 2 * TS,
@@ -142,6 +142,29 @@ export default function loadSprites() {
       },
     },
   })
+
+  k.loadSpriteAtlas("sprites/pressAD.png", {
+    pressAD: {
+      x: 0,
+      y: 0,
+      width: 4 * TS,
+      height: 1 * TS,
+      sliceX: 4,
+      sliceY: 1,
+      anims: {
+        idle: { from: 0, to: 3, loop: true, speed: 1 },
+      },
+    },
+  })
+
+  k.loadSpriteAtlas("sprites/spikes.png", {
+    spike: { x: 0, y: 0, width: TS, height: TS },
+  })
+
+  k.loadSpriteAtlas("sprites/ground3.png", {
+    pathway: { x: 0, y: 0, width: TS, height: TS },
+  })
+
   /**
    * Hier werden alle sprites für die statischen Spielobjekte geladen.
    */
