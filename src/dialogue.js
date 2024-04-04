@@ -13,13 +13,46 @@ export function dialogue() {
   k.onKeyPress("7", () => {
     dialogueLearning = dialogueLearning + 1
   })
-  onCollide("player", "goal1", () => {
-    dialogueLearning = 1
-    return true
+  onCollide("player", "dialogueFlower", (player, dialogueFlower) => {
+    movement = false
+    k.add([
+      sprite("pressEnter", { anim: "idle" }),
+      pos(dialogueFlower.pos.x, dialogueFlower.pos.y),
+      z(2),
+      anchor("right"),
+      "enter",
+      scale(2),
+    ])
+    add([
+      pos(k.camPos().x - TILESIZE * 8, k.camPos().y - TILESIZE * 4.5),
+      z(2),
+      color(0, 0, 0),
+      text("hello world", {
+        size: 20, // 48 pixels tall
+        width: TILESIZE * 16, // it'll wrap to next line when width exceeds this value
+        font: "sans-serif", // specify any font you loaded or browser built-in
+      }),
+      "dialogue",
+    ])
+    add([
+      rect(TILESIZE * 16 + 4, TILESIZE * 3 + 4),
+      outline(1),
+      color(210, 180, 140),
+      opacity(0.8),
+      pos(k.camPos().x - TILESIZE * 8, k.camPos().y - TILESIZE * 4.5),
+      "dialogue",
+    ])
+    dialogueLearning = dialogueLearning + 1
+  })
+
+  k.onKeyPress("enter", () => {
+    destroyAll("dialogue")
+    movement = true
+    destroyAll("enter")
   })
 
   onCollide("player", "npc_1", () => {
-    if (dialogueLearning === 2) {
+    if (dialogueLearning === 1) {
       dialogue = ["Hey, how are you?", "I'm fine, thank you. And you?"]
     } else {
       dialogue = ["###, how are ###?", "I'm ###, thank ###. ### you?"]

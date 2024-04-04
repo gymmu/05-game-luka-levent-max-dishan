@@ -330,6 +330,7 @@ export function flowerRPG(x, y) {
     k.area(),
     "flower",
     "heal",
+    "dialogueFlower",
     {
       isConsumable: true,
     },
