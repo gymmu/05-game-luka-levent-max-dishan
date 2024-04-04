@@ -64,6 +64,8 @@ export async function generateMapJumpAndRun(mapfile) {
         GameObjects.rareCoin(x, y)
       } else if (char === "b") {
         GameObjects.bigCoin(x, y)
+      } else if (char === "s") {
+        GameObjects.spike(x, y)
       }
     }
   }
@@ -106,6 +108,8 @@ export async function generateMapRPG(mapfile) {
         GameObjects.mushroomRPG(x, y)
       } else if (char === "1") {
         GameObjects.npc(x, y)
+      } else if (char === "d") {
+        GameObjects.pathway(x, y)
       }
     }
   }

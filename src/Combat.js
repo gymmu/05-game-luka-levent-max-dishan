@@ -152,7 +152,7 @@ export function ladybugLeftProjectile() {
   get("ladybug").forEach((ladybug) => {
     add([
       pos(ladybug.pos.add(0, 5)),
-      sprite("silcRight"),
+      sprite("silcLeft"),
       //rect(10, 10),
       area(),
       lifespan(2),
@@ -166,7 +166,7 @@ export function ladybugRightProjectile() {
   get("ladybug").forEach((ladybug) => {
     add([
       pos(ladybug.pos.add(0, 5)),
-      sprite("silcLeft"),
+      sprite("silcRight"),
       //rect(10, 10),
       area(),
       lifespan(2),

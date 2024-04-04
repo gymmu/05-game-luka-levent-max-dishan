@@ -60,6 +60,23 @@ export function mushroomJumpAndRun(x, y) {
   ])
 }
 
+export function spike(x, y) {
+  k.add([
+    k.sprite("spike"),
+    k.pos(k.vec2(x, y).scale(TILESIZE)),
+    k.body({ isStatic: true }),
+    k.area(),
+    "obstacle",
+    // Hier können wir zusätzliche Eigenschaften von einem Spielobjekt angeben.
+    // Mit `isConsumable` könnten wir prüfen das dieses Objekt nur
+    // aufgelesen wird, wenn der Spieler die Eigenschaft `kochen` erlernt
+    // hat.
+    {
+      dmgAmount: 10,
+    },
+  ])
+}
+
 export function bogGrass(x, y) {
   k.add([
     k.sprite("bog_grass"),
@@ -218,6 +235,10 @@ export function backgroundRPG(x, y) {
     // überlagert wird.
     k.z(-10),
   ])
+}
+
+export function pathway(x, y) {
+  k.add([k.sprite("pathway"), k.pos(k.vec2(x, y).scale(TILESIZE)), k.z(-10)])
 }
 
 /**
