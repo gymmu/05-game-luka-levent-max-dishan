@@ -223,6 +223,7 @@ export function goalJumpAndRun(x, y) {
     k.body({ isStatic: true }),
     k.area(),
     "goal",
+    "goal1",
   ])
 }
 

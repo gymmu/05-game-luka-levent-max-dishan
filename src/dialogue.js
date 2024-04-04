@@ -1,7 +1,7 @@
 import { TILESIZE } from "./globals.js"
 import { getPlayer } from "./player.js"
 import { k } from "./game.js"
-
+let dialogueLearning = 0
 export let movement = true
 export function dialogue() {
   const player = getPlayer()
@@ -10,8 +10,20 @@ export function dialogue() {
 
   let dialogue = []
 
+  k.onKeyPress("7", () => {
+    dialogueLearning = dialogueLearning + 1
+  })
+  onCollide("player", "goal1", () => {
+    dialogueLearning = 1
+    return true
+  })
+
   onCollide("player", "npc_1", () => {
-    dialogue = ["Hey, how are you?", "I'm fine, thank you. And you?"]
+    if (dialogueLearning === 2) {
+      dialogue = ["Hey, how are you?", "I'm fine, thank you. And you?"]
+    } else {
+      dialogue = ["###, how are ###?", "I'm ###, thank ###. ### you?"]
+    }
   })
   onCollide("player", "npc_2", () => {
     dialogue = ["E", "EEEEEEEEEEEEE"]
