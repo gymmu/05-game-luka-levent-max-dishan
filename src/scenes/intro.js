@@ -5,6 +5,7 @@ import "./level-03.js"
 import "./level-04.js"
 import "./level-05.js"
 import "./level-06.js"
+import createPlayer from "../player.js"
 /**
  * Die Funktion `scene` kommt von Kaboom, und erstellt uns einen
  * abgeschlossenen Teil von unserem Spiel. Wir können das auch wie ein Level in
@@ -28,7 +29,7 @@ k.scene("intro", () => {
   k.add([k.sprite("game_menu", { width: k.width(), height: k.height() })])
 
   k.add([
-    k.text("Press SPACE to start", { size: 32 }),
+    k.text("Press SPACE to start", { size: 32, font: "sans-serif" }),
     k.pos(k.width() / 2, k.height() / 2),
     k.anchor("center"),
   ])

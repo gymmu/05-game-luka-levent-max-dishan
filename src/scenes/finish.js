@@ -11,11 +11,20 @@ k.scene("finish", () => {
   const player = getPlayer()
   player.destroy()
   k.add([
-    k.text("Ziel erreicht", { size: 32, font: "sinko" }),
+    k.text("Win", { size: 44, font: "sans-serif" }),
     k.pos(k.width() / 2, k.height() / 2),
+    k.anchor("bot"),
+  ])
+  k.add([
+    k.text("Your score: " + player.endScore, { size: 32, font: "sans-serif" }),
+    k.pos(k.width() / 2, k.height() / 2 + 20),
     k.anchor("center"),
   ])
-
+  k.add([
+    k.text("Press SPACE to restart", { size: 28, font: "sans-serif" }),
+    k.pos(k.width() / 2, k.height() / 2 + 40),
+    k.anchor("top"),
+  ])
   k.onKeyPress("space", () => {
     k.go("intro")
   })

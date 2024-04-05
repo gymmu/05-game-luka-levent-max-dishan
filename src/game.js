@@ -88,6 +88,7 @@ export function addGeneralGameLogic() {
 
   k.onCollide("score", "player", (score, player) => {
     player.score += score.scoreAmount
+    player.endScore += score.scoreAmount * 100
     if (score.isConsumable === true) {
       score.destroy()
     }
@@ -153,7 +154,7 @@ function createHPBar() {
   // Dies ist das UI-Element das den Rest der dazu gehört einpackt.
   const bar = k.add([k.pos(x, y), k.fixed(), k.z(10), "hp-bar"])
 
-  bar.add([k.text("HP", { size: 20 }), k.anchor("right")])
+  bar.add([k.text("HP", { size: 20, font: "sans-serif" }), k.anchor("right")])
 
   bar.add([
     k.rect(HP_BAR_WIDTH, HP_BAR_HEIGHT),
@@ -192,7 +193,7 @@ function createScore() {
   ])
 
   scoreboard.add([
-    k.text(player.score + "x", { size: 15 }),
+    k.text(player.score + "x", { size: 15, font: "sans-serif" }),
     k.scale(2),
     k.anchor("left"),
     k.pos(10, 0),

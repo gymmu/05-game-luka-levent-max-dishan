@@ -71,7 +71,7 @@ k.scene("level-01", async () => {
     k.go("level-02")
   })
 
-  k.onKeyDown("0", () => {
+  k.onKeyRelease("0", () => {
     k.play("teleport", { volume: 0.5 })
     k.go("level-02")
   })

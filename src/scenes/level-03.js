@@ -52,7 +52,7 @@ k.scene("level-03", async () => {
     player.pos = k.vec2(64, 128)
   })
 
-  k.onKeyDown("0", () => {
+  k.onKeyRelease("0", () => {
     k.play("teleport", { volume: 0.5 })
     k.go("level-04")
   })

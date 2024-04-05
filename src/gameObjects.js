@@ -192,6 +192,7 @@ export function ant(x, y) {
     "obstacle",
     {
       dmgAmount: 20,
+      killScore: 100,
     },
     "ant",
     // This defines anything that is an enemy
@@ -208,6 +209,9 @@ export function spider(x, y) {
     k.body(),
     k.area(),
     k.health(50),
+    {
+      killScore: 300,
+    },
     "obstacle",
     "spider",
     "enemy",
@@ -221,6 +225,9 @@ export function evilLadybug(x, y) {
     k.body(),
     k.area(),
     k.health(50),
+    {
+      killScore: 500,
+    },
     "obstacle",
     "ladybug",
     "enemy",

@@ -22,7 +22,7 @@ k.scene("lose", () => {
   // I don't fully understand why either of these things solve the problem, but they do.
 
   k.add([
-    k.text("Game over", { size: 44 }),
+    k.text("Game over", { size: 44, font: "sans-serif" }),
     k.pos(k.width() / 2, k.height() / 2),
     k.anchor("bot"),
   ])
@@ -30,6 +30,7 @@ k.scene("lose", () => {
   k.add([
     k.text("Drücke SPACE um das Spiel neu zu starten", {
       size: 22,
+      font: "sans-serif",
     }),
     k.pos(k.width() / 2, k.height() / 2 + 20),
     k.anchor("center"),
