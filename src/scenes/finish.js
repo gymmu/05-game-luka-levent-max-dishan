@@ -21,7 +21,7 @@ k.scene("finish", () => {
     k.anchor("center"),
   ])
   k.add([
-    k.text("Press SPACE to restart", { size: 28, font: "sans-serif" }),
+    k.text("Press SPACE to restart", { size: 22, font: "sans-serif" }),
     k.pos(k.width() / 2, k.height() / 2 + 40),
     k.anchor("top"),
   ])

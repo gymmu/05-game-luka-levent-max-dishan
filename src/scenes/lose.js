@@ -28,7 +28,7 @@ k.scene("lose", () => {
   ])
 
   k.add([
-    k.text("Drücke SPACE um das Spiel neu zu starten", {
+    k.text("Press SPACE to restart", {
       size: 22,
       font: "sans-serif",
     }),
