@@ -129,6 +129,20 @@ export default function loadSprites() {
     },
   })
 
+  k.loadSpriteAtlas("sprites/pressJ.png", {
+    pressJ: {
+      x: 0,
+      y: 0,
+      width: 2 * TS,
+      height: 1 * TS,
+      sliceX: 2,
+      sliceY: 1,
+      anims: {
+        idle: { from: 0, to: 1, loop: true, speed: 1 },
+      },
+    },
+  })
+
   k.loadSpriteAtlas("sprites/pressSpace.png", {
     pressSpace: {
       x: 0,

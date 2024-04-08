@@ -41,6 +41,7 @@ export default function createPlayer() {
       endScore: 0,
       swordUnlocked: false,
       projectileUnlocked: false,
+      isInvincible: false,
     },
   ])
 

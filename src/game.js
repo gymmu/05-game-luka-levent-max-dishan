@@ -86,6 +86,18 @@ export function addGeneralGameLogic() {
     }
   })
 
+  k.onCollideUpdate("spike", "player", (spike, player) => {
+    if (player.isInvincible === false) {
+      player.hurt(10)
+      k.play("hit", { volume: 1 })
+      player.isInvincible = true
+
+      setTimeout(() => {
+        player.isInvincible = false
+      }, 1000)
+    }
+  })
+
   k.onCollide("score", "player", (score, player) => {
     player.score += score.scoreAmount
     player.endScore += score.scoreAmount * 100
@@ -100,6 +112,13 @@ export function addGeneralGameLogic() {
       swordGrounded.destroy()
     }
     k.play("pickup", { volume: 1 })
+    k.add([
+      sprite("pressH", { anim: "idle" }),
+      pos(player.pos.x + 1 * TILESIZE, player.pos.y),
+      z(-1),
+      anchor("right"),
+      scale(2),
+    ])
     player.swordUnlocked = true
   })
 
@@ -108,6 +127,13 @@ export function addGeneralGameLogic() {
       projectileGrounded.destroy()
     }
     k.play("pickup", { volume: 1 })
+    k.add([
+      sprite("pressJ", { anim: "idle" }),
+      pos(player.pos.x + 1 * TILESIZE, player.pos.y),
+      z(-1),
+      anchor("right"),
+      scale(2),
+    ])
     player.projectileUnlocked = true
   })
 
