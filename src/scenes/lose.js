@@ -1,4 +1,5 @@
 import { k } from "../game.js"
+import { getPlayer } from "../player.js"
 
 import "./level-01.js"
 import "./level-02.js"
@@ -9,13 +10,10 @@ import "./level-05.js"
  * Diese Szene  wird verwendet wenn das Spiel verloren ist, also wenn der
  * Spieler gestorben ist.
  */
-k.scene("lose", () => {
-  const player = k.get("player")
+k.scene("lose", async () => {
+  const player = getPlayer()
   // This code was giving an error when trying to destroy the player.
   // I asked codium to fix the issue, and it returned the code seen here.
-  if (player.length > 0) {
-    player[0].destroy()
-  }
   // If the const is: "const player = k.get("player")[0]", it will not work.
   // Instead, you have to define "player" and then put a [0] after it, as seen above.
   // The player.length must also be more than 0
@@ -28,12 +26,18 @@ k.scene("lose", () => {
   ])
 
   k.add([
+    k.text("Your score: " + player.endScore, { size: 32, font: "sans-serif" }),
+    k.pos(k.width() / 2, k.height() / 2 + 20),
+    k.anchor("center"),
+  ])
+
+  k.add([
     k.text("Press SPACE to restart", {
       size: 22,
       font: "sans-serif",
     }),
-    k.pos(k.width() / 2, k.height() / 2 + 20),
-    k.anchor("center"),
+    k.pos(k.width() / 2, k.height() / 2 + 40),
+    k.anchor("top"),
   ])
 
   k.onKeyPress("space", () => {
@@ -42,5 +46,9 @@ k.scene("lose", () => {
 
   k.onKeyPress("f", (c) => {
     setFullscreen(!isFullscreen())
+  })
+
+  Promise.resolve().then(() => {
+    player.destroy()
   })
 })

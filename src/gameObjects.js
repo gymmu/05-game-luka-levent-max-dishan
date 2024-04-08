@@ -46,8 +46,8 @@ export function mushroomJumpAndRun(x, y) {
   k.add([
     k.sprite("mushroom"),
     k.pos(k.vec2(x, y).scale(TILESIZE)),
-    k.body({ isStatic: true }),
-    k.area(),
+    k.area({ scale: 0.8 }),
+    k.z(-1),
     "obstacle",
     // Hier können wir zusätzliche Eigenschaften von einem Spielobjekt angeben.
     // Mit `isConsumable` könnten wir prüfen das dieses Objekt nur
@@ -66,14 +66,11 @@ export function spike(x, y) {
     k.pos(k.vec2(x, y).scale(TILESIZE)),
     k.body({ isStatic: true }),
     k.area(),
-    "obstacle",
+    "spike",
     // Hier können wir zusätzliche Eigenschaften von einem Spielobjekt angeben.
     // Mit `isConsumable` könnten wir prüfen das dieses Objekt nur
     // aufgelesen wird, wenn der Spieler die Eigenschaft `kochen` erlernt
     // hat.
-    {
-      dmgAmount: 10,
-    },
   ])
 }
 
@@ -104,8 +101,8 @@ export function flowerJumpAndRun(x, y) {
   k.add([
     k.sprite("flower"),
     k.pos(k.vec2(x, y).scale(TILESIZE)),
-    k.body({ isStatic: true }),
-    k.area(),
+    k.area({ scale: 0.8 }),
+    k.z(-1),
     "heal",
     {
       isConsumable: true,
@@ -118,8 +115,8 @@ export function swordGrounded(x, y) {
   k.add([
     k.sprite("swordRight"),
     k.pos(k.vec2(x, y).scale(TILESIZE)),
-    k.body(),
     k.area(),
+    k.z(-1),
     "swordGrounded",
     {
       isConsumable: true,
@@ -131,8 +128,8 @@ export function projectileGrounded(x, y) {
   k.add([
     k.sprite("silcRight"),
     k.pos(k.vec2(x, y).scale(TILESIZE)),
-    k.body(),
     k.area(),
+    k.z(-1),
     "projectileGrounded",
     {
       isConsumable: true,
@@ -144,8 +141,8 @@ export function coin(x, y) {
   k.add([
     k.sprite("coin", { anim: "idle" }),
     k.pos(k.vec2(x, y).scale(TILESIZE)),
-    k.body({ isStatic: true }),
-    k.area(),
+    k.area({ scale: 0.8 }),
+    k.z(-1),
     "score",
     {
       scoreAmount: 1,
@@ -158,8 +155,8 @@ export function rareCoin(x, y) {
   k.add([
     k.sprite("rareCoin", { anim: "idle" }),
     k.pos(k.vec2(x, y).scale(TILESIZE)),
-    k.body({ isStatic: true }),
-    k.area(),
+    k.area({ scale: 0.8 }),
+    k.z(-1),
     "score",
     {
       scoreAmount: 3,
@@ -172,8 +169,8 @@ export function bigCoin(x, y) {
   k.add([
     k.sprite("bigCoin", { anim: "idle" }),
     k.pos(k.vec2(x, y).scale(TILESIZE)),
-    k.body({ isStatic: true }),
     k.area(),
+    k.z(-1),
     "score",
     {
       scoreAmount: 10,
