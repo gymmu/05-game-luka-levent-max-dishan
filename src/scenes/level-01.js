@@ -2,9 +2,8 @@ import { k, addGeneralGameLogic } from "../game.js"
 import createPlayer from "../player.js"
 import { generateMapJumpAndRun } from "../map.js"
 import { loadKeyboardJumpAndRun } from "../keyboard.js"
-import { getPlayer } from "../player.js"
 import { TILESIZE } from "../globals.js"
-
+import { playerHardcore } from "./intro.js"
 import "./level-02.js"
 import "./lose.js"
 
@@ -81,11 +80,26 @@ k.scene("level-01", async () => {
   // Spiel verloren. Man könnte hier auch anders darauf reagieren, zum
   // Beispiel den Spieler an einen Checkpoint zurück setzen, und die
   // Lebenspunkte von dem Spieler anpassen.
+  let healPlayer = false
+
   k.onUpdate(() => {
     const player = k.get("player")[0]
-    if (player.pos.y > 720) {
-      k.play("death")
-      k.go("lose")
+    if (healPlayer === true) {
+      player.heal(100)
+      healPlayer = false
     }
+    if (player.pos.y > 720) {
+      player.pos = k.vec2(64, 128)
+    }
+    player.on("death", async () => {
+      if (playerHardcore === true) {
+        await import("./lose.js")
+        k.play("death", { volume: 0.5 })
+        k.go("lose")
+      } else {
+        player.pos = k.vec2(64, 128)
+        healPlayer = true
+      }
+    })
   })
 })
