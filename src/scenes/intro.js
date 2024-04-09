@@ -5,7 +5,8 @@ import "./level-03.js"
 import "./level-04.js"
 import "./level-05.js"
 import "./level-06.js"
-import createPlayer from "../player.js"
+import { getPlayer } from "../player.js"
+import { TILESIZE } from "../globals.js"
 /**
  * Die Funktion `scene` kommt von Kaboom, und erstellt uns einen
  * abgeschlossenen Teil von unserem Spiel. Wir können das auch wie ein Level in
@@ -26,12 +27,51 @@ k.scene("intro", () => {
   // Objekt verankert werden soll. Versuchen Sie mal was passiert wenn Sie
   // `anchor("botright)` verwenden.
 
-  k.add([k.sprite("game_menu", { width: k.width(), height: k.height() })])
+  k.add([
+    k.sprite("game_menu", { width: k.width(), height: k.height() }),
+    k.z(-100),
+  ])
 
   k.add([
-    k.text("Press SPACE to start", { size: 32, font: "sans-serif" }),
+    k.text("Choose your difficulty", { size: 44, font: "sans-serif" }),
     k.pos(k.width() / 2, k.height() / 2),
+    k.anchor("bot"),
+  ])
+
+  k.add([
+    k.text("Normal Mode", { size: 32, font: "sans-serif" }),
+    k.pos(k.width() / 2, k.height() / 2 + 20),
+    k.area(),
+    k.color(0, 0, 0),
     k.anchor("center"),
+  ])
+  k.add([
+    k.rect(TILESIZE * 16 + 4, TILESIZE * 1 + 4),
+    k.area(TILESIZE * 16 + 4, TILESIZE * 1 + 4),
+    k.outline(1),
+    k.color(210, 180, 140),
+    k.pos(k.width() / 2, k.height() / 2 + 20),
+    k.anchor("center"),
+    k.z(-1),
+    "normal",
+  ])
+
+  k.add([
+    k.text("Hardcore Mode", { size: 32, font: "sans-serif" }),
+    k.pos(k.width() / 2, k.height() / 2 + 40),
+    k.area(),
+    k.color(0, 0, 0),
+    k.anchor("top"),
+  ])
+  k.add([
+    k.rect(TILESIZE * 16 + 4, TILESIZE * 1 + 4),
+    k.area(TILESIZE * 16 + 4, TILESIZE * 1 + 4),
+    k.outline(1),
+    k.color(210, 180, 140),
+    k.pos(k.width() / 2, k.height() / 2 + 40),
+    k.anchor("top"),
+    k.z(-1),
+    "hardcore",
   ])
 
   // Mit dieser Funktion können wir auf Tastendrucke reagieren. Diese können
@@ -41,7 +81,12 @@ k.scene("intro", () => {
   k.onKeyPress("f", (c) => {
     setFullscreen(!isFullscreen())
   })
-  k.onKeyPress("space", () => {
+  onClick("normal", () => {
     k.go("level-01")
+  })
+  onClick("hardcore", () => {
+    const player = getPlayer()
+    k.go("level-01")
+    player.hardcore = true
   })
 })

@@ -155,13 +155,17 @@ export function addGeneralGameLogic() {
    * gesetzt.
    */
   player.on("heal", () => {
-    k.play("heal", { volume: 0.5 })
+    k.play("heal", { volume: 0.3 })
   })
 
   player.on("death", async () => {
-    await import("./scenes/lose.js")
-    k.play("death", { volume: 0.5 })
-    k.go("lose")
+    const player = getPlayer()
+    if (player.hardcore === true) {
+      await import("./scenes/lose.js")
+      k.play("death", { volume: 0.5 })
+      k.go("lose")
+    } else {
+    }
   })
 }
 

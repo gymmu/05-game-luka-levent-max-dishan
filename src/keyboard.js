@@ -127,6 +127,7 @@ export function loadKeyboardJumpAndRun() {
       currentTime - lastProjectileTime > 500 &&
       player.projectileUnlocked === true
     ) {
+      k.play("magic", { volume: 0.3 })
       lastProjectileTime = currentTime
       if (facingRight === true) {
         rightProjectile()

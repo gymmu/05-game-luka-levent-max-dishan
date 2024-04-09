@@ -85,7 +85,7 @@ export function leftProjectile() {
   add([
     // a square is created that will move to the left at a rate of 230 per second
     pos(player.pos.add(0, 5)),
-    sprite("silcLeft"),
+    sprite("magicProjectileLeft", { anim: "idle" }),
     //rect(10, 10),
     area(),
     // it will disapear after 2 seconds
@@ -104,7 +104,7 @@ export function rightProjectile() {
   const player = getPlayer()
   add([
     pos(player.pos.add(0, 5)),
-    sprite("silcRight"),
+    sprite("magicProjectileRight", { anim: "idle" }),
     //rect(10, 10),
     area(),
     lifespan(2),
@@ -152,7 +152,7 @@ export function ladybugLeftProjectile() {
   get("ladybug").forEach((ladybug) => {
     add([
       pos(ladybug.pos.add(0, 5)),
-      sprite("silcLeft"),
+      sprite("magicProjectileLeft", { anim: "idle" }),
       //rect(10, 10),
       area(),
       lifespan(2),
@@ -166,7 +166,7 @@ export function ladybugRightProjectile() {
   get("ladybug").forEach((ladybug) => {
     add([
       pos(ladybug.pos.add(0, 5)),
-      sprite("silcRight"),
+      sprite("magicProjectileRight", { anim: "idle" }),
       //rect(10, 10),
       area(),
       lifespan(2),

@@ -126,7 +126,7 @@ export function swordGrounded(x, y) {
 
 export function projectileGrounded(x, y) {
   k.add([
-    k.sprite("silcRight"),
+    k.sprite("magicProjectileRight", { anim: "idle" }),
     k.pos(k.vec2(x, y).scale(TILESIZE)),
     k.area(),
     k.z(-1),
@@ -250,8 +250,8 @@ export function goalJumpAndRun(x, y) {
   k.add([
     k.sprite("door"),
     k.pos(k.vec2(x, y).scale(TILESIZE)),
-    k.body({ isStatic: true }),
     k.area(),
+    k.z(-10),
     "goal",
     "goal1",
   ])
