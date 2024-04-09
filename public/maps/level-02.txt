@@ -5,9 +5,9 @@ s......ttt...tttt..........t
 s......ttt.ttttt..ss.......t
 s...s..t....t....s.....s...t
 s...t....tt.s.t..s.....s...t
-s....t...tt...st.s.........t
+s....t...tt...st.s1..1..1..t
 s....tt..tt..f...s.........t
-s.....t.c...Css.s....d.....t
-s.....t.........1..........t
-s.....t1..p.ts..sC.........t
+s.....t.c...Css.s.1..1..1..t
+s.....t....................t
+s.....t...p.ts..sC1..1..1..t
 ssssssssssssssssssssssssssst
