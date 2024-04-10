@@ -10,4 +10,6 @@ export default function loadSounds() {
   k.loadSound("coin", "sounds/coin.wav")
   k.loadSound("pickup", "sounds/pickup.wav")
   k.loadSound("magic", "sounds/magic.wav")
+  k.loadSound("voiceline1", "sounds/voiceline1.wav")
+  k.loadSound("voiceline2", "sounds/voiceline2.wav")
 }
