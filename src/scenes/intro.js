@@ -7,6 +7,7 @@ import "./level-05.js"
 import "./level-06.js"
 import { getPlayer } from "../player.js"
 import { TILESIZE } from "../globals.js"
+export let playerHardcore = false
 /**
  * Die Funktion `scene` kommt von Kaboom, und erstellt uns einen
  * abgeschlossenen Teil von unserem Spiel. Wir können das auch wie ein Level in
@@ -87,6 +88,6 @@ k.scene("intro", () => {
   onClick("hardcore", () => {
     const player = getPlayer()
     k.go("level-01")
-    player.hardcore = true
+    playerHardcore = true
   })
 })
