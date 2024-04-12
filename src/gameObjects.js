@@ -199,6 +199,30 @@ export function ant(x, y) {
   ])
 }
 
+export function boss(x, y) {
+  k.add([
+    k.sprite("npc1", { anim: "runLeft" }),
+    k.pos(k.vec2(x, y).scale(TILESIZE)),
+    k.body(),
+    k.area(),
+    k.health(15),
+    "obstacle",
+    {
+      dmgAmount: 20,
+      killScore: 100,
+    },
+    "boss",
+    // This defines anything that is an enemy
+    "enemy",
+    // This Tag will be used to define anything you are not meant to walk through
+    "wall",
+  ])
+}
+
+export function getBoss() {
+  return k.get("boss")[0]
+}
+
 export function spider(x, y) {
   k.add([
     k.sprite("spider", { anim: "idle" }),
