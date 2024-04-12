@@ -9,7 +9,7 @@ import "./level-07.js"
 k.scene("level-06", async () => {
   k.setGravity(1200)
   loadKeyboardJumpAndRun()
-  await generateMapJumpAndRun("maps/boss.txt")
+  await generateMapJumpAndRun("maps/level-06.txt")
 
   k.add([
     k.sprite("background", { width: k.width(), height: k.height() }),
