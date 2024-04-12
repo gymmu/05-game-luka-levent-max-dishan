@@ -55,10 +55,13 @@ export function entityLogic() {
         bossProjCountdown = 30
         bossProjectile()
       }
-    } else if (swordPhase === true) {
-      if (bossSwordCountdown <= 0) {
+    } else if (swordPhase === true && bossSwordCountdown <= 0) {
+      if (player.pos.x > boss.pos.x) {
         bossSwordCountdown = 30
         bossSlash(boss, false)
+      } else {
+        bossSlash(boss, true)
+        bossSwordCountdown = 30
       }
     }
   })

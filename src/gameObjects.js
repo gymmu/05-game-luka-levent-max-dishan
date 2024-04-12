@@ -205,11 +205,11 @@ export function boss(x, y) {
     k.pos(k.vec2(x, y).scale(TILESIZE)),
     k.body(),
     k.area(),
-    k.health(15),
-    "obstacle",
+    k.health(150),
     {
       dmgAmount: 20,
       killScore: 1000,
+      max_hp: 150,
     },
     "boss",
     // This defines anything that is an enemy
