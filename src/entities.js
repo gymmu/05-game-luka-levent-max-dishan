@@ -6,16 +6,24 @@ import {
   ladybugLeftProjectile,
   ladybugSlash,
   bossProjectile,
+  bossSlash,
 } from "./Combat.js"
 import { getSpider, getEnemy, getLadybug, getBoss } from "./gameObjects.js"
 import { getProjectile } from "./Combat.js"
 
+let bossPhaseCountdown = 120
 let bossProjCountdown = 30
+let projectilePhase = true
+let swordPhase = false
+let stunPhase = false
+let bossSwordCountdown = 30
+let bossStun = 120
 export function entityLogic() {
   //This code will run every frame
   const player = getPlayer()
   const enemy = getEnemy()
   const boss = getBoss()
+
   k.onUpdate("boss", (boss) => {
     if (player.pos.x > boss.pos.x) {
       // If the players x position is greater than the ant's postion, the ant will move left.
@@ -29,9 +37,29 @@ export function entityLogic() {
         boss.jump()
       }
     }
-    if (bossProjCountdown <= 0) {
-      bossProjectile()
-      bossProjCountdown = 30
+    if (bossPhaseCountdown <= 0 && projectilePhase === true) {
+      swordPhase = true
+      projectilePhase = false
+      bossPhaseCountdown = 300
+    } else if (bossPhaseCountdown <= 0 && swordPhase === true) {
+      swordPhase = false
+      stunPhase = true
+      bossPhaseCountdown = 150
+    } else if (bossPhaseCountdown <= 0 && stunPhase === true) {
+      stunPhase = false
+      projectilePhase = true
+      bossPhaseCountdown = 300
+    }
+    if (projectilePhase === true) {
+      if (bossProjCountdown <= 0) {
+        bossProjCountdown = 30
+        bossProjectile()
+      }
+    } else if (swordPhase === true) {
+      if (bossSwordCountdown <= 0) {
+        bossSwordCountdown = 30
+        bossSlash(boss, false)
+      }
     }
   })
 
@@ -96,6 +124,9 @@ export function entityLogic() {
     projectileCountdown = projectileCountdown - 1
     ladybugSwordCountdown = ladybugSwordCountdown - 1
     bossProjCountdown = bossProjCountdown - 1
+    bossSwordCountdown = bossSwordCountdown - 1
+    bossPhaseCountdown = bossPhaseCountdown - 1
+    bossStun = bossStun - 1
   })
 
   k.onUpdate(() => {

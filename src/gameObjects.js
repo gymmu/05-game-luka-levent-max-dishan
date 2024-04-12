@@ -209,7 +209,7 @@ export function boss(x, y) {
     "obstacle",
     {
       dmgAmount: 20,
-      killScore: 100,
+      killScore: 1000,
     },
     "boss",
     // This defines anything that is an enemy
