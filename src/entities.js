@@ -43,6 +43,7 @@ export function entityLogic() {
     }
   })
   let projectileCountdown = 60
+
   k.onUpdate(() => {
     //Codium fixed fixed this. I do not know what [if getSpider()] accomplishes. But it fixes the problem. Yay codium
     if (getSpider()) {
@@ -53,7 +54,7 @@ export function entityLogic() {
           spiderLeftProjectile()
           projectileCountdown = 60
         }
-        projectileCountdown = projectileCountdown - 1
+
         if (
           spider.isGrounded() &&
           rand(20) > 19 &&
@@ -67,13 +68,16 @@ export function entityLogic() {
   let ladybugprojectileCountdown = 120
   let ladybugSwordCountdown = 90
   k.onUpdate(() => {
+    ladybugprojectileCountdown = ladybugprojectileCountdown - 1
+    projectileCountdown = projectileCountdown - 1
+  })
+  k.onUpdate(() => {
     getLadybug().forEach((ladybug) => {
       if (ladybug === undefined) return
       if (ladybugprojectileCountdown === 0) {
         ladybugLeftProjectile()
         ladybugprojectileCountdown = 120
       }
-      ladybugprojectileCountdown = ladybugprojectileCountdown - 1
 
       if (
         // These values make it so the player must be close to the ladybug for the ladybug to use its sword
