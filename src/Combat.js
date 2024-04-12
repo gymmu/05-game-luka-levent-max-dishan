@@ -118,6 +118,10 @@ export function rightProjectile() {
   })
 }
 
+export function getProjectile() {
+  return k.get("projectile")
+}
+
 export function spiderLeftProjectile() {
   const player = getPlayer()
 

@@ -7,6 +7,7 @@ import {
   ladybugSlash,
 } from "./Combat.js"
 import { getSpider, getEnemy, getLadybug } from "./gameObjects.js"
+import { getProjectile } from "./Combat.js"
 
 export function entityLogic() {
   //This code will run every frame
@@ -70,6 +71,7 @@ export function entityLogic() {
   k.onUpdate(() => {
     ladybugprojectileCountdown = ladybugprojectileCountdown - 1
     projectileCountdown = projectileCountdown - 1
+    ladybugSwordCountdown = ladybugSwordCountdown - 1
   })
   k.onUpdate(() => {
     getLadybug().forEach((ladybug) => {
@@ -99,30 +101,32 @@ export function entityLogic() {
         }
       }
     })
-    ladybugSwordCountdown = ladybugSwordCountdown - 1
-    const projectile = k.get("projectile")[0]
-    if (projectile === undefined) return
-    else if (
-      // These values make it so a projectile must be close to the ladybug for the ladybug to use its sword
-      ladybug.pos.x + TILESIZE * 2 > projectile.pos.x &&
-      ladybug.pos.x - TILESIZE * 2 < projectile.pos.x &&
-      ladybug.pos.y + TILESIZE * 1 > projectile.pos.y &&
-      ladybug.pos.y - TILESIZE * 1 < projectile.pos.y
-    ) {
-      if (player.pos.x < ladybug.pos.x) {
-        if (ladybugSwordCountdown <= 0) {
-          ladybugLeftSlash()
-          ladybugSwordCountdown = 90
-          destroy(projectile)
-        }
-      } else {
-        if (ladybugSwordCountdown <= 0) {
-          ladybugRightSlash()
-          ladybugSwordCountdown = 90
-          destroy(projectile)
+    getLadybug().forEach((ladybug) => {
+      const projectile = getProjectile()[0]
+      if (ladybug === undefined) return
+      if (projectile === undefined) return
+      if (
+        // These values make it so a projectile must be close to the ladybug for the ladybug to use its sword
+        ladybug.pos.x + TILESIZE * 2 > projectile.pos.x &&
+        ladybug.pos.x - TILESIZE * 2 < projectile.pos.x &&
+        ladybug.pos.y + TILESIZE * 1 > projectile.pos.y &&
+        ladybug.pos.y - TILESIZE * 1 < projectile.pos.y
+      ) {
+        if (player.pos.x < ladybug.pos.x) {
+          if (ladybugSwordCountdown <= 0) {
+            ladybugSlash(ladybug, true)
+            ladybugSwordCountdown = 90
+            destroy(projectile)
+          }
+        } else {
+          if (ladybugSwordCountdown <= 0) {
+            ladybugSlash(ladybug, false)
+            ladybugSwordCountdown = 90
+            destroy(projectile)
+          }
         }
       }
-    }
+    })
   })
 
   onCollide("spiderProjectile", "player", (spiderProjectile, player) => {
