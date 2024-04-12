@@ -83,8 +83,8 @@ export function entityLogic() {
 
       if (
         // These values make it so the player must be close to the ladybug for the ladybug to use its sword
-        ladybug.pos.x + TILESIZE * 3 > player.pos.x &&
-        ladybug.pos.x - TILESIZE * 3 < player.pos.x &&
+        ladybug.pos.x + TILESIZE * 2.5 > player.pos.x &&
+        ladybug.pos.x - TILESIZE * 2.5 < player.pos.x &&
         ladybug.pos.y + TILESIZE * 2 > player.pos.y &&
         ladybug.pos.y - TILESIZE * 2 < player.pos.y
       ) {
@@ -141,6 +141,21 @@ export function entityLogic() {
     player.hurt(10)
     shake(5)
     destroy(ladybugProjectile)
+  })
+  onCollide("player", "ladybugSlashHitBox", (player, ladybugSlashHitBox) => {
+    player.hurt(15)
+    k.play("slash", { volume: 0.3 })
+    shake(10)
+  })
+  onCollide("enemy", "projectile", (enemy, projectile) => {
+    k.play("hit", { volume: 1 })
+    enemy.hurt(10)
+    destroy(projectile)
+  })
+  // When the hitbox collides with an enemy, the enemy will be hurt. .
+  onCollide("enemy", "slashHitBox", (enemy) => {
+    enemy.hurt(10)
+    k.play("slash", { volume: 0.3 })
   })
 
   k.on("death", "enemy", (enemy) => {

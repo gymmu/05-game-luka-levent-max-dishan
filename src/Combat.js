@@ -25,12 +25,6 @@ export function rightSlash() {
     lifespan(0.1),
     "slashHitBox",
   ])
-
-  // When the hitbox collides with an enemy, the enemy will be hurt. .
-  onCollide("enemy", "slashHitBox", (enemy) => {
-    enemy.hurt(5)
-    k.play("slash", { volume: 0.3 })
-  })
 }
 export function leftSlash() {
   const player = getPlayer()
@@ -45,10 +39,6 @@ export function leftSlash() {
     lifespan(0.1),
     "slashHitBox",
   ])
-  onCollide("enemy", "slashHitBox", (enemy) => {
-    enemy.hurt(5)
-    k.play("slash", { volume: 0.3 })
-  })
 }
 
 export function upwardSlash() {
@@ -74,10 +64,6 @@ export function upwardSlash() {
     lifespan(0.1),
     "slashHitBox",
   ])
-  onCollide("enemy", "slashHitBox", (enemy) => {
-    enemy.hurt(5)
-    k.play("slash", { volume: 0.3 })
-  })
 }
 
 export function leftProjectile() {
@@ -93,11 +79,6 @@ export function leftProjectile() {
     "projectile",
     move(0, -230),
   ])
-  onCollide("enemy", "projectile", (enemy, projectile) => {
-    k.play("hit", { volume: 1 })
-    enemy.hurt(5)
-    destroy(projectile)
-  })
 }
 
 export function rightProjectile() {
@@ -111,11 +92,6 @@ export function rightProjectile() {
     "projectile",
     move(0, 230),
   ])
-  onCollide("enemy", "projectile", (enemy, projectile) => {
-    k.play("hit", { volume: 1 })
-    enemy.hurt(10)
-    destroy(projectile)
-  })
 }
 
 export function getProjectile() {
@@ -188,9 +164,4 @@ export function ladybugSlash(ladybug, left = true) {
       "ladybugSlashHitBox",
     ])
   }
-
-  onCollide("player", "ladybugSlashHitBox", (player) => {
-    player.hurt(5)
-    k.play("slash", { volume: 0.3 })
-  })
 }
