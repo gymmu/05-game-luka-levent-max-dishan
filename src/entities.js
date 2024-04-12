@@ -5,14 +5,36 @@ import {
   spiderLeftProjectile,
   ladybugLeftProjectile,
   ladybugSlash,
+  bossProjectile,
 } from "./Combat.js"
-import { getSpider, getEnemy, getLadybug } from "./gameObjects.js"
+import { getSpider, getEnemy, getLadybug, getBoss } from "./gameObjects.js"
 import { getProjectile } from "./Combat.js"
 
+let bossProjCountdown = 30
 export function entityLogic() {
   //This code will run every frame
   const player = getPlayer()
   const enemy = getEnemy()
+  const boss = getBoss()
+  k.onUpdate("boss", (boss) => {
+    if (player.pos.x > boss.pos.x) {
+      // If the players x position is greater than the ant's postion, the ant will move left.
+      // If not, it will move right
+      boss.move(40, 0)
+    } else {
+      boss.move(-40, 0)
+    }
+    if (boss.isGrounded()) {
+      if (rand(20) > 19.3) {
+        boss.jump()
+      }
+    }
+    if (bossProjCountdown <= 0) {
+      bossProjectile()
+      bossProjCountdown = 30
+    }
+  })
+
   k.onUpdate("ant", (ant) => {
     // This will stop the function of the ant after getting 16 tiles away from the player.
     // This is a simple way to stop it from running off the map when not close to the player.
@@ -68,11 +90,14 @@ export function entityLogic() {
   })
   let ladybugprojectileCountdown = 120
   let ladybugSwordCountdown = 90
+
   k.onUpdate(() => {
     ladybugprojectileCountdown = ladybugprojectileCountdown - 1
     projectileCountdown = projectileCountdown - 1
     ladybugSwordCountdown = ladybugSwordCountdown - 1
+    bossProjCountdown = bossProjCountdown - 1
   })
+
   k.onUpdate(() => {
     getLadybug().forEach((ladybug) => {
       if (ladybug === undefined) return

@@ -135,6 +135,22 @@ export function ladybugLeftProjectile() {
   })
 }
 
+export function bossProjectile() {
+  get("boss").forEach((boss) => {
+    const player = getPlayer()
+    const dir = player.pos.sub(boss.pos).unit()
+    add([
+      pos(boss.pos.add(0, 5)),
+      sprite("magicProjectileLeft", { anim: "idle" }),
+      //rect(10, 10),
+      area(),
+      lifespan(2),
+      "ladybugProjectile",
+      move(dir, 230),
+    ])
+  })
+}
+
 export function ladybugSlash(ladybug, left = true) {
   const player = getPlayer()
   const dir = player.pos.sub(ladybug.pos).unit()
