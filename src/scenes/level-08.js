@@ -3,13 +3,13 @@ import { generateMapJumpAndRun } from "../map.js"
 import { loadKeyboardJumpAndRun } from "../keyboard.js"
 import { playerHardcore } from "./intro.js"
 
+import "./finish.js"
 import "./lose.js"
-import "./level-07.js"
 
 k.scene("level-06", async () => {
   k.setGravity(1200)
   loadKeyboardJumpAndRun()
-  await generateMapJumpAndRun("maps/level-06.txt")
+  await generateMapJumpAndRun("maps/level-08.txt")
 
   k.add([
     k.sprite("background", { width: k.width(), height: k.height() }),
