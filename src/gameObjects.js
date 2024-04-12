@@ -185,7 +185,7 @@ export function ant(x, y) {
     k.pos(k.vec2(x, y).scale(TILESIZE)),
     k.body(),
     k.area(),
-    k.health(5),
+    k.health(15),
     "obstacle",
     {
       dmgAmount: 20,
@@ -205,9 +205,10 @@ export function spider(x, y) {
     k.pos(k.vec2(x, y).scale(TILESIZE)),
     k.body(),
     k.area(),
-    k.health(50),
+    k.health(40),
     {
       killScore: 300,
+      damage: 15,
     },
     "obstacle",
     "spider",
@@ -224,6 +225,7 @@ export function evilLadybug(x, y) {
     k.health(50),
     {
       killScore: 500,
+      damage: 15,
     },
     "obstacle",
     "ladybug",
