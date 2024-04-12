@@ -6,7 +6,7 @@ import { playerHardcore } from "./intro.js"
 import "./finish.js"
 import "./lose.js"
 
-k.scene("level-06", async () => {
+k.scene("level-08", async () => {
   k.setGravity(1200)
   loadKeyboardJumpAndRun()
   await generateMapJumpAndRun("maps/level-08.txt")

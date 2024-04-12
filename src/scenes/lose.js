@@ -7,6 +7,8 @@ import "./level-02.js"
 import "./level-03.js"
 import "./level-04.js"
 import "./level-05.js"
+import "./level-06.js"
+import "./level-07.js"
 /**
  * Diese Szene  wird verwendet wenn das Spiel verloren ist, also wenn der
  * Spieler gestorben ist.
