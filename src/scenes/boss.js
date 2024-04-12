@@ -4,12 +4,12 @@ import { loadKeyboardJumpAndRun } from "../keyboard.js"
 import { playerHardcore } from "./intro.js"
 
 import "./finish.js"
-import "./boss.js"
+import "./lose.js"
 
 k.scene("level-06", async () => {
   k.setGravity(1200)
   loadKeyboardJumpAndRun()
-  await generateMapJumpAndRun("maps/boss.txt")
+  await generateMapJumpAndRun("maps/level-06.txt")
 
   k.add([
     k.sprite("background", { width: k.width(), height: k.height() }),
@@ -21,13 +21,13 @@ k.scene("level-06", async () => {
   addGeneralGameLogic()
 
   k.onCollide("player", "goal", () => {
-    k.play("boss", { volume: 0.5 })
-    k.go("boss")
+    k.play("teleport", { volume: 0.5 })
+    k.go("finish")
   })
 
   k.onKeyRelease("0", () => {
     k.play("teleport", { volume: 0.5 })
-    k.go("boss")
+    k.go("finish")
   })
   let healPlayer = false
   k.onUpdate(() => {
