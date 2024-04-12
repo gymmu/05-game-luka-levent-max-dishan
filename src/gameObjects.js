@@ -240,7 +240,7 @@ export function getEnemy() {
 }
 
 export function getLadybug() {
-  return k.get("ladybug")[0]
+  return k.get("ladybug")
 }
 
 /**

@@ -3,11 +3,8 @@ import { TILESIZE } from "./globals.js"
 import { getPlayer } from "./player.js"
 import {
   spiderLeftProjectile,
-  spiderRightProjectile,
   ladybugLeftProjectile,
-  ladybugRightProjectile,
-  ladybugLeftSlash,
-  ladybugRightSlash,
+  ladybugSlash,
 } from "./Combat.js"
 import { getSpider, getEnemy, getLadybug } from "./gameObjects.js"
 
@@ -51,23 +48,12 @@ export function entityLogic() {
     if (getSpider()) {
       const spider = getSpider()
       if (spider === undefined) return
-      if (
-        spider.pos.x + TILESIZE * 12 > player.pos.x &&
-        spider.pos.x - TILESIZE * 12 < player.pos.x
-      ) {
-        if (player.pos.x > spider.pos.x) {
-          if (projectileCountdown === 0) {
-            spiderLeftProjectile()
-            projectileCountdown = 60
-          }
-          projectileCountdown = projectileCountdown - 1
-        } else {
-          if (projectileCountdown === 0) {
-            spiderRightProjectile()
-            projectileCountdown = 60
-          }
-          projectileCountdown = projectileCountdown - 1
+      {
+        if (projectileCountdown === 0) {
+          spiderLeftProjectile()
+          projectileCountdown = 60
         }
+        projectileCountdown = projectileCountdown - 1
         if (
           spider.isGrounded() &&
           rand(20) > 19 &&
@@ -81,46 +67,34 @@ export function entityLogic() {
   let ladybugprojectileCountdown = 120
   let ladybugSwordCountdown = 90
   k.onUpdate(() => {
-    const ladybug = getLadybug()
-    if (ladybug === undefined) return
-    if (
-      ladybug.pos.x + TILESIZE * 10 > player.pos.x &&
-      ladybug.pos.x - TILESIZE * 10 < player.pos.x
-    ) {
-      if (player.pos.x < ladybug.pos.x) {
-        if (ladybugprojectileCountdown === 0) {
-          ladybugLeftProjectile()
-          ladybugprojectileCountdown = 120
-        }
-        ladybugprojectileCountdown = ladybugprojectileCountdown - 1
-      } else {
-        if (ladybugprojectileCountdown === 0) {
-          ladybugRightProjectile()
-          ladybugprojectileCountdown = 120
-        }
-        ladybugprojectileCountdown = ladybugprojectileCountdown - 1
+    getLadybug().forEach((ladybug) => {
+      if (ladybug === undefined) return
+      if (ladybugprojectileCountdown === 0) {
+        ladybugLeftProjectile()
+        ladybugprojectileCountdown = 120
       }
-    }
+      ladybugprojectileCountdown = ladybugprojectileCountdown - 1
 
-    if (
-      // These values make it so the player must be close to the ladybug for the ladybug to use its sword
-      ladybug.pos.x + TILESIZE * 3 > player.pos.x &&
-      ladybug.pos.x - TILESIZE * 3 < player.pos.x &&
-      ladybug.pos.y + TILESIZE * 2 > player.pos.y &&
-      ladybug.pos.y - TILESIZE * 2 < player.pos.y
-    ) {
-      if (player.pos.x < ladybug.pos.x) {
-        if (ladybugSwordCountdown <= 0) {
-          ladybugLeftSlash()
-          ladybugSwordCountdown = 90
-        }
-      } else {
-        if (ladybugSwordCountdown <= 0) {
-          ladybugRightSlash()
-          ladybugSwordCountdown = 90
+      if (
+        // These values make it so the player must be close to the ladybug for the ladybug to use its sword
+        ladybug.pos.x + TILESIZE * 3 > player.pos.x &&
+        ladybug.pos.x - TILESIZE * 3 < player.pos.x &&
+        ladybug.pos.y + TILESIZE * 2 > player.pos.y &&
+        ladybug.pos.y - TILESIZE * 2 < player.pos.y
+      ) {
+        if (player.pos.x < ladybug.pos.x) {
+          if (ladybugSwordCountdown <= 0) {
+            ladybugSlash(ladybug, true)
+            ladybugSwordCountdown = 90
+          }
+        } else {
+          if (ladybugSwordCountdown <= 0) {
+            ladybugSlash(ladybug, false)
+            ladybugSwordCountdown = 90
+          }
         }
       }
-    }
+    })
     ladybugSwordCountdown = ladybugSwordCountdown - 1
     const projectile = k.get("projectile")[0]
     if (projectile === undefined) return
