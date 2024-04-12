@@ -22,7 +22,7 @@ k.scene("level-06", async () => {
 
   k.onCollide("player", "goal", () => {
     k.play("teleport", { volume: 0.5 })
-    k.go("finish")
+    k.go("level-07")
   })
 
   k.onKeyRelease("0", () => {

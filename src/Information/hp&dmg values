@@ -1,0 +1,35 @@
+To disable prettier when saving this file press:
+ctrl + k
+then
+CTRL + SHIFT + S
+
+ctrl + Z will undo prettier as well
+--------------
+Player
+
+Hp: 100
+Projectile dmg: 15
+Sword dmg: 20
+--------------
+Ladybug
+
+Hp: 50
+Projectile dmg: 20
+Sword dmg: 20
+Collision dmg: 15
+killscore: 500
+--------------
+Spider
+
+hp: 40
+Projectile dmg: 15
+Collision dmg: 15
+killscore: 300
+--------------
+Ant
+
+hp: 15
+Collision dmg: 20
+killscore: 100
+
+

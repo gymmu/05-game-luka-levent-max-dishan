@@ -7,6 +7,7 @@ import {
   ladybugSlash,
 } from "./Combat.js"
 import { getSpider, getEnemy, getLadybug } from "./gameObjects.js"
+import { getProjectile } from "./Combat.js"
 
 export function entityLogic() {
   //This code will run every frame
@@ -43,6 +44,7 @@ export function entityLogic() {
     }
   })
   let projectileCountdown = 60
+
   k.onUpdate(() => {
     //Codium fixed fixed this. I do not know what [if getSpider()] accomplishes. But it fixes the problem. Yay codium
     if (getSpider()) {
@@ -53,7 +55,7 @@ export function entityLogic() {
           spiderLeftProjectile()
           projectileCountdown = 60
         }
-        projectileCountdown = projectileCountdown - 1
+
         if (
           spider.isGrounded() &&
           rand(20) > 19 &&
@@ -67,18 +69,22 @@ export function entityLogic() {
   let ladybugprojectileCountdown = 120
   let ladybugSwordCountdown = 90
   k.onUpdate(() => {
+    ladybugprojectileCountdown = ladybugprojectileCountdown - 1
+    projectileCountdown = projectileCountdown - 1
+    ladybugSwordCountdown = ladybugSwordCountdown - 1
+  })
+  k.onUpdate(() => {
     getLadybug().forEach((ladybug) => {
       if (ladybug === undefined) return
       if (ladybugprojectileCountdown === 0) {
         ladybugLeftProjectile()
         ladybugprojectileCountdown = 120
       }
-      ladybugprojectileCountdown = ladybugprojectileCountdown - 1
 
       if (
         // These values make it so the player must be close to the ladybug for the ladybug to use its sword
-        ladybug.pos.x + TILESIZE * 3 > player.pos.x &&
-        ladybug.pos.x - TILESIZE * 3 < player.pos.x &&
+        ladybug.pos.x + TILESIZE * 2.5 > player.pos.x &&
+        ladybug.pos.x - TILESIZE * 2.5 < player.pos.x &&
         ladybug.pos.y + TILESIZE * 2 > player.pos.y &&
         ladybug.pos.y - TILESIZE * 2 < player.pos.y
       ) {
@@ -95,30 +101,32 @@ export function entityLogic() {
         }
       }
     })
-    ladybugSwordCountdown = ladybugSwordCountdown - 1
-    const projectile = k.get("projectile")[0]
-    if (projectile === undefined) return
-    else if (
-      // These values make it so a projectile must be close to the ladybug for the ladybug to use its sword
-      ladybug.pos.x + TILESIZE * 2 > projectile.pos.x &&
-      ladybug.pos.x - TILESIZE * 2 < projectile.pos.x &&
-      ladybug.pos.y + TILESIZE * 1 > projectile.pos.y &&
-      ladybug.pos.y - TILESIZE * 1 < projectile.pos.y
-    ) {
-      if (player.pos.x < ladybug.pos.x) {
-        if (ladybugSwordCountdown <= 0) {
-          ladybugLeftSlash()
-          ladybugSwordCountdown = 90
-          destroy(projectile)
-        }
-      } else {
-        if (ladybugSwordCountdown <= 0) {
-          ladybugRightSlash()
-          ladybugSwordCountdown = 90
-          destroy(projectile)
+    getLadybug().forEach((ladybug) => {
+      const projectile = getProjectile()[0]
+      if (ladybug === undefined) return
+      if (projectile === undefined) return
+      if (
+        // These values make it so a projectile must be close to the ladybug for the ladybug to use its sword
+        ladybug.pos.x + TILESIZE * 2 > projectile.pos.x &&
+        ladybug.pos.x - TILESIZE * 2 < projectile.pos.x &&
+        ladybug.pos.y + TILESIZE * 1 > projectile.pos.y &&
+        ladybug.pos.y - TILESIZE * 1 < projectile.pos.y
+      ) {
+        if (player.pos.x < ladybug.pos.x) {
+          if (ladybugSwordCountdown <= 0) {
+            ladybugSlash(ladybug, true)
+            ladybugSwordCountdown = 90
+            destroy(projectile)
+          }
+        } else {
+          if (ladybugSwordCountdown <= 0) {
+            ladybugSlash(ladybug, false)
+            ladybugSwordCountdown = 90
+            destroy(projectile)
+          }
         }
       }
-    }
+    })
   })
 
   onCollide("spiderProjectile", "player", (spiderProjectile, player) => {
@@ -133,6 +141,21 @@ export function entityLogic() {
     player.hurt(10)
     shake(5)
     destroy(ladybugProjectile)
+  })
+  onCollide("player", "ladybugSlashHitBox", (player, ladybugSlashHitBox) => {
+    player.hurt(15)
+    k.play("slash", { volume: 0.3 })
+    shake(10)
+  })
+  onCollide("enemy", "projectile", (enemy, projectile) => {
+    k.play("hit", { volume: 1 })
+    enemy.hurt(10)
+    destroy(projectile)
+  })
+  // When the hitbox collides with an enemy, the enemy will be hurt. .
+  onCollide("enemy", "slashHitBox", (enemy) => {
+    enemy.hurt(10)
+    k.play("slash", { volume: 0.3 })
   })
 
   k.on("death", "enemy", (enemy) => {
