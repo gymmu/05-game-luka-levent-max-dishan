@@ -151,6 +151,8 @@ export function bossProjectile() {
   })
 }
 
+export function bossSlash() {}
+
 export function ladybugSlash(ladybug, left = true) {
   const player = getPlayer()
   const dir = player.pos.sub(ladybug.pos).unit()
