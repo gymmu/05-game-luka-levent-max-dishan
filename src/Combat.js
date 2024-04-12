@@ -119,9 +119,13 @@ export function rightProjectile() {
 }
 
 export function spiderLeftProjectile() {
+  const player = getPlayer()
+
   // Generated the following line from codium
   // This will now add a projectile to all spiders instead of just one
   get("spider").forEach((spider) => {
+    const dir = player.pos.sub(spider.pos).unit()
+    dir.y = 0
     add([
       pos(spider.pos.add(0, 5)),
       sprite("silcRight"),
@@ -129,27 +133,16 @@ export function spiderLeftProjectile() {
       area(),
       lifespan(2),
       "spiderProjectile",
-      move(0, 230),
-    ])
-  })
-}
-
-export function spiderRightProjectile() {
-  get("spider").forEach((spider) => {
-    add([
-      pos(spider.pos.add(0, 5)),
-      sprite("silcLeft"),
-      //rect(10, 10),
-      area(),
-      lifespan(2),
-      "spiderProjectile",
-      move(0, -230),
+      move(dir, 230),
     ])
   })
 }
 
 export function ladybugLeftProjectile() {
   get("ladybug").forEach((ladybug) => {
+    const player = getPlayer()
+    const dir = player.pos.sub(ladybug.pos).unit()
+    dir.y = 0
     add([
       pos(ladybug.pos.add(0, 5)),
       sprite("magicProjectileLeft", { anim: "idle" }),
@@ -157,78 +150,43 @@ export function ladybugLeftProjectile() {
       area(),
       lifespan(2),
       "ladybugProjectile",
-      move(0, -230),
+      move(dir, 230),
     ])
   })
 }
 
-export function ladybugRightProjectile() {
-  get("ladybug").forEach((ladybug) => {
-    add([
-      pos(ladybug.pos.add(0, 5)),
-      sprite("magicProjectileRight", { anim: "idle" }),
-      //rect(10, 10),
-      area(),
-      lifespan(2),
-      "ladybugProjectile",
-      move(0, 230),
-    ])
-  })
-}
-
-export function ladybugLeftSlash() {
-  const ladybug = k.get("ladybug")[0]
-  get("ladybug").forEach((ladybug) => {
-    // This code is the same, but in the other direction
-    // However, the hitbox is added in a seperate add function
+export function ladybugSlash(ladybug, left = true) {
+  const player = getPlayer()
+  const dir = player.pos.sub(ladybug.pos).unit()
+  // This code is the same, but in the other direction
+  // However, the hitbox is added in a seperate add function
+  if (left === true) {
     add([k.sprite("swordLeft2"), pos(ladybug.pos.add(-10, 2)), lifespan(0.1)])
     add([k.sprite("swordLeft1"), pos(ladybug.pos.add(-42, 2)), lifespan(0.1)])
     add([
       pos(ladybug.pos.add(-47, 8)),
-      // rect(60, 20),
+      //rect(60, 20),
       area({ shape: new Rect(vec2(0), 60, 20) }),
       lifespan(0.1),
       "ladybugSlashHitBox",
     ])
-    onCollide("player", "ladybugSlashHitBox", (player) => {
-      player.hurt(5)
-      k.play("slash", { volume: 0.3 })
-    })
-  })
-}
-
-export function ladybugRightSlash() {
-  const ladybug = k.get("ladybug")[0]
-  get("ladybug").forEach((ladybug) => {
-    add([
-      // This will add the sword sprite for the left half of the sword
-      k.sprite("swordRight1"),
-      // This will add the sword's position to the player's position
-      // The numbers will change how much it is offset from the player
-      pos(ladybug.pos.add(6, 2)),
-      // The sprite will last .1 seconds
-      lifespan(0.1),
-    ])
-    // This adds the right half of the sword sprite. It does not have a hitbox.
+  } else {
     add([k.sprite("swordRight2"), pos(ladybug.pos.add(38, 2)), lifespan(0.1)])
+    add([k.sprite("swordRight1"), pos(ladybug.pos.add(6, 2)), lifespan(0.1)])
     add([
       pos(ladybug.pos.add(19, 8)),
       //This will had the hitbox, which is invisible
       area({ shape: new Rect(vec2(0), 60, 20) }),
+
       // Remove the slashes on the following line to see the hitbox
       // rect(60, 20),
       lifespan(0.1),
       "ladybugSlashHitBox",
     ])
+  }
 
-    // When the hitbox collides with an enemy, the enemy will be hurt. .
-    onCollide("enemy", "slashHitBox", (enemy) => {
-      enemy.hurt(5)
-      k.play("slash", { volume: 0.3 })
-    })
-    onCollide("player", "ladybugSlashHitBox", (enemy) => {
-      enemy.hurt(5)
-      k.play("slash", { volume: 0.3 })
-    })
+  onCollide("player", "ladybugSlashHitBox", (player) => {
+    player.hurt(5)
+    k.play("slash", { volume: 0.3 })
   })
 }

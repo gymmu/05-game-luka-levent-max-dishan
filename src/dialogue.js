@@ -10,6 +10,8 @@ export function dialogue() {
 
   let dialogue = []
 
+  let dialogueVoiceLine = 0
+
   k.onKeyPress("7", () => {
     dialogueLearning = dialogueLearning + 1
   })
@@ -58,6 +60,7 @@ export function dialogue() {
   // All dialouges. Use the arrow underneath to open/close the dialouge.
   {
     onCollide("player", "npc_1", () => {
+      dialogueVoiceLine = 1
       if (dialogueLearning === 3) {
         dialogue = [
           "Who are you and how did you find this place?",
@@ -71,6 +74,7 @@ export function dialogue() {
       }
     })
     onCollide("player", "npc_2", () => {
+      dialogueVoiceLine = 2
       if (dialogueLearning === 3) {
         dialogue = [
           "We felt a sudden surge of evil energy from the dragons tomb yesterday.",
@@ -84,6 +88,7 @@ export function dialogue() {
       }
     })
     onCollide("player", "npc_3", () => {
+      dialogueVoiceLine = 3
       if (dialogueLearning === 3) {
         dialogue = [
           "We serve to guard the tomb of the dragon.",
@@ -97,6 +102,7 @@ export function dialogue() {
       }
     })
     onCollide("player", "npc_4", () => {
+      dialogueVoiceLine = 4
       if (dialogueLearning === 3) {
         dialogue = [
           "Why are you here? The ants should have stopped you.",
@@ -118,6 +124,7 @@ export function dialogue() {
       }
     })
     onCollide("player", "npc_5", () => {
+      dialogueVoiceLine = 5
       if (dialogueLearning === 3) {
         dialogue = [
           "I'm not well versed in the art of alchemy...",
@@ -139,6 +146,7 @@ export function dialogue() {
       }
     })
     onCollide("player", "npc_6", () => {
+      dialogueVoiceLine = 6
       if (dialogueLearning === 3) {
         dialogue = [
           "The dragon is a powerfull creature that destroyed half of the worlds population.",
@@ -160,6 +168,7 @@ export function dialogue() {
       }
     })
     onCollide("player", "npc_7", () => {
+      dialogueVoiceLine = 7
       if (dialogueLearning === 3) {
         dialogue = [
           "I feel an evil presence from you. ",
@@ -195,6 +204,7 @@ export function dialogue() {
       }
     })
     onCollide("player", "npc_8", () => {
+      dialogueVoiceLine = 8
       if (dialogueLearning === 3) {
         dialogue = [
           "You've come far enough. ",
@@ -222,6 +232,7 @@ export function dialogue() {
       }
     })
     onCollide("player", "npc_9", () => {
+      dialogueVoiceLine = 9
       if (dialogueLearning === 3) {
         dialogue = [
           "Us ladybugs have learned from the mistake of summoning the dragon.",
@@ -271,6 +282,12 @@ export function dialogue() {
     if (isKeyReleased("enter")) {
       movement = false
       destroyAll("dialogue")
+      if (dialogueVoiceLine === 1 && dialogueState === 0) {
+        k.play("voiceline1")
+      }
+      if (dialogueVoiceLine === 1 && dialogueState === 1) {
+        k.play("voiceline2")
+      }
       add([
         pos(k.camPos().x - TILESIZE * 8, k.camPos().y - TILESIZE * 4.5),
         z(2),
