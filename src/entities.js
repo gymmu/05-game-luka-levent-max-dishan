@@ -55,7 +55,7 @@ export function entityLogic() {
       }
       // These if statements will change the movement of the boss based on the phase it's in.
       if (swordPhase === true) {
-        boss.move(80, 0)
+        boss.move(120, 0)
       } else if (stunPhase === true) {
         boss.move(-20, 0)
       } else {
@@ -68,7 +68,7 @@ export function entityLogic() {
         })
       }
       if (swordPhase === true) {
-        boss.move(-80, 0)
+        boss.move(-120, 0)
       } else if (stunPhase === true) {
         boss.move(20, 0)
       } else {
@@ -99,7 +99,7 @@ export function entityLogic() {
     }
     if (projectilePhase === true) {
       if (bossProjCountdown <= 0) {
-        bossProjCountdown = 30
+        bossProjCountdown = 45
         bossProjectile()
       }
     } else if (swordPhase === true && bossSwordCountdown <= 0) {
@@ -177,12 +177,12 @@ export function entityLogic() {
         if (player.pos.x < ladybug.pos.x) {
           if (ladybugSwordCountdown <= 0) {
             ladybugSlash(ladybug, true)
-            ladybugSwordCountdown = 90
+            ladybugSwordCountdown = 120
           }
         } else {
           if (ladybugSwordCountdown <= 0) {
             ladybugSlash(ladybug, false)
-            ladybugSwordCountdown = 90
+            ladybugSwordCountdown = 120
           }
         }
       }
@@ -203,13 +203,13 @@ export function entityLogic() {
         if (player.pos.x < ladybug.pos.x) {
           if (ladybugSwordCountdown <= 0) {
             ladybugSlash(ladybug, true)
-            ladybugSwordCountdown = 60
+            ladybugSwordCountdown = 120
             destroy(projectile)
           }
         } else {
           if (ladybugSwordCountdown <= 0) {
             ladybugSlash(ladybug, false)
-            ladybugSwordCountdown = 90
+            ladybugSwordCountdown = 120
             destroy(projectile)
           }
         }

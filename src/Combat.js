@@ -214,8 +214,8 @@ export function bossSlash(boss, left = true) {
     ])
     add([
       pos(boss.pos.add(-60, 8)),
-      //rect(60, 20),
-      area({ shape: new Rect(vec2(0), 60, 20) }),
+      //rect(60, 50),
+      area({ shape: new Rect(vec2(0), 60, 50) }),
       lifespan(0.1),
       "ladybugSlashHitBox",
       scale(1.5),
@@ -236,8 +236,8 @@ export function bossSlash(boss, left = true) {
     ])
     add([
       pos(boss.pos.add(32, 8)),
-      area({ shape: new Rect(vec2(0), 60, 20) }),
-      // rect(60, 20),
+      area({ shape: new Rect(vec2(0), 60, 50) }),
+      // rect(60, 50),
       lifespan(0.1),
       "ladybugSlashHitBox",
       scale(1.5),

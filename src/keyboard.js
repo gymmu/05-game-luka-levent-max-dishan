@@ -124,7 +124,7 @@ export function loadKeyboardJumpAndRun() {
   k.onKeyPress("j", () => {
     const currentTime = Date.now()
     if (
-      currentTime - lastProjectileTime > 500 &&
+      currentTime - lastProjectileTime > 1000 &&
       player.projectileUnlocked === true
     ) {
       k.play("magic", { volume: 0.2 })
