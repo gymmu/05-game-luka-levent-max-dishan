@@ -72,6 +72,8 @@ export async function generateMapJumpAndRun(mapfile) {
         GameObjects.projectileGrounded(x, y)
       } else if (char === "_") {
         GameObjects.pressSpace(x, y)
+      } else if (char === "j") {
+        GameObjects.boss(x, y)
       }
     }
   }

@@ -2,7 +2,7 @@ import kaboom from "kaboom"
 import { entityLogic } from "./entities.js"
 import { dialogue } from "./dialogue.js"
 import { cameraLogic } from "./Camera.js"
-import { resetNPC } from "./gameObjects.js"
+import { getBoss } from "./gameObjects.js"
 
 /**
  *  Hier werden Funktionen aus den eigenen Datein eingebunden.
@@ -69,10 +69,11 @@ export function addGeneralGameLogic() {
 
   // Erstelle das UI-Element HP-Balken
   createHPBar()
+  createBossHPBar()
   entityLogic()
   dialogue()
   cameraLogic()
-  resetNPC()
+
   createScore()
 
   /** Wenn der Spieler mit einem Spielobjekt mit dem Tag `heal` kollidiert, wird
@@ -145,6 +146,7 @@ export function addGeneralGameLogic() {
   k.onCollide("obstacle", "player", (obstacle, player) => {
     k.play("hit", { volume: 0.5 })
     player.hurt(obstacle.dmgAmount)
+    shake(10)
     if (obstacle.isConsumable === true) {
       obstacle.destroy()
     }
@@ -195,6 +197,44 @@ function createHPBar() {
       update() {
         const player = getPlayer()
         this.width = (player.hp() / player.max_hp) * HP_BAR_WIDTH
+      },
+    },
+  ])
+}
+
+function createBossHPBar() {
+  const boss = getBoss()
+  if (boss == null) return
+
+  const x = 500
+  const y = 40
+  const HP_BAR_WIDTH = 600
+  const HP_BAR_HEIGHT = 20
+
+  // Dies ist das UI-Element das den Rest der dazu gehört einpackt.
+  const bar = k.add([k.pos(x, y), k.fixed(), k.z(10), "hp-bar"])
+
+  bar.add([k.text("HP", { size: 20, font: "sans-serif" }), k.anchor("right")])
+
+  bar.add([
+    k.rect(HP_BAR_WIDTH, HP_BAR_HEIGHT),
+    k.outline(4, k.RED.darken(200)),
+    k.color(0, 0, 0),
+    k.anchor("center"),
+    k.pos(10, 0),
+  ])
+
+  // Dieser Teil zeigt den grünenden Balken an.
+  bar.add([
+    k.rect((boss.hp() / boss.max_hp) * HP_BAR_WIDTH, HP_BAR_HEIGHT),
+    k.color(130, 0, 0),
+    k.anchor("center"),
+    k.pos(10, 0),
+    {
+      // Damit wird in jedem Frame überprüft ob der HP-Balken angepasst werden muss.
+      update() {
+        const player = getBoss()
+        this.width = (boss.hp() / boss.max_hp) * HP_BAR_WIDTH
       },
     },
   ])

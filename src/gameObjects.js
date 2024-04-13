@@ -195,7 +195,7 @@ export function ant(x, y) {
     k.pos(k.vec2(x, y).scale(TILESIZE)),
     k.body(),
     k.area(),
-    k.health(5),
+    k.health(15),
     "obstacle",
     {
       dmgAmount: 20,
@@ -209,15 +209,42 @@ export function ant(x, y) {
   ])
 }
 
+export function boss(x, y) {
+  k.add([
+    k.sprite("npc1", { anim: "runLeft" }),
+    k.pos(k.vec2(x, y).scale(TILESIZE)),
+    k.body(),
+    k.area(),
+    k.health(150),
+    {
+      dmgAmount: 10,
+      killScore: 1000,
+      max_hp: 150,
+    },
+    scale(2),
+    "boss",
+    "obstacle",
+    // This defines anything that is an enemy
+    "enemy",
+    // This Tag will be used to define anything you are not meant to walk through
+    "wall",
+  ])
+}
+
+export function getBoss() {
+  return k.get("boss")[0]
+}
+
 export function spider(x, y) {
   k.add([
     k.sprite("spider", { anim: "idle" }),
     k.pos(k.vec2(x, y).scale(TILESIZE)),
     k.body(),
     k.area(),
-    k.health(50),
+    k.health(40),
     {
       killScore: 300,
+      damage: 15,
     },
     "obstacle",
     "spider",
@@ -234,6 +261,7 @@ export function evilLadybug(x, y) {
     k.health(50),
     {
       killScore: 500,
+      damage: 15,
     },
     "obstacle",
     "ladybug",
@@ -250,7 +278,7 @@ export function getEnemy() {
 }
 
 export function getLadybug() {
-  return k.get("ladybug")[0]
+  return k.get("ladybug")
 }
 
 /**
@@ -396,17 +424,6 @@ let NPC_Number = 0
 // Each function is the same except for the "npc_X"
 // This tag will be used to distinguish between the different NPCs within the game
 
-export function resetNPC() {
-  const player = getPlayer()
-  player.on("death", async () => {
-    NPC_Number = 0
-  })
-  k.onUpdate(() => {
-    if (player.pos.y > 720) {
-      NPC_Number = 0
-    }
-  })
-}
 export function npc(x, y) {
   NPC_Number += 1
 

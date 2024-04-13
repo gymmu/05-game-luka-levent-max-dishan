@@ -2,14 +2,15 @@ import { k, addGeneralGameLogic } from "../game.js"
 import { generateMapJumpAndRun } from "../map.js"
 import { loadKeyboardJumpAndRun } from "../keyboard.js"
 import { playerHardcore } from "./intro.js"
+import { TILESIZE } from "../globals.js"
 
+import "./finish.js"
 import "./lose.js"
-import "./level-07.js"
 
-k.scene("level-06", async () => {
+k.scene("level-09", async () => {
   k.setGravity(1200)
   loadKeyboardJumpAndRun()
-  await generateMapJumpAndRun("maps/level-06.txt")
+  await generateMapJumpAndRun("maps/level-09.txt")
 
   k.add([
     k.sprite("background", { width: k.width(), height: k.height() }),
@@ -22,12 +23,12 @@ k.scene("level-06", async () => {
 
   k.onCollide("player", "goal", () => {
     k.play("teleport", { volume: 0.5 })
-    k.go("level-07")
+    k.go("finish")
   })
 
   k.onKeyRelease("0", () => {
     k.play("teleport", { volume: 0.5 })
-    k.go("level-07")
+    //k.go("finish")
   })
   let healPlayer = false
   k.onUpdate(() => {
@@ -42,7 +43,7 @@ k.scene("level-06", async () => {
         k.play("death", { volume: 0.5 })
         k.go("lose")
       } else {
-        player.pos = k.vec2(64, 128)
+        player.pos = k.vec2(480, 128)
       }
     }
     player.on("death", async () => {
@@ -51,7 +52,7 @@ k.scene("level-06", async () => {
         k.play("death", { volume: 0.5 })
         k.go("lose")
       } else {
-        player.pos = k.vec2(64, 128)
+        player.pos = k.vec2(480, 128)
         healPlayer = true
       }
     })
