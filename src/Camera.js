@@ -29,6 +29,15 @@ export function cameraLogic() {
     south = 13
   } else if (currentLevel === 3) {
     south = 15
+  } else if (currentLevel === 4) {
+    south = 15
+  } else if (currentLevel === 5) {
+    south = 13
+  } else if (currentLevel === 6) {
+    south = 15
+  } else if (currentLevel === 7) {
+    south = 15
+  } else if (currentLevel === 8) {
   }
   // This centers the camera. The screen is 11 tiles tall.
   // South is later multiplied by the TileSize.
@@ -44,6 +53,16 @@ export function cameraLogic() {
     east = 29
   } else if (currentLevel === 3) {
     east = 205
+  } else if (currentLevel === 4) {
+    east = 205
+  } else if (currentLevel === 5) {
+    east = 29
+  } else if (currentLevel === 6) {
+    east = 205
+  } else if (currentLevel === 7) {
+    east = 29
+  } else if (currentLevel === 8) {
+    east = 205
   }
   // This centers the camera. The screen is 20 tiles wide.
   // East is later multiplied by the TileSize.
@@ -54,12 +73,6 @@ export function cameraLogic() {
   // This will allow us to specify if the player is in an RPG or not.
   // This is used so that the camera can go upwards forever in the Jump and Run.
   let inRPG = false
-  if (currentLevel === (2 || 4)) {
-    inRPG = true
-  }
-  if (currentLevel === (1 || 3)) {
-    inRPG = false
-  }
 
   function limitWest() {
     // The direction of movement you want constricted is multiplied by the TileSize.
@@ -89,14 +102,16 @@ export function cameraLogic() {
   }
 
   player.onUpdate(() => {
-    // Increase this number once you have programmed maximum east and south value for a new map.
+    if (currentLevel === (2 || 5 || 7)) {
+      inRPG = true
+    }
+    if (currentLevel === (1 || 3 || 4 || 6 || 8)) {
+      inRPG = false
+    }
+
     if (currentLevel === 9) {
       k.camPos(15.5 * TILESIZE, 8.5 * TILESIZE)
       k.camScale(1.05)
-      return
-    } else if (currentLevel > 3) {
-      k.camPos(player.pos)
-      k.camScale(1.5)
       return
     }
     // The following functions will determine  if the player has reached the edge of the screen,
@@ -118,6 +133,7 @@ export function cameraLogic() {
       inRPG === true
     ) {
       limitNorthWest()
+      console.log("Reached NorthWest edge of the screen")
     } else if (
       player.pos.y > TILESIZE * south &&
       player.pos.x > TILESIZE * east
