@@ -42,6 +42,7 @@ k.scene("lose", async () => {
 
   k.onKeyPress("space", () => {
     k.go("intro")
+    k.play("clicking", { volume: 1 })
   })
 
   k.onKeyPress("f", (c) => {
