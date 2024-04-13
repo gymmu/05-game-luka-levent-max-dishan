@@ -37,7 +37,13 @@ k.scene("level-08", async () => {
       healPlayer = false
     }
     if (player.pos.y > 720) {
-      player.pos = k.vec2(64, 128)
+      if (playerHardcore === true) {
+        import("./lose.js")
+        k.play("death", { volume: 0.5 })
+        k.go("lose")
+      } else {
+        player.pos = k.vec2(64, 128)
+      }
     }
     player.on("death", async () => {
       if (playerHardcore === true) {

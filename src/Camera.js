@@ -1,12 +1,16 @@
 import { getPlayer } from "./player.js"
 import { k } from "./game.js"
 import { TILESIZE } from "./globals.js"
+
 let currentLevel = 1
 
 export function cameraLogic() {
   const player = getPlayer()
   // When the player moves to the next level, the currentLevel will increase by 1.
   k.onCollide("player", "goal", () => {
+    currentLevel = currentLevel + 1
+  })
+  k.onKeyRelease("0", () => {
     currentLevel = currentLevel + 1
   })
 
@@ -59,13 +63,21 @@ export function cameraLogic() {
 
   // This will reset the level counter upon the player's HP reaching zero.
   player.on("death", async () => {
-    currentLevel = 1
+    if (player === undefined) {
+      currentLevel = 1
+    }
   })
   // This will reset the level counter upon the player's position going below 720.
   k.onUpdate(() => {
     if (player.pos.y > 720) {
-      currentLevel = 1
+      if (player === undefined) {
+        currentLevel = 1
+      }
     }
+  })
+
+  k.onKeyRelease("r", () => {
+    currentLevel = 1
   })
 
   // The following functions will limit where the camera can go.
@@ -98,8 +110,14 @@ export function cameraLogic() {
 
   player.onUpdate(() => {
     // Increase this number once you have programmed maximum east and south value for a new map.
-    if (currentLevel > 3) {
+    if (currentLevel === 9) {
+      k.camPos(15 * TILESIZE, 10 * TILESIZE)
+      k.camScale(1)
+      return
+    } else if (currentLevel > 3) {
       k.camPos(player.pos)
+      k.camScale(1.5)
+      return
     }
     // The following functions will determine  if the player has reached the edge of the screen,
     // and then excute the respective function.
