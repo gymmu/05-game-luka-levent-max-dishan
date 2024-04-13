@@ -209,6 +209,18 @@ export function ant(x, y) {
   ])
 }
 
+export function tutorialAnt(x, y) {
+  k.add([
+    k.sprite("npc1"),
+    k.pos(k.vec2(x, y).scale(TILESIZE)),
+    k.body(),
+    k.area(),
+    k.health(15),
+    "wall",
+    "enemy",
+  ])
+}
+
 export function boss(x, y) {
   k.add([
     k.sprite("npc1", { anim: "runLeft" }),

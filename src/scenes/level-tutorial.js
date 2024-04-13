@@ -5,14 +5,14 @@ import { loadKeyboardJumpAndRun } from "../keyboard.js"
 import { TILESIZE } from "../globals.js"
 import "./finish.js"
 
-k.scene("tutorial", async () => {
+k.scene("level-tutorial", async () => {
   k.setGravity(1200)
 
   createPlayer()
 
   loadKeyboardJumpAndRun()
 
-  await generateMapJumpAndRun("maps/tutorial.txt")
+  await generateMapJumpAndRun("maps/level-tutorial.txt")
 
   k.add([
     k.sprite("background", { width: k.width(), height: k.height() }),
@@ -45,7 +45,7 @@ k.scene("tutorial", async () => {
   // kommen wir ins nächste Level.
   k.onCollide("player", "goal", () => {
     k.play("teleport", { volume: 0.5 })
-    k.go("finish.js")
+    k.go("finish")
   })
 
   // Diese Funktion wird bei jedem Frame ausgeführt. Bei einem Jump'n'Run ist
@@ -53,20 +53,4 @@ k.scene("tutorial", async () => {
   // Spiel verloren. Man könnte hier auch anders darauf reagieren, zum
   // Beispiel den Spieler an einen Checkpoint zurück setzen, und die
   // Lebenspunkte von dem Spieler anpassen.
-  let healPlayer = false
-
-  k.onUpdate(() => {
-    const player = k.get("player")[0]
-    if (healPlayer === true) {
-      player.heal(100)
-      healPlayer = false
-    }
-    if (player.pos.y > 720) {
-      player.pos = k.vec2(64, 128)
-    }
-    player.on("death", async () => {
-      player.pos = k.vec2(64, 128)
-      healPlayer = true
-    })
-  })
 })
