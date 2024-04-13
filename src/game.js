@@ -2,7 +2,6 @@ import kaboom from "kaboom"
 import { entityLogic } from "./entities.js"
 import { dialogue } from "./dialogue.js"
 import { cameraLogic } from "./Camera.js"
-import { resetNPC } from "./gameObjects.js"
 import { getBoss } from "./gameObjects.js"
 
 /**
@@ -74,7 +73,7 @@ export function addGeneralGameLogic() {
   entityLogic()
   dialogue()
   cameraLogic()
-  resetNPC()
+
   createScore()
 
   /** Wenn der Spieler mit einem Spielobjekt mit dem Tag `heal` kollidiert, wird

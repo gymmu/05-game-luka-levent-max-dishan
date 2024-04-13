@@ -68,19 +68,8 @@ export function cameraLogic() {
     }
   })
   // This will reset the level counter upon the player's position going below 720.
-  k.onUpdate(() => {
-    if (player.pos.y > 720) {
-      if (player === undefined) {
-        currentLevel = 1
-      }
-    }
-  })
-
-  k.onKeyRelease("r", () => {
-    currentLevel = 1
-  })
-
   // The following functions will limit where the camera can go.
+
   function limitWest() {
     // The direction of movement you want constricted is multiplied by the TileSize.
     // If the direction of movement should be unrestricted on a certain axis, "player.pos.x/y" is used.
