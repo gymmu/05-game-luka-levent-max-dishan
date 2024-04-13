@@ -43,7 +43,7 @@ export function cameraLogic() {
   // South is later multiplied by the TileSize.
   south = south - 5.5
 
-  // This will define how far right the camera can go
+  // This will define how far east the camera can go
   // The values are the number of columns in the level.txt
   // Columns can be found at the bottom of the studio screen
   let east = 0
@@ -52,22 +52,22 @@ export function cameraLogic() {
   } else if (currentLevel === 2) {
     east = 29
   } else if (currentLevel === 3) {
-    east = 205
+    east = 999
   } else if (currentLevel === 4) {
-    east = 205
+    east = 999
   } else if (currentLevel === 5) {
     east = 29
   } else if (currentLevel === 6) {
-    east = 205
+    east = 999
   } else if (currentLevel === 7) {
     east = 29
   } else if (currentLevel === 8) {
-    east = 205
+    east = 999
   }
   // This centers the camera. The screen is 20 tiles wide.
   // East is later multiplied by the TileSize.
   // This means that when the player is at the edge, we can center the camera by subtracting 10 from total columns.
-  // I added 1 so you can click on the last column of a row to get a number.
+  // I added 1 so you can click on the last column of a row to get the number
   east = east - 11
 
   // This will allow us to specify if the player is in an RPG or not.
@@ -75,7 +75,7 @@ export function cameraLogic() {
   let inRPG = false
 
   function limitWest() {
-    // The direction of movement you want constricted is multiplied by the TileSize.
+    // The direction of movement to be constricted is multiplied by the TileSize.
     // If the direction of movement should be unrestricted on a certain axis, "player.pos.x/y" is used.
     k.camPos(TILESIZE * west, player.pos.y)
   }
@@ -102,13 +102,19 @@ export function cameraLogic() {
   }
 
   player.onUpdate(() => {
-    if (currentLevel === (2 || 5 || 7)) {
+    if (currentLevel === 2 || currentLevel === 5 || currentLevel === 7) {
       inRPG = true
     }
-    if (currentLevel === (1 || 3 || 4 || 6 || 8)) {
+    if (
+      currentLevel === 1 ||
+      currentLevel === 3 ||
+      currentLevel === 4 ||
+      currentLevel === 6 ||
+      currentLevel === 8
+    ) {
       inRPG = false
     }
-
+    // If the player is on the boss level then the camera will be stationary
     if (currentLevel === 9) {
       k.camPos(15.5 * TILESIZE, 8.5 * TILESIZE)
       k.camScale(1.05)
@@ -127,13 +133,14 @@ export function cameraLogic() {
       inRPG === true
     ) {
       limitNorthEast()
+      return
     } else if (
       player.pos.y < TILESIZE * north &&
       player.pos.x < TILESIZE * west &&
       inRPG === true
     ) {
       limitNorthWest()
-      console.log("Reached NorthWest edge of the screen")
+      return
     } else if (
       player.pos.y > TILESIZE * south &&
       player.pos.x > TILESIZE * east
