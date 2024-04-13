@@ -106,15 +106,27 @@ export function spiderLeftProjectile() {
   get("spider").forEach((spider) => {
     const dir = player.pos.sub(spider.pos).unit()
     dir.y = 0
-    add([
-      pos(spider.pos.add(0, 5)),
-      sprite("silcRight"),
-      //rect(10, 10),
-      area(),
-      lifespan(2),
-      "spiderProjectile",
-      move(dir, 230),
-    ])
+    if (dir.x > 0) {
+      add([
+        pos(spider.pos.add(0, 5)),
+        sprite("silcRight"),
+        //rect(10, 10),
+        area(),
+        lifespan(2),
+        "spiderProjectile",
+        move(dir, 230),
+      ])
+    } else {
+      add([
+        pos(spider.pos.add(0, 5)),
+        sprite("silcLeft"),
+        //rect(10, 10),
+        area(),
+        lifespan(2),
+        "spiderProjectile",
+        move(dir, 230),
+      ])
+    }
   })
 }
 
@@ -123,15 +135,27 @@ export function ladybugLeftProjectile() {
     const player = getPlayer()
     const dir = player.pos.sub(ladybug.pos).unit()
     dir.y = 0
-    add([
-      pos(ladybug.pos.add(0, 5)),
-      sprite("magicProjectileLeft", { anim: "idle" }),
-      //rect(10, 10),
-      area(),
-      lifespan(2),
-      "ladybugProjectile",
-      move(dir, 230),
-    ])
+    if (dir.x > 0) {
+      add([
+        pos(ladybug.pos.add(0, 5)),
+        sprite("magicProjectileRight", { anim: "idle" }),
+        //rect(10, 10),
+        area(),
+        lifespan(2),
+        "ladybugProjectile",
+        move(dir, 230),
+      ])
+    } else {
+      add([
+        pos(ladybug.pos.add(0, 5)),
+        sprite("magicProjectileLeft", { anim: "idle" }),
+        //rect(10, 10),
+        area(),
+        lifespan(2),
+        "ladybugProjectile",
+        move(dir, 230),
+      ])
+    }
   })
 }
 
@@ -139,16 +163,29 @@ export function bossProjectile() {
   get("boss").forEach((boss) => {
     const player = getPlayer()
     const dir = player.pos.sub(boss.pos).unit()
-    add([
-      pos(boss.pos.add(0, 5)),
-      sprite("magicProjectileLeft", { anim: "idle" }),
-      //rect(10, 10),
-      area(),
-      lifespan(5),
-      "ladybugProjectile",
-      move(dir, 230),
-      scale(1.5),
-    ])
+    if (dir.x > 0) {
+      add([
+        pos(boss.pos.add(0, 5)),
+        sprite("magicProjectileRight", { anim: "idle" }),
+        //rect(10, 10),
+        area(),
+        lifespan(5),
+        "ladybugProjectile",
+        move(dir, 230),
+        scale(1.5),
+      ])
+    } else {
+      add([
+        pos(boss.pos.add(0, 5)),
+        sprite("magicProjectileLeft", { anim: "idle" }),
+        //rect(10, 10),
+        area(),
+        lifespan(5),
+        "ladybugProjectile",
+        move(dir, 230),
+        scale(1.5),
+      ])
+    }
   })
 }
 

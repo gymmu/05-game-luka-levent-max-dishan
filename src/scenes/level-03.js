@@ -5,6 +5,7 @@ import { playerHardcore } from "./intro.js"
 
 import "./lose.js"
 import "./level-04.js"
+import { getPlayer } from "../player.js"
 
 /** Das ist unser drittes Level. Hier können wir Dinge einstellen die nur für
  * dieses Level gelten sollen, und aber auch Funktionen verwenden die in allen
@@ -65,14 +66,13 @@ k.scene("level-03", async () => {
   // Lebenspunkte von dem Spieler anpassen.
   let healPlayer = false
   k.onUpdate(() => {
-    const player = k.get("player")[0]
+    const player = getPlayer()
     if (healPlayer === true) {
       player.heal(100)
       healPlayer = false
     }
     if (player.pos.y > 720) {
       if (playerHardcore === true) {
-        import("./lose.js")
         k.play("death", { volume: 0.5 })
         k.go("lose")
       } else {
@@ -81,7 +81,6 @@ k.scene("level-03", async () => {
     }
     player.on("death", async () => {
       if (playerHardcore === true) {
-        await import("./lose.js")
         k.play("death", { volume: 0.5 })
         k.go("lose")
       } else {

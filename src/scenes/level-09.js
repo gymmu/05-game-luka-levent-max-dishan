@@ -39,7 +39,6 @@ k.scene("level-09", async () => {
     }
     if (player.pos.y > 720) {
       if (playerHardcore === true) {
-        import("./lose.js")
         k.play("death", { volume: 0.5 })
         k.go("lose")
       } else {
@@ -48,7 +47,6 @@ k.scene("level-09", async () => {
     }
     player.on("death", async () => {
       if (playerHardcore === true) {
-        await import("./lose.js")
         k.play("death", { volume: 0.5 })
         k.go("lose")
       } else {
