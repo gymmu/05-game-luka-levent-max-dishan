@@ -105,14 +105,14 @@ export function addGeneralGameLogic() {
     if (score.isConsumable === true) {
       score.destroy()
     }
-    k.play("coin", { volume: 1 })
+    k.play("coin", { volume: 0.2 })
   })
 
   k.onCollide("player", "swordGrounded", (player, swordGrounded) => {
     if (swordGrounded.isConsumable === true) {
       swordGrounded.destroy()
     }
-    k.play("pickup", { volume: 1 })
+    k.play("pickup", { volume: 0.2 })
     k.add([
       sprite("pressH", { anim: "idle" }),
       pos(player.pos.x + 1 * TILESIZE, player.pos.y),
@@ -127,7 +127,7 @@ export function addGeneralGameLogic() {
     if (projectileGrounded.isConsumable === true) {
       projectileGrounded.destroy()
     }
-    k.play("pickup", { volume: 1 })
+    k.play("pickup", { volume: 0.2 })
     k.add([
       sprite("pressJ", { anim: "idle" }),
       pos(player.pos.x + 1 * TILESIZE, player.pos.y),
@@ -157,7 +157,7 @@ export function addGeneralGameLogic() {
    * gesetzt.
    */
   player.on("heal", () => {
-    k.play("heal", { volume: 0.3 })
+    k.play("heal", { volume: 0.2 })
   })
 }
 

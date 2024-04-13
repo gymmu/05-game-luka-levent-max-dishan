@@ -86,7 +86,7 @@ export function loadKeyboardJumpAndRun() {
   k.onKeyPress("space", () => {
     if (player.isGrounded()) {
       player.jump()
-      k.play("jump", { volume: 0.5 })
+      k.play("jump", { volume: 0.3 })
     }
   })
 
@@ -127,7 +127,7 @@ export function loadKeyboardJumpAndRun() {
       currentTime - lastProjectileTime > 500 &&
       player.projectileUnlocked === true
     ) {
-      k.play("magic", { volume: 0.3 })
+      k.play("magic", { volume: 0.2 })
       lastProjectileTime = currentTime
       if (facingRight === true) {
         rightProjectile()

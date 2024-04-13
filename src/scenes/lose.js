@@ -54,7 +54,7 @@ k.scene("lose", async () => {
 
   k.onKeyPress("space", () => {
     k.go("intro")
-    k.play("clicking", { volume: 1 })
+    k.play("clicking", { volume: 0.5 })
     location.reload(true)
   })
 

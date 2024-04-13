@@ -48,6 +48,11 @@ export function entityLogic() {
     // If the players x position is greater than the boss's postion, the boss will move left.
     // If not, it will move right
     if (player.pos.x > boss.pos.x) {
+      if (rand(20) > 19.3) {
+        loop(360, () => {
+          boss.play("idleRight")
+        })
+      }
       // These if statements will change the movement of the boss based on the phase it's in.
       if (swordPhase === true) {
         boss.move(80, 0)
@@ -57,6 +62,11 @@ export function entityLogic() {
         boss.move(40, 0)
       }
     } else {
+      if (rand(20) > 19.3) {
+        loop(360, () => {
+          boss.play("idleLeft")
+        })
+      }
       if (swordPhase === true) {
         boss.move(-80, 0)
       } else if (stunPhase === true) {
@@ -231,7 +241,7 @@ export function entityLogic() {
 
   onCollide("player", "ladybugSlashHitBox", (player, ladybugSlashHitBox) => {
     player.hurt(15)
-    k.play("slash", { volume: 0.3 })
+    k.play("slash", { volume: 0.1 })
     shake(10)
   })
 
@@ -243,7 +253,7 @@ export function entityLogic() {
 
   onCollide("enemy", "slashHitBox", (enemy) => {
     enemy.hurt(10)
-    k.play("slash", { volume: 0.3 })
+    k.play("slash", { volume: 0.1 })
   })
 
   k.on("death", "enemy", (enemy) => {

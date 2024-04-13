@@ -13,163 +13,162 @@ export function dialogue() {
   let dialogueVoiceLine = 0
 
   //this is the least effective way to do this.
-  {
-    const voiceline1 = play("voiceline1", {
-      loop: false,
-      volume: 1,
-      paused: true,
-    })
 
-    const voiceline2 = play("voiceline2", {
-      loop: false,
-      volume: 1,
-      paused: true,
-    })
+  const voiceline1 = play("voiceline1", {
+    loop: false,
+    volume: 1,
+    paused: true,
+  })
 
-    const voiceline3 = play("voiceline3", {
-      loop: false,
-      volume: 1,
-      paused: true,
-    })
+  const voiceline2 = play("voiceline2", {
+    loop: false,
+    volume: 1,
+    paused: true,
+  })
 
-    const voiceline4 = play("voiceline4", {
-      loop: false,
-      volume: 1,
-      paused: true,
-    })
+  const voiceline3 = play("voiceline3", {
+    loop: false,
+    volume: 1,
+    paused: true,
+  })
 
-    const voiceline5 = play("voiceline5", {
-      loop: false,
-      volume: 1,
-      paused: true,
-    })
+  const voiceline4 = play("voiceline4", {
+    loop: false,
+    volume: 1,
+    paused: true,
+  })
 
-    const voiceline6 = play("voiceline6", {
-      loop: false,
-      volume: 1,
-      paused: true,
-    })
+  const voiceline5 = play("voiceline5", {
+    loop: false,
+    volume: 1,
+    paused: true,
+  })
 
-    const voiceline7 = play("voiceline7", {
-      loop: false,
-      volume: 1,
-      paused: true,
-    })
+  const voiceline6 = play("voiceline6", {
+    loop: false,
+    volume: 1,
+    paused: true,
+  })
 
-    const voiceline8 = play("voiceline8", {
-      loop: false,
-      volume: 1,
-      paused: true,
-    })
+  const voiceline7 = play("voiceline7", {
+    loop: false,
+    volume: 1,
+    paused: true,
+  })
 
-    const voiceline9 = play("voiceline9", {
-      loop: false,
-      volume: 1,
-      paused: true,
-    })
+  const voiceline8 = play("voiceline8", {
+    loop: false,
+    volume: 1,
+    paused: true,
+  })
 
-    const voiceline10 = play("voiceline10", {
-      loop: false,
-      volume: 1,
-      paused: true,
-    })
+  const voiceline9 = play("voiceline9", {
+    loop: false,
+    volume: 1,
+    paused: true,
+  })
 
-    const voiceline11 = play("voiceline11", {
-      loop: false,
-      volume: 1,
-      paused: true,
-    })
+  const voiceline10 = play("voiceline10", {
+    loop: false,
+    volume: 1,
+    paused: true,
+  })
 
-    const voiceline12 = play("voiceline12", {
-      loop: false,
-      volume: 1,
-      paused: true,
-    })
+  const voiceline11 = play("voiceline11", {
+    loop: false,
+    volume: 1,
+    paused: true,
+  })
 
-    const voiceline13 = play("voiceline13", {
-      loop: false,
-      volume: 1,
-      paused: true,
-    })
+  const voiceline12 = play("voiceline12", {
+    loop: false,
+    volume: 1,
+    paused: true,
+  })
 
-    const voiceline14 = play("voiceline14", {
-      loop: false,
-      volume: 1,
-      paused: true,
-    })
+  const voiceline13 = play("voiceline13", {
+    loop: false,
+    volume: 1,
+    paused: true,
+  })
 
-    const voiceline15 = play("voiceline15", {
-      loop: false,
-      volume: 1,
-      paused: true,
-    })
+  const voiceline14 = play("voiceline14", {
+    loop: false,
+    volume: 1,
+    paused: true,
+  })
 
-    const voiceline16 = play("voiceline16", {
-      loop: false,
-      volume: 1,
-      paused: true,
-    })
+  const voiceline15 = play("voiceline15", {
+    loop: false,
+    volume: 1,
+    paused: true,
+  })
 
-    const voiceline17 = play("voiceline17", {
-      loop: false,
-      volume: 1,
-      paused: true,
-    })
+  const voiceline16 = play("voiceline16", {
+    loop: false,
+    volume: 1,
+    paused: true,
+  })
 
-    const voiceline18 = play("voiceline18", {
-      loop: false,
-      volume: 1,
-      paused: true,
-    })
+  const voiceline17 = play("voiceline17", {
+    loop: false,
+    volume: 1,
+    paused: true,
+  })
 
-    const voiceline19 = play("voiceline19", {
-      loop: false,
-      volume: 1,
-      paused: true,
-    })
+  const voiceline18 = play("voiceline18", {
+    loop: false,
+    volume: 1,
+    paused: true,
+  })
 
-    const voiceline20 = play("voiceline20", {
-      loop: false,
-      volume: 1,
-      paused: true,
-    })
+  const voiceline19 = play("voiceline19", {
+    loop: false,
+    volume: 1,
+    paused: true,
+  })
 
-    const voiceline21 = play("voiceline21", {
-      loop: false,
-      volume: 1,
-      paused: true,
-    })
+  const voiceline20 = play("voiceline20", {
+    loop: false,
+    volume: 1,
+    paused: true,
+  })
 
-    const voiceline22 = play("voiceline22", {
-      loop: false,
-      volume: 1,
-      paused: true,
-    })
+  const voiceline21 = play("voiceline21", {
+    loop: false,
+    volume: 1,
+    paused: true,
+  })
 
-    const voiceline23 = play("voiceline23", {
-      loop: false,
-      volume: 1,
-      paused: true,
-    })
+  const voiceline22 = play("voiceline22", {
+    loop: false,
+    volume: 1,
+    paused: true,
+  })
 
-    const voiceline24 = play("voiceline24", {
-      loop: false,
-      volume: 1,
-      paused: true,
-    })
+  const voiceline23 = play("voiceline23", {
+    loop: false,
+    volume: 1,
+    paused: true,
+  })
 
-    const voiceline25 = play("voiceline25", {
-      loop: false,
-      volume: 1,
-      paused: true,
-    })
+  const voiceline24 = play("voiceline24", {
+    loop: false,
+    volume: 1,
+    paused: true,
+  })
 
-    const voiceline26 = play("voiceline26", {
-      loop: false,
-      volume: 1,
-      paused: true,
-    })
-  }
+  const voiceline25 = play("voiceline25", {
+    loop: false,
+    volume: 1,
+    paused: true,
+  })
+
+  const voiceline26 = play("voiceline26", {
+    loop: false,
+    volume: 1,
+    paused: true,
+  })
 
   // This is used for cheats
   k.onKeyPress("7", () => {

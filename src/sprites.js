@@ -34,6 +34,25 @@ export default function loadSprites() {
     },
   })
 
+  k.loadSpriteAtlas("sprites/boss.png", {
+    Boss: {
+      x: 0,
+      y: 0,
+      width: 4 * TS * 2,
+      height: 6 * TS * 2,
+      sliceX: 4,
+      sliceY: 6,
+      anims: {
+        idleLeft: { from: 0, to: 3, loop: true, speed: 6 },
+        attackMeleeLeft: { from: 5, to: 6, loop: true, speed: 6 },
+        attackRangedLeft: { from: 8, to: 10, loop: true, speed: 8 },
+        idleRight: { from: 12, to: 15, loop: true, speed: 6 },
+        attackMeleeRight: { from: 17, to: 18, loop: true, speed: 6 },
+        attackRangedRight: { from: 20, to: 22, loop: true, speed: 8 },
+      },
+    },
+  })
+
   k.loadSpriteAtlas("sprites/npc1.png", {
     npc1: {
       // Alles war hier kommt, gehört zum Sprite `hero`

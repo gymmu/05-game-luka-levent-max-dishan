@@ -223,17 +223,17 @@ export function tutorialAnt(x, y) {
 
 export function boss(x, y) {
   k.add([
-    k.sprite("npc1", { anim: "runLeft" }),
+    k.sprite("Boss", { anim: "idleLeft" }),
     k.pos(k.vec2(x, y).scale(TILESIZE)),
     k.body(),
     k.area(),
     k.health(150),
+    k.scale(1.4),
     {
       dmgAmount: 10,
       killScore: 1000,
       max_hp: 150,
     },
-    scale(2),
     "boss",
     "obstacle",
     // This defines anything that is an enemy

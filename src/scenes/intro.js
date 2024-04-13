@@ -112,7 +112,7 @@ k.scene("intro", () => {
     playerHardcore = true
   })
   onClick("tutorial", () => {
-    k.play("clicking", { volume: 1 })
+    k.play("clicking", { volume: 0.5 })
     k.go("level-tutorial")
   })
 })

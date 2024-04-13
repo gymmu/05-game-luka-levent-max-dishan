@@ -37,7 +37,7 @@ k.scene("finish", () => {
     k.anchor("top"),
   ])
   k.onKeyPress("space", () => {
-    k.play("clicking", { volume: 1 })
+    k.play("clicking", { volume: 0.5 })
     k.go("intro")
     location.reload(true)
   })

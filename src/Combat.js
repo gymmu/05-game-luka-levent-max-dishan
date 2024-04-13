@@ -167,6 +167,7 @@ export function bossProjectile() {
     const player = getPlayer()
     const dir = player.pos.sub(boss.pos).unit()
     if (dir.x > 0) {
+      boss.play("attackRangedRight")
       add([
         pos(boss.pos.add(0, 5)),
         sprite("magicProjectileRight", { anim: "idle" }),
@@ -178,6 +179,7 @@ export function bossProjectile() {
         scale(1.5),
       ])
     } else {
+      boss.play("attackRangedLeft")
       add([
         pos(boss.pos.add(0, 5)),
         sprite("magicProjectileLeft", { anim: "idle" }),
@@ -197,6 +199,7 @@ export function bossProjectile() {
 // Otherwise, this function is the same as the sword slash used by the player.
 export function bossSlash(boss, left = true) {
   if (left === true) {
+    boss.play("attackMeleeLeft")
     add([
       k.sprite("swordLeft2"),
       pos(boss.pos.add(-23, 2)),
@@ -218,6 +221,7 @@ export function bossSlash(boss, left = true) {
       scale(1.5),
     ])
   } else {
+    boss.play("attackMeleeRight")
     add([
       k.sprite("swordRight2"),
       pos(boss.pos.add(51, 2)),
