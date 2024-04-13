@@ -144,7 +144,7 @@ export function bossProjectile() {
       sprite("magicProjectileLeft", { anim: "idle" }),
       //rect(10, 10),
       area(),
-      lifespan(2),
+      lifespan(5),
       "ladybugProjectile",
       move(dir, 230),
     ])

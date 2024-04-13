@@ -61,15 +61,6 @@ export function cameraLogic() {
     inRPG = false
   }
 
-  // This will reset the level counter upon the player's HP reaching zero.
-  player.on("death", async () => {
-    if (player === undefined) {
-      currentLevel = 1
-    }
-  })
-  // This will reset the level counter upon the player's position going below 720.
-  // The following functions will limit where the camera can go.
-
   function limitWest() {
     // The direction of movement you want constricted is multiplied by the TileSize.
     // If the direction of movement should be unrestricted on a certain axis, "player.pos.x/y" is used.
@@ -100,8 +91,8 @@ export function cameraLogic() {
   player.onUpdate(() => {
     // Increase this number once you have programmed maximum east and south value for a new map.
     if (currentLevel === 9) {
-      k.camPos(15 * TILESIZE, 10 * TILESIZE)
-      k.camScale(1)
+      k.camPos(15.5 * TILESIZE, 8.5 * TILESIZE)
+      k.camScale(1.05)
       return
     } else if (currentLevel > 3) {
       k.camPos(player.pos)

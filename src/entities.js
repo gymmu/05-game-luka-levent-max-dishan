@@ -8,7 +8,13 @@ import {
   bossProjectile,
   bossSlash,
 } from "./Combat.js"
-import { getSpider, getEnemy, getLadybug, getBoss } from "./gameObjects.js"
+import {
+  getSpider,
+  getEnemy,
+  getLadybug,
+  getBoss,
+  swordGrounded,
+} from "./gameObjects.js"
 import { getProjectile } from "./Combat.js"
 
 let bossPhaseCountdown = 120
@@ -28,16 +34,28 @@ export function entityLogic() {
     if (player.pos.x > boss.pos.x) {
       // If the players x position is greater than the ant's postion, the ant will move left.
       // If not, it will move right
-      boss.move(40, 0)
+      if (swordPhase === true) {
+        boss.move(80, 0)
+      } else if (stunPhase === true) {
+        boss.move(-20, 0)
+      } else {
+        boss.move(40, 0)
+      }
     } else {
-      boss.move(-40, 0)
+      if (swordPhase === true) {
+        boss.move(-80, 0)
+      } else if (stunPhase === true) {
+        boss.move(20, 0)
+      } else {
+        boss.move(-40, 0)
+      }
     }
     if (boss.isGrounded()) {
       if (rand(20) > 19.3) {
         boss.jump()
       }
     }
-    if (bossPhaseCountdown <= 0 && projectilePhase === true) {
+    if (bossPhaseCountdown <= 0 && projectilePhase === true && rand(150) > 1) {
       swordPhase = true
       projectilePhase = false
       bossPhaseCountdown = 300
@@ -45,7 +63,7 @@ export function entityLogic() {
       swordPhase = false
       stunPhase = true
       bossPhaseCountdown = 150
-    } else if (bossPhaseCountdown <= 0 && stunPhase === true) {
+    } else if (bossPhaseCountdown <= 0 && stunPhase === true && rand(150) > 1) {
       stunPhase = false
       projectilePhase = true
       bossPhaseCountdown = 300
@@ -57,7 +75,7 @@ export function entityLogic() {
       }
     } else if (swordPhase === true && bossSwordCountdown <= 0) {
       if (player.pos.x > boss.pos.x) {
-        bossSwordCountdown = 30
+        bossSwordCountdown = 60
         bossSlash(boss, false)
       } else {
         bossSlash(boss, true)
@@ -174,7 +192,7 @@ export function entityLogic() {
         if (player.pos.x < ladybug.pos.x) {
           if (ladybugSwordCountdown <= 0) {
             ladybugSlash(ladybug, true)
-            ladybugSwordCountdown = 90
+            ladybugSwordCountdown = 60
             destroy(projectile)
           }
         } else {
@@ -188,6 +206,13 @@ export function entityLogic() {
     })
   })
 
+  onCollide(
+    "ladybugSlashHitBox",
+    "projectile",
+    (ladybugSlashHitBox, projectile) => {
+      destroy(projectile)
+    },
+  )
   onCollide("spiderProjectile", "player", (spiderProjectile, player) => {
     k.play("hit", { volume: 1 })
     player.hurt(10)
