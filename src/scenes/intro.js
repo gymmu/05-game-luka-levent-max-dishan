@@ -1,4 +1,5 @@
 import { k } from "../game.js"
+import "./level-tutorial.js"
 import "./level-01.js"
 import "./level-02.js"
 import "./level-03.js"

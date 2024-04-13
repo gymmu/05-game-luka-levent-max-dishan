@@ -74,6 +74,9 @@ export async function generateMapJumpAndRun(mapfile) {
         GameObjects.pressSpace(x, y)
       } else if (char === "j") {
         GameObjects.boss(x, y)
+      } else if (char === "a") {
+        //only meant for tutorial map
+        GameObjects.tutorialAnt(x, y)
       }
     }
   }
