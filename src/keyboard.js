@@ -29,7 +29,7 @@ export function loadKeyboardJumpAndRun() {
   // then the idleLeft animation will be played.
   k.onKeyPress("a", () => {
     player.play("runLeft")
-    //This set movingLeft to true, storing that the player should now be moving left.
+    //This sets movingLeft to true, storing that the player should now be moving left.
     movingLeft = true
     facingRight = false
     facingLeft = true
@@ -44,8 +44,7 @@ export function loadKeyboardJumpAndRun() {
   k.onKeyDown("a", () => {
     player.move(k.LEFT.scale(player.speed))
   })
-  // When the left key is released, the player will play the moving right animation,
-  // if moveingRight is true.
+  // When the left key is released, the player will play the moving right animation if moveingRight is true.
   k.onKeyRelease("a", () => {
     if (movingRight === true) {
       player.play("runRight")
@@ -99,13 +98,14 @@ export function loadKeyboardJumpAndRun() {
   k.onKeyRelease("w", () => {
     lookingUp = false
   })
+
   // Used codium to generate a code limiting the amount of attacks per second.
   let lastAttackTime = 0
   k.onKeyPress("h", () => {
     // This will fetch the current time in milliseconds
     const currentTime = Date.now()
     // If the current time in milliseconds has a difference of more than 500 milliseconds than lastAttackTime, the player can attack
-    if (currentTime - lastAttackTime > 300 && player.swordUnlocked === true) {
+    if (currentTime - lastAttackTime > 500 && player.swordUnlocked === true) {
       // This will set lastAttackTime to the current time
 
       lastAttackTime = currentTime
@@ -159,12 +159,12 @@ export function loadKeyboardRPG() {
   let eastCollision = false
 
   onUpdate(() => {
+    // every frame this code will generate a rectangle that is slightly offset from the player
+    // in this case, it is slightly below the player.
+    // if this box collides with a wall, the southCollision variable will be set to true
+    // when this is set to true, the player cannot move south
+    // this makes it much harder to glitch through walls, and makes the camera more steady
     add([
-      // every frame this code will generate a rectangle that is slightly offset from the player
-      // in this case, it is slightly below the player.
-      // if this box collides with a wall, the southCollision variable will be set to true
-      // when this is set to true, the player cannot move south
-      // this makes it much harder to glitch through walls, and makes the camera more steady
       pos(player.pos.x + 6, player.pos.y + 20),
       area({ shape: new Rect(vec2(0), 20, 13) }),
       lifespan(0.1),

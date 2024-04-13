@@ -90,6 +90,7 @@ k.scene("level-01", async () => {
   // Lebenspunkte von dem Spieler anpassen.
   let healPlayer = false
 
+  // This code will handle respawning and death.
   k.onUpdate(() => {
     const player = k.get("player")[0]
     if (healPlayer === true) {
@@ -97,20 +98,26 @@ k.scene("level-01", async () => {
       healPlayer = false
     }
     if (player.pos.y > 720) {
+      // If the player is in hardcore then going below 720y is handled normally.
       if (playerHardcore === true) {
+        overworldMusic.paused = true
         import("./lose.js")
         k.play("death", { volume: 0.5 })
         k.go("lose")
+        // If the player is not in hardcore then they are teleported back to safety.
       } else {
         player.pos = k.vec2(64, 128)
       }
     }
     player.on("death", async () => {
+      // Death is handled normally if the player is in hardcore.
       if (playerHardcore === true) {
         overworldMusic.paused = true
         await import("./lose.js")
         k.play("death", { volume: 0.5 })
         k.go("lose")
+        // If the player is not in hardcore then they are teleported back to safety and healed.
+        // The healPlayer variable is used because otherwise the codes ends up repeatedly healing the player.
       } else {
         player.pos = k.vec2(64, 128)
         healPlayer = true

@@ -431,9 +431,10 @@ export function mushroomRPG(x, y) {
     },
   ])
 }
+
 let NPC_Number = 0
 // The following functions are NPC's
-// Each function is the same except for the "npc_X"
+// Each time the function runs the NPC_Number is increased
 // This tag will be used to distinguish between the different NPCs within the game
 
 export function npc(x, y) {
