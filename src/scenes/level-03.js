@@ -77,6 +77,11 @@ k.scene("level-03", async () => {
         k.go("lose")
       } else {
         player.pos = k.vec2(64, 128)
+        if (player.score >= 5) {
+          player.score -= 5
+        } else {
+          player.score -= player.score
+        }
       }
     }
     player.on("death", async () => {
@@ -86,6 +91,11 @@ k.scene("level-03", async () => {
       } else {
         player.pos = k.vec2(64, 128)
         healPlayer = true
+        if (player.score >= 5) {
+          player.score -= 5
+        } else {
+          player.score -= player.score
+        }
       }
     })
   })

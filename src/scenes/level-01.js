@@ -107,6 +107,11 @@ k.scene("level-01", async () => {
         // If the player is not in hardcore then they are teleported back to safety.
       } else {
         player.pos = k.vec2(64, 128)
+        if (player.score >= 5) {
+          player.score -= 5
+        } else {
+          player.score -= player.score
+        }
       }
     }
     player.on("death", async () => {
@@ -120,6 +125,11 @@ k.scene("level-01", async () => {
       } else {
         player.pos = k.vec2(64, 128)
         healPlayer = true
+        if (player.score >= 5) {
+          player.score -= 5
+        } else {
+          player.score -= player.score
+        }
       }
     })
   })

@@ -6,11 +6,21 @@ import { TILESIZE } from "../globals.js"
 
 import "./finish.js"
 import "./lose.js"
+import { overworldMusic } from "./level-01.js"
+
+export const bossMusic = play("bossFight", {
+  loop: true,
+  volume: 0.5,
+  paused: true,
+})
 
 k.scene("level-09", async () => {
   k.setGravity(1200)
   loadKeyboardJumpAndRun()
   await generateMapJumpAndRun("maps/level-09.txt")
+
+  overworldMusic.paused = true
+  bossMusic.paused = false
 
   k.add([
     k.sprite("background", { width: k.width(), height: k.height() }),
@@ -43,6 +53,11 @@ k.scene("level-09", async () => {
         k.go("lose")
       } else {
         player.pos = k.vec2(480, 128)
+        if (player.score >= 5) {
+          player.score -= 5
+        } else {
+          player.score -= player.score
+        }
       }
     }
     player.on("death", async () => {
@@ -52,6 +67,11 @@ k.scene("level-09", async () => {
       } else {
         player.pos = k.vec2(480, 128)
         healPlayer = true
+        if (player.score >= 5) {
+          player.score -= 5
+        } else {
+          player.score -= player.score
+        }
       }
     })
   })
