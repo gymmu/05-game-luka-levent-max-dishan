@@ -207,11 +207,13 @@ export function boss(x, y) {
     k.area(),
     k.health(150),
     {
-      dmgAmount: 20,
+      dmgAmount: 10,
       killScore: 1000,
       max_hp: 150,
     },
+    scale(2),
     "boss",
+    "obstacle",
     // This defines anything that is an enemy
     "enemy",
     // This Tag will be used to define anything you are not meant to walk through

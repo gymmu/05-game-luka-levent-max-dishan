@@ -146,6 +146,7 @@ export function addGeneralGameLogic() {
   k.onCollide("obstacle", "player", (obstacle, player) => {
     k.play("hit", { volume: 0.5 })
     player.hurt(obstacle.dmgAmount)
+    shake(10)
     if (obstacle.isConsumable === true) {
       obstacle.destroy()
     }
