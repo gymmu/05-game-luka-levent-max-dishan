@@ -20,6 +20,12 @@ import "./lose.js"
  * wir einige spezialisierte Funktionen verwenden.
  *
  */
+
+export const overworldMusic = k.play("overworldMusic", {
+  loop: true,
+  volume: 0.3,
+  paused: true,
+})
 k.scene("level-01", async () => {
   // Wir stellen die Gravitation ein, damit es sich um ein Jump'n'Run-Spiel
   // handelt.
@@ -61,6 +67,8 @@ k.scene("level-01", async () => {
   // der Spieler mit einem Objekt kollidiert.
   addGeneralGameLogic()
 
+  overworldMusic.paused = false
+
   // Hier wird zusätzliche Spiellogik erstellt, die nur in diesem Level
   // verwendet wird.
   // Hier ist es so das wenn der Spieler mit dem "goal" kollidiert, dann
@@ -99,6 +107,7 @@ k.scene("level-01", async () => {
     }
     player.on("death", async () => {
       if (playerHardcore === true) {
+        overworldMusic.paused = true
         await import("./lose.js")
         k.play("death", { volume: 0.5 })
         k.go("lose")

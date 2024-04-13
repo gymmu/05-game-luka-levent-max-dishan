@@ -75,6 +75,24 @@ k.scene("intro", () => {
     "hardcore",
   ])
 
+  k.add([
+    k.text("Tutorial", { size: 32, font: "sans-serif" }),
+    k.pos(k.width() / 2, k.height() / 2 + 78),
+    k.area(),
+    k.color(0, 0, 0),
+    k.anchor("top"),
+  ])
+  k.add([
+    k.rect(TILESIZE * 16 + 4, TILESIZE * 1 + 4),
+    k.area(TILESIZE * 16 + 4, TILESIZE * 1 + 4),
+    k.outline(1),
+    k.color(210, 180, 140),
+    k.pos(k.width() / 2, k.height() / 2 + 78),
+    k.anchor("top"),
+    k.z(-1),
+    "tutorial",
+  ])
+
   // Mit dieser Funktion können wir auf Tastendrucke reagieren. Diese können
   // pro Szene anders angegeben werden. Hier wird mit `space` zur nächsten
   // Szene gewechselt. In der nächsten Szene können wir `space` dann auch zum
@@ -83,11 +101,17 @@ k.scene("intro", () => {
     setFullscreen(!isFullscreen())
   })
   onClick("normal", () => {
+    k.play("clicking", { volume: 1 })
     k.go("level-01")
   })
   onClick("hardcore", () => {
     const player = getPlayer()
+    k.play("clicking", { volume: 1 })
     k.go("level-01")
     playerHardcore = true
+  })
+  onClick("tutorial", () => {
+    k.play("clicking", { volume: 1 })
+    k.go("level-tutorial")
   })
 })

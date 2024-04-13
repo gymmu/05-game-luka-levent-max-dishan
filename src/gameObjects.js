@@ -179,6 +179,16 @@ export function bigCoin(x, y) {
   ])
 }
 
+export function pressSpace(x, y) {
+  k.add([
+    k.sprite("pressSpace", { anim: "idle" }),
+    k.pos(k.vec2(x, y).scale(TILESIZE)),
+    k.area(),
+    k.z(-1),
+    k.scale(2),
+  ])
+}
+
 export function ant(x, y) {
   k.add([
     k.sprite("npc1", { anim: "runLeft" }),
