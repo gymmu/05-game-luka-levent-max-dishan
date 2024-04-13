@@ -31,17 +31,18 @@ let ladybugprojectileCountdown = 120
 let ladybugSwordCountdown = 90
 
 // This reduces most countdowns by 1 every frame
-k.onUpdate(() => {
-  ladybugprojectileCountdown = ladybugprojectileCountdown - 1
-  projectileCountdown = projectileCountdown - 1
-  ladybugSwordCountdown = ladybugSwordCountdown - 1
-  bossProjCountdown = bossProjCountdown - 1
-  bossSwordCountdown = bossSwordCountdown - 1
-  bossPhaseCountdown = bossPhaseCountdown - 1
-  bossStun = bossStun - 1
-})
 
 export function entityLogic() {
+  k.onUpdate(() => {
+    // This reduces most countdowns by 1 every frame
+    ladybugprojectileCountdown = ladybugprojectileCountdown - 1
+    projectileCountdown = projectileCountdown - 1
+    ladybugSwordCountdown = ladybugSwordCountdown - 1
+    bossProjCountdown = bossProjCountdown - 1
+    bossSwordCountdown = bossSwordCountdown - 1
+    bossPhaseCountdown = bossPhaseCountdown - 1
+    bossStun = bossStun - 1
+  })
   const player = getPlayer()
   k.onUpdate("boss", (boss) => {
     // If the players x position is greater than the boss's postion, the boss will move left.
