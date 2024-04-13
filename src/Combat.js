@@ -1,12 +1,11 @@
 import { getPlayer } from "./player.js"
-import { getSpider, getEnemy } from "./gameObjects.js"
 import { k } from "./game.js"
 import { TILESIZE } from "./globals.js"
 
 export function rightSlash() {
   const player = getPlayer()
   add([
-    // This will add the sword sprite for the left half of the sword
+    // This will add the sword sprite for the left half of the sword. It does not have a hitbox
     k.sprite("swordRight1"),
     // This will add the sword's position to the player's position
     // The numbers will change how much it is offset from the player
@@ -16,9 +15,9 @@ export function rightSlash() {
   ])
   // This adds the right half of the sword sprite. It does not have a hitbox.
   add([k.sprite("swordRight2"), pos(player.pos.add(38, 2)), lifespan(0.1)])
+  // This adds the hitbox, which is invisible
   add([
     pos(player.pos.add(19, 8)),
-    //This will had the hitbox, which is invisible
     area({ shape: new Rect(vec2(0), 60, 20) }),
     // Remove the slashes on the following line to see the hitbox
     // rect(60, 20),
@@ -26,10 +25,10 @@ export function rightSlash() {
     "slashHitBox",
   ])
 }
+
+// This code is the same, but in the other direction
 export function leftSlash() {
   const player = getPlayer()
-  // This code is the same, but in the other direction
-  // However, the hitbox is added in a seperate add function
   add([k.sprite("swordLeft2"), pos(player.pos.add(-10, 2)), lifespan(0.1)])
   add([k.sprite("swordLeft1"), pos(player.pos.add(-42, 2)), lifespan(0.1)])
   add([
@@ -40,11 +39,10 @@ export function leftSlash() {
     "slashHitBox",
   ])
 }
-
+// This code is the same, but in the upwards direction.
+// The sprites and hitbox are rotated 90 degrees.
 export function upwardSlash() {
   const player = getPlayer()
-  // This code is the same, but in the other direction
-  // However, the hitbox is added in a seperate add function
   add([
     k.sprite("swordLeft2"),
     pos(player.pos.add(TILESIZE, -8)),
@@ -69,14 +67,14 @@ export function upwardSlash() {
 export function leftProjectile() {
   const player = getPlayer()
   add([
-    // a square is created that will move to the left at a rate of 230 per second
     pos(player.pos.add(0, 5)),
+    // this will add the magic Projectile sprite
     sprite("magicProjectileLeft", { anim: "idle" }),
-    //rect(10, 10),
     area(),
-    // it will disapear after 2 seconds
+    // It will disapear after 2 seconds
     lifespan(2),
     "projectile",
+    // It will move at a rate of 230 unites a second
     move(0, -230),
   ])
 }
@@ -86,7 +84,6 @@ export function rightProjectile() {
   add([
     pos(player.pos.add(0, 5)),
     sprite("magicProjectileRight", { anim: "idle" }),
-    //rect(10, 10),
     area(),
     lifespan(2),
     "projectile",
@@ -94,17 +91,21 @@ export function rightProjectile() {
   ])
 }
 
+//This exports the projectile for use in other files.
 export function getProjectile() {
   return k.get("projectile")
 }
 
-export function spiderLeftProjectile() {
+export function spiderProjectile() {
   const player = getPlayer()
 
-  // Generated the following line from codium
-  // This will now add a projectile to all spiders instead of just one
+  // This code will apply to every spider, if conditions in the entities.js code are satisified.
   get("spider").forEach((spider) => {
+    // This variable will change based on each spider.
+    // By doing this we can specify the direction of the projectile for individual spiders.
+    // .unit will make every projectile a consistent speed.
     const dir = player.pos.sub(spider.pos).unit()
+    // This constricts movement to 0 on the y axis
     dir.y = 0
     if (dir.x > 0) {
       add([
@@ -130,7 +131,8 @@ export function spiderLeftProjectile() {
   })
 }
 
-export function ladybugLeftProjectile() {
+// This is the same code, but for the ladybugs
+export function ladybugProjectile() {
   get("ladybug").forEach((ladybug) => {
     const player = getPlayer()
     const dir = player.pos.sub(ladybug.pos).unit()
@@ -159,6 +161,7 @@ export function ladybugLeftProjectile() {
   })
 }
 
+// This is the same code, but the y direction is not constricted.
 export function bossProjectile() {
   get("boss").forEach((boss) => {
     const player = getPlayer()
@@ -189,10 +192,10 @@ export function bossProjectile() {
   })
 }
 
+// This code uses variables after the function name in order to specify directions later in the code.
+// The scale is increased because the boss is bigger than normal enemies.
+// Otherwise, this function is the same as the sword slash used by the player.
 export function bossSlash(boss, left = true) {
-  const player = getPlayer()
-  // This code is the same, but in the other direction
-  // However, the hitbox is added in a seperate add function
   if (left === true) {
     add([
       k.sprite("swordLeft2"),
@@ -229,10 +232,7 @@ export function bossSlash(boss, left = true) {
     ])
     add([
       pos(boss.pos.add(32, 8)),
-      //This will had the hitbox, which is invisible
       area({ shape: new Rect(vec2(0), 60, 20) }),
-
-      // Remove the slashes on the following line to see the hitbox
       // rect(60, 20),
       lifespan(0.1),
       "ladybugSlashHitBox",
@@ -241,11 +241,10 @@ export function bossSlash(boss, left = true) {
   }
 }
 
+// This code is the same, but the size of the sword is smaller.
 export function ladybugSlash(ladybug, left = true) {
   const player = getPlayer()
   const dir = player.pos.sub(ladybug.pos).unit()
-  // This code is the same, but in the other direction
-  // However, the hitbox is added in a seperate add function
   if (left === true) {
     add([k.sprite("swordLeft2"), pos(ladybug.pos.add(-10, 2)), lifespan(0.1)])
     add([k.sprite("swordLeft1"), pos(ladybug.pos.add(-42, 2)), lifespan(0.1)])
@@ -261,11 +260,7 @@ export function ladybugSlash(ladybug, left = true) {
     add([k.sprite("swordRight1"), pos(ladybug.pos.add(6, 2)), lifespan(0.1)])
     add([
       pos(ladybug.pos.add(19, 8)),
-      //This will had the hitbox, which is invisible
       area({ shape: new Rect(vec2(0), 60, 20) }),
-
-      // Remove the slashes on the following line to see the hitbox
-      // rect(60, 20),
       lifespan(0.1),
       "ladybugSlashHitBox",
     ])
