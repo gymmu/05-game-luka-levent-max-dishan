@@ -37,7 +37,7 @@ k.scene("finish", () => {
     k.anchor("top"),
   ])
   k.onKeyPress("space", () => {
-    k.go("intro")
+    location.reload(true)
   })
   k.onKeyPress("f", (c) => {
     setFullscreen(!isFullscreen())

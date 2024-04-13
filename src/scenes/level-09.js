@@ -2,6 +2,7 @@ import { k, addGeneralGameLogic } from "../game.js"
 import { generateMapJumpAndRun } from "../map.js"
 import { loadKeyboardJumpAndRun } from "../keyboard.js"
 import { playerHardcore } from "./intro.js"
+import { TILESIZE } from "../globals.js"
 
 import "./finish.js"
 import "./lose.js"
@@ -27,7 +28,7 @@ k.scene("level-09", async () => {
 
   k.onKeyRelease("0", () => {
     k.play("teleport", { volume: 0.5 })
-    k.go("finish")
+    //k.go("finish")
   })
   let healPlayer = false
   k.onUpdate(() => {
@@ -37,7 +38,13 @@ k.scene("level-09", async () => {
       healPlayer = false
     }
     if (player.pos.y > 720) {
-      player.pos = k.vec2(64, 128)
+      if (playerHardcore === true) {
+        import("./lose.js")
+        k.play("death", { volume: 0.5 })
+        k.go("lose")
+      } else {
+        player.pos = k.vec2(480, 128)
+      }
     }
     player.on("death", async () => {
       if (playerHardcore === true) {
@@ -45,7 +52,7 @@ k.scene("level-09", async () => {
         k.play("death", { volume: 0.5 })
         k.go("lose")
       } else {
-        player.pos = k.vec2(64, 128)
+        player.pos = k.vec2(480, 128)
         healPlayer = true
       }
     })

@@ -205,13 +205,15 @@ export function boss(x, y) {
     k.pos(k.vec2(x, y).scale(TILESIZE)),
     k.body(),
     k.area(),
-    k.health(15),
-    "obstacle",
+    k.health(150),
     {
-      dmgAmount: 20,
-      killScore: 100,
+      dmgAmount: 10,
+      killScore: 1000,
+      max_hp: 150,
     },
+    scale(2),
     "boss",
+    "obstacle",
     // This defines anything that is an enemy
     "enemy",
     // This Tag will be used to define anything you are not meant to walk through
@@ -412,17 +414,6 @@ let NPC_Number = 0
 // Each function is the same except for the "npc_X"
 // This tag will be used to distinguish between the different NPCs within the game
 
-export function resetNPC() {
-  const player = getPlayer()
-  player.on("death", async () => {
-    NPC_Number = 0
-  })
-  k.onUpdate(() => {
-    if (player.pos.y > 720) {
-      NPC_Number = 0
-    }
-  })
-}
 export function npc(x, y) {
   NPC_Number += 1
 

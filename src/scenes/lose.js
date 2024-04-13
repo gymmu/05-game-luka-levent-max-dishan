@@ -53,7 +53,7 @@ k.scene("lose", async () => {
   ])
 
   k.onKeyPress("space", () => {
-    k.go("intro")
+    location.reload(true)
   })
 
   k.onKeyPress("f", (c) => {

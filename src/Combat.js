@@ -144,14 +144,65 @@ export function bossProjectile() {
       sprite("magicProjectileLeft", { anim: "idle" }),
       //rect(10, 10),
       area(),
-      lifespan(2),
+      lifespan(5),
       "ladybugProjectile",
       move(dir, 230),
+      scale(1.5),
     ])
   })
 }
 
-export function bossSlash() {}
+export function bossSlash(boss, left = true) {
+  const player = getPlayer()
+  // This code is the same, but in the other direction
+  // However, the hitbox is added in a seperate add function
+  if (left === true) {
+    add([
+      k.sprite("swordLeft2"),
+      pos(boss.pos.add(-23, 2)),
+      lifespan(0.1),
+      scale(1.5),
+    ])
+    add([
+      k.sprite("swordLeft1"),
+      pos(boss.pos.add(-55, 2)),
+      lifespan(0.1),
+      scale(1.5),
+    ])
+    add([
+      pos(boss.pos.add(-60, 8)),
+      //rect(60, 20),
+      area({ shape: new Rect(vec2(0), 60, 20) }),
+      lifespan(0.1),
+      "ladybugSlashHitBox",
+      scale(1.5),
+    ])
+  } else {
+    add([
+      k.sprite("swordRight2"),
+      pos(boss.pos.add(51, 2)),
+      lifespan(0.1),
+      scale(1.5),
+    ])
+    add([
+      k.sprite("swordRight1"),
+      pos(boss.pos.add(19, 2)),
+      lifespan(0.1),
+      scale(1.5),
+    ])
+    add([
+      pos(boss.pos.add(32, 8)),
+      //This will had the hitbox, which is invisible
+      area({ shape: new Rect(vec2(0), 60, 20) }),
+
+      // Remove the slashes on the following line to see the hitbox
+      // rect(60, 20),
+      lifespan(0.1),
+      "ladybugSlashHitBox",
+      scale(1.5),
+    ])
+  }
+}
 
 export function ladybugSlash(ladybug, left = true) {
   const player = getPlayer()
