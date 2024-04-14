@@ -45,10 +45,10 @@ export default function loadSprites() {
       anims: {
         idleLeft: { from: 0, to: 3, loop: true, speed: 6 },
         attackMeleeLeft: { from: 5, to: 6, loop: true, speed: 6 },
-        attackRangedLeft: { from: 8, to: 10, loop: true, speed: 8 },
+        attackRangedLeft: { from: 9, to: 10, loop: true, speed: 8 },
         idleRight: { from: 12, to: 15, loop: true, speed: 6 },
         attackMeleeRight: { from: 17, to: 18, loop: true, speed: 6 },
-        attackRangedRight: { from: 20, to: 22, loop: true, speed: 8 },
+        attackRangedRight: { from: 21, to: 22, loop: true, speed: 8 },
       },
     },
   })

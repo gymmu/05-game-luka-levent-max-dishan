@@ -91,12 +91,15 @@ k.scene("level-01", async () => {
   // Lebenspunkte von dem Spieler anpassen.
   let healPlayer = false
 
+  let timeoutDeath = false
+
   // This code will handle respawning and death.
   k.onUpdate(() => {
     const player = getPlayer()
     if (healPlayer === true) {
       player.heal(100)
       healPlayer = false
+      timeoutDeath = false
     }
     if (player.pos.y > 720) {
       // If the player is in hardcore then going below 720y is handled normally.
@@ -114,7 +117,7 @@ k.scene("level-01", async () => {
         }
       }
     }
-    player.on("death", async () => {
+    player.on("death", () => {
       // Death is handled normally if the player is in hardcore.
       if (playerHardcore === true) {
         overworldMusic.paused = true
@@ -125,9 +128,11 @@ k.scene("level-01", async () => {
       } else {
         player.pos = k.vec2(64, 128)
         healPlayer = true
-        if (player.score >= 5) {
-          player.score -= 5
-        } else {
+        if (player.score >= 5 && timeoutDeath === false) {
+          timeoutDeath = true
+          player.score = player.score - 5
+        } else if (timeoutDeath === false) {
+          timeoutDeath = true
           player.score -= player.score
         }
       }
