@@ -4,13 +4,13 @@
      
      
      
-  f          f              t    f                      t  f                           t  f                     e                g
+ccf        t  f            t  cc f                     c t cf                         c t  f                   b b e            g
 +++      +++++++           +++++++                    +++++++                        +++++++                  +++++++       +++++++ 
 
 
-             c     o           f                      f                o                    o                      o
+             c     o          c f                   cc f              t o                  t o                      o
          ++++++++++++++      ++++                   +++              ++++                 ++++                   
             ffffff         oooo                   ooo               fff                  o                    o o
-      p  g              c     o     f    e   o       o         f    e   c       f    c  e              c    c    e          e     g
+      p                c     o     f    e   o       o         f    e   c       f ccccccc   c  e     c    c    e          e     g
 +++++++++++         ++++++++++++++++   +++++++++++++++++++    +++++++++++++   ++++++++++++++    +++++++++++++++++++   +++++++++++++
                       
