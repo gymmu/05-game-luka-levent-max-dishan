@@ -259,4 +259,9 @@ export function entityLogic() {
     destroy(enemy)
     player.endScore += enemy.killScore
   })
+
+  k.on("death", "boss", (boss) => {
+    k.go("finish")
+    player.endScore += 5000
+  })
 }

@@ -14,8 +14,6 @@ export const bossMusic = play("bossFight", {
   paused: true,
 })
 
-let timeout = false
-
 k.scene("level-09", async () => {
   k.setGravity(1200)
   loadKeyboardJumpAndRun()
@@ -27,7 +25,7 @@ k.scene("level-09", async () => {
   k.add([
     k.sprite("battleground1", { width: k.width(), height: k.height() }),
     k.pos(0, 0),
-    k.z("-100"),
+    k.z(-99),
     k.fixed(),
   ])
 

@@ -48,6 +48,7 @@ k.scene("level-01", async () => {
     k.pos(0, 0),
     k.z("-100"),
     k.fixed(),
+    "backgroundTag",
   ])
 
   let oneTimeEvent = 0
@@ -91,7 +92,6 @@ k.scene("level-01", async () => {
   // Lebenspunkte von dem Spieler anpassen.
   let healPlayer = false
   let minusScore = false
-  let timeoutDeath = false
 
   // This code will handle respawning and death.
   k.onUpdate(() => {
@@ -99,7 +99,6 @@ k.scene("level-01", async () => {
     if (healPlayer === true) {
       player.heal(100)
       healPlayer = false
-      timeoutDeath = false
     }
     if (minusScore === true) {
       if (player.score >= 5) {
