@@ -24,6 +24,14 @@ k.scene("finish", () => {
     k.pos(k.width() / 2, k.height() / 2 + 20),
     k.anchor("center"),
   ])
+  k.add([
+    k.text(
+      "Press SHIFT and M in your next playthrough to uncensor all dialouges",
+      { size: 16, font: "sans-serif" },
+    ),
+    k.pos(k.width() / 2, k.height() / 2 + 80),
+    k.anchor("center"),
+  ])
   if (playerHardcore === true) {
     k.add([
       k.text("Hardcore Mode", {

@@ -7,7 +7,7 @@ s...s..t....t....s.....s...t
 s.tt....tttt...tt.s.t......t
 s..ssss...st.s..1...1..ttt.t
 s....tt..tt..f...s.........t
-s..tt...t.c...Cs.s.1.......t
+s..tt...t.....Cs.s.1...c...t
 s.....t.........tt.........t
-s.....t...p.ts..sC...1.....t
+s.....t...p.ts..sC.........t
 ssssssssssssssssssssssssssst
