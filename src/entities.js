@@ -44,6 +44,7 @@ export function entityLogic() {
     bossStun = bossStun - 1
   })
   const player = getPlayer()
+
   k.onUpdate("boss", (boss) => {
     // If the players x position is greater than the boss's postion, the boss will move left.
     // If not, it will move right
@@ -148,8 +149,7 @@ export function entityLogic() {
     //Codium fixed fixed this. I do not know what [if getSpider()] accomplishes. But it fixes the problem. Yay codium
     if (getSpider()) {
       const spider = getSpider()
-      if (spider === undefined) return
-      if (projectileCountdown === 0) {
+      if (projectileCountdown <= 0) {
         spiderProjectile()
         projectileCountdown = 60
       }
@@ -162,8 +162,7 @@ export function entityLogic() {
   //Ladybug AI
   k.onUpdate(() => {
     getLadybug().forEach((ladybug) => {
-      if (ladybug === undefined) return
-      if (ladybugprojectileCountdown === 0) {
+      if (ladybugprojectileCountdown <= 0) {
         ladybugProjectile()
         ladybugprojectileCountdown = 120
       }
