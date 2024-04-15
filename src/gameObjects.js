@@ -209,6 +209,26 @@ export function ant(x, y) {
   ])
 }
 
+export function noJumpAnt(x, y) {
+  k.add([
+    k.sprite("npc1", { anim: "runLeft" }),
+    k.pos(k.vec2(x, y).scale(TILESIZE)),
+    k.body(),
+    k.area(),
+    k.health(15),
+    "obstacle",
+    {
+      dmgAmount: 20,
+      killScore: 100,
+    },
+    "noJumpAnt",
+    // This defines anything that is an enemy
+    "enemy",
+    // This Tag will be used to define anything you are not meant to walk through
+    "wall",
+  ])
+}
+
 export function tutorialAnt(x, y) {
   k.add([
     k.sprite("npc1"),

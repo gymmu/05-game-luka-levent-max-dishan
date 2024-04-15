@@ -77,6 +77,8 @@ export async function generateMapJumpAndRun(mapfile) {
       } else if (char === "a") {
         //only meant for tutorial map
         GameObjects.tutorialAnt(x, y)
+      } else if (char === "7") {
+        GameObjects.noJumpAnt(x, y)
       }
     }
   }
