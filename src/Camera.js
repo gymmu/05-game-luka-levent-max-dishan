@@ -48,7 +48,7 @@ export function cameraLogic() {
   // Columns can be found at the bottom of the studio screen
   let east = 0
   if (currentLevel === 1) {
-    east = 132
+    east = 9999999
   } else if (currentLevel === 2) {
     east = 29
   } else if (currentLevel === 3) {
