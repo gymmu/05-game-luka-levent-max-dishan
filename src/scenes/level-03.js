@@ -66,14 +66,22 @@ k.scene("level-03", async () => {
   // Lebenspunkte von dem Spieler anpassen.
   let healPlayer = false
 
-  let timeoutDeath = false
+  let minusScore = false
 
   k.onUpdate(() => {
     const player = getPlayer()
     if (healPlayer === true) {
       player.heal(100)
       healPlayer = false
-      timeoutDeath = false
+    }
+    if (minusScore === true) {
+      if (player.score >= 5) {
+        player.score -= 5
+        minusScore = false
+      } else {
+        minusScore = false
+        player.score = 0
+      }
     }
     if (player.pos.y > 720) {
       if (playerHardcore === true) {
@@ -81,11 +89,7 @@ k.scene("level-03", async () => {
         k.go("lose")
       } else {
         player.pos = k.vec2(64, 128)
-        if (player.score >= 5) {
-          player.score -= 5
-        } else {
-          player.score -= player.score
-        }
+        minusScore = true
       }
     }
     player.on("death", () => {
@@ -95,13 +99,7 @@ k.scene("level-03", async () => {
       } else {
         player.pos = k.vec2(64, 128)
         healPlayer = true
-        if (player.score >= 5 && timeoutDeath === false) {
-          player.score = player.score - 5
-          timeoutDeath = true
-        } else if (timeoutDeath === false) {
-          player.score -= player.score
-          timeoutDeath = true
-        }
+        minusScore = true
       }
     })
   })
