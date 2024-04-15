@@ -281,6 +281,25 @@ export function spider(x, y) {
     "obstacle",
     "spider",
     "enemy",
+    "spiderProj",
+  ])
+}
+
+export function noJumpSpider(x, y) {
+  k.add([
+    k.sprite("spider", { anim: "idle" }),
+    k.pos(k.vec2(x, y).scale(TILESIZE)),
+    k.body(),
+    k.area(),
+    k.health(40),
+    {
+      killScore: 300,
+      damage: 15,
+    },
+    "obstacle",
+    "noJumpSpider",
+    "enemy",
+    "spiderProj",
   ])
 }
 

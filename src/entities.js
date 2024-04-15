@@ -120,7 +120,9 @@ export function entityLogic() {
     // The rest of this code is a variation of the boss's code
     if (
       ant.pos.x + TILESIZE * 16 > player.pos.x &&
-      ant.pos.x - TILESIZE * 16 < player.pos.x
+      ant.pos.x - TILESIZE * 16 < player.pos.x &&
+      ant.pos.y + TILESIZE * 4 > player.pos.y &&
+      ant.pos.y - TILESIZE * 4 < player.pos.y
     )
       if (player.pos.x > ant.pos.x) {
         ant.move(40, 0)
@@ -170,17 +172,16 @@ export function entityLogic() {
   })
 
   //Spider AI
+  k.onUpdate("spider", (spider) => {
+    if (spider.isGrounded() && rand(20) > 19 && player.pos.y < spider.pos.y) {
+      spider.jump()
+    }
+  })
+
   k.onUpdate(() => {
-    //Codium fixed fixed this. I do not know what [if getSpider()] accomplishes. But it fixes the problem. Yay codium
-    if (getSpider()) {
-      const spider = getSpider()
-      if (projectileCountdown <= 0) {
-        spiderProjectile()
-        projectileCountdown = 60
-      }
-      if (spider.isGrounded() && rand(20) > 19 && player.pos.y < spider.pos.y) {
-        spider.jump()
-      }
+    if (projectileCountdown <= 0) {
+      spiderProjectile()
+      projectileCountdown = 60
     }
   })
 
