@@ -10,17 +10,24 @@ import { bossMusic } from "./level-09.js"
 let CutsceneState = 0
 
 let Cutscene = [
-  "They have warned you",
+  "After defeating the Man-Beetle you found a key tied to his waist.",
+  "You feel a deep dark energy coming from the key and you suddenly feel your body start moving on it's own.",
+  "You pick up the key and start walking towards the tomb which the Man-Beetle was guarding.",
+  "As you get closer to the tomb you see a key hole in the stone door.",
+  "Although you try to fight it, your body moves on it's own and unlocks the door.",
+  "You hear a deep scream from within the tomb and your body goes numb.",
+  "Suddenly you feel a surge of dark energy and a giant monster flys out of the tomb.",
   "You didn't listen",
   "Now all that's left are ashes",
   "The dragon has been released",
-  "AnD iT's AlL yOuR fAuLt",
+  "And it's all your fault.",
 ]
 
 k.scene("dragon", () => {
   k.add([
-    k.sprite("dragonEnd", { width: k.width(), height: k.height() }),
+    k.sprite("tomb", { width: k.width(), height: k.height() }),
     k.z(-100),
+    "tomb",
   ])
 
   k.add([
@@ -70,7 +77,30 @@ k.scene("dragon", () => {
       if (CutsceneState === 5) {
         k.play("fire5", { volume: 0.5 })
       }
-
+      if (CutsceneState === 6) {
+        k.play("fire1", { volume: 0.5 })
+      }
+      if (CutsceneState === 7) {
+        k.play("fire2", { volume: 0.5 })
+      }
+      if (CutsceneState === 8) {
+        k.play("fire3", { volume: 100000000000000000, speed: 2, loop: true })
+        destroyAll("tomb")
+        k.add([
+          k.sprite("dragonEnd", { width: k.width(), height: k.height() }),
+          k.z(-100),
+          "dragon",
+        ])
+      }
+      if (CutsceneState === 9) {
+        k.play("fire4", { volume: 0.5 })
+      }
+      if (CutsceneState === 10) {
+        k.play("fire5", { volume: 0.5 })
+      }
+      if (CutsceneState === 11) {
+        k.play("fire1", { volume: 0.5 })
+      }
       if (CutsceneState > Cutscene.length) {
         destroyAll("Cutscene")
         k.go("intro")
