@@ -299,4 +299,7 @@ export default function loadSprites() {
   k.loadSpriteAtlas("sprites/silcProjectile.png", {
     silcRight: { x: 0 * TS, y: 1 * TS, width: TS, height: TS },
   })
+  k.loadSpriteAtlas("sprites/Battelground1.png", {
+    background: { x: 0, y: 0, width: 1920, height: 1080 }, // Hier geben wir in Pixeln an, wo die Grafik für das Spielobjekt anfängt, und aufhört (oben-links bis unten-rechts).
+  })
 }

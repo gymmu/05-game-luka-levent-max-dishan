@@ -25,7 +25,7 @@ k.scene("level-09", async () => {
   bossMusic.paused = false
 
   k.add([
-    k.sprite("background", { width: k.width(), height: k.height() }),
+    k.sprite("battleground1", { width: k.width(), height: k.height() }),
     k.pos(0, 0),
     k.z("-100"),
     k.fixed(),
