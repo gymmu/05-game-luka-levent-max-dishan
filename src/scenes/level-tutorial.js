@@ -45,7 +45,8 @@ k.scene("level-tutorial", async () => {
   // kommen wir ins nächste Level.
   k.onCollide("player", "goal", () => {
     k.play("teleport", { volume: 0.5 })
-    k.go("finish")
+    k.go("intro")
+    location.reload(true)
   })
 
   k.onKeyPress("f", (c) => {
