@@ -14,6 +14,8 @@ export const bossMusic = play("bossFight", {
   paused: true,
 })
 
+let timeout = false
+
 k.scene("level-09", async () => {
   k.setGravity(1200)
   loadKeyboardJumpAndRun()
@@ -41,11 +43,15 @@ k.scene("level-09", async () => {
     //k.go("finish")
   })
   let healPlayer = false
+
+  let timeoutDeath = false
+
   k.onUpdate(() => {
     const player = k.get("player")[0]
     if (healPlayer === true) {
       player.heal(100)
       healPlayer = false
+      timeoutDeath = false
     }
     if (player.pos.y > 720) {
       if (playerHardcore === true) {
@@ -60,17 +66,20 @@ k.scene("level-09", async () => {
         }
       }
     }
-    player.on("death", async () => {
+    player.on("death", () => {
       if (playerHardcore === true) {
         k.play("death", { volume: 0.5 })
         k.go("lose")
       } else {
         player.pos = k.vec2(480, 128)
         healPlayer = true
-        if (player.score >= 5) {
+        if (player.score >= 5 && timeoutDeath === false) {
+          k.wait(2)
           player.score -= 5
-        } else {
+          timeoutDeath = true
+        } else if (timeoutDeath === false) {
           player.score -= player.score
+          timeoutDeath = true
         }
       }
     })

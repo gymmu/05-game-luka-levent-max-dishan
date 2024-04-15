@@ -65,11 +65,15 @@ k.scene("level-03", async () => {
   // Beispiel den Spieler an einen Checkpoint zurück setzen, und die
   // Lebenspunkte von dem Spieler anpassen.
   let healPlayer = false
+
+  let timeoutDeath = false
+
   k.onUpdate(() => {
     const player = getPlayer()
     if (healPlayer === true) {
       player.heal(100)
       healPlayer = false
+      timeoutDeath = false
     }
     if (player.pos.y > 720) {
       if (playerHardcore === true) {
@@ -84,17 +88,19 @@ k.scene("level-03", async () => {
         }
       }
     }
-    player.on("death", async () => {
+    player.on("death", () => {
       if (playerHardcore === true) {
         k.play("death", { volume: 0.5 })
         k.go("lose")
       } else {
         player.pos = k.vec2(64, 128)
         healPlayer = true
-        if (player.score >= 5) {
-          player.score -= 5
-        } else {
+        if (player.score >= 5 && timeoutDeath === false) {
+          player.score = player.score - 5
+          timeoutDeath = true
+        } else if (timeoutDeath === false) {
           player.score -= player.score
+          timeoutDeath = true
         }
       }
     })
