@@ -305,4 +305,7 @@ export default function loadSprites() {
   k.loadSpriteAtlas("sprites/dragonEnd.png", {
     dragonEnd: { x: 0, y: 0, width: 1920, height: 1080 }, // Hier geben wir in Pixeln an, wo die Grafik für das Spielobjekt anfängt, und aufhört (oben-links bis unten-rechts)
   })
+  k.loadSpriteAtlas("sprites/tomb.png", {
+    tomb: { x: 0, y: 0, width: 1920, height: 1080 }, // Hier geben wir in Pixeln an, wo die Grafik für das Spielobjekt anfängt, und aufhört (oben-links bis unten-rechts).
+  })
 }
