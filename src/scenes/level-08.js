@@ -6,8 +6,6 @@ import { playerHardcore } from "./intro.js"
 import "./level-09.js"
 import "./lose.js"
 
-let timeout = false
-
 k.scene("level-08", async () => {
   k.setGravity(1200)
   loadKeyboardJumpAndRun()
