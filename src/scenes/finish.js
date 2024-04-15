@@ -3,12 +3,15 @@ import { getPlayer } from "../player.js"
 import "./intro.js"
 import "./level-06.js"
 import { playerHardcore } from "./intro.js"
+import { bossMusic } from "./level-09.js"
 
 /**
  * Dies ist eine weitere Szene die angezeigt wird wenn das Spiel vorbei bzw.
  * gewonnen ist.
  */
 k.scene("finish", () => {
+  bossMusic.paused = true
+
   const player = getPlayer()
   player.destroy()
   k.add([
@@ -32,14 +35,13 @@ k.scene("finish", () => {
     ])
   }
   k.add([
-    k.text("Press SPACE to restart", { size: 22, font: "sans-serif" }),
+    k.text("Press SPACE to continue", { size: 22, font: "sans-serif" }),
     k.pos(k.width() / 2, k.height() / 2 + 40),
     k.anchor("top"),
   ])
   k.onKeyPress("space", () => {
     k.play("clicking", { volume: 0.5 })
-    k.go("intro")
-    location.reload(true)
+    k.go("dragon")
   })
   k.onKeyPress("f", (c) => {
     setFullscreen(!isFullscreen())
