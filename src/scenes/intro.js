@@ -32,6 +32,7 @@ k.scene("intro", () => {
   k.add([
     k.sprite("game_menu", { width: k.width(), height: k.height() }),
     k.z(-100),
+    k.pos(0, 0),
   ])
 
   k.add([
