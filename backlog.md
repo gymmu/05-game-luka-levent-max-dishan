@@ -27,9 +27,9 @@
 - [x] New Enemy (Max/Luka)
 - [ ] Dokumention(Dishan)
 - [ ] NPC dialouge in RPG maps (Max/Luka)
-- [ ] 1-2 more run and jump maps (Dishan/Levent)
+- [x] 1-2 more run and jump maps (Dishan/Levent)
 - [ ] One RPG map between every run and jump map. Just big enough for a few
       npc's and a cave entrance(Dishan/Levent)
-- [ ] An ending (?)
+- [x] An ending (?)
 - [ ] Stop enemies from walking off the edge of the map (Max)
 - [x] Add sound effects(Luka)
