@@ -90,7 +90,7 @@ k.scene("level-01", async () => {
   // Beispiel den Spieler an einen Checkpoint zurück setzen, und die
   // Lebenspunkte von dem Spieler anpassen.
   let healPlayer = false
-
+  let minusScore = false
   let timeoutDeath = false
 
   // This code will handle respawning and death.
@@ -101,6 +101,15 @@ k.scene("level-01", async () => {
       healPlayer = false
       timeoutDeath = false
     }
+    if (minusScore === true) {
+      if (player.score >= 5) {
+        player.score -= 5
+        minusScore = false
+      } else {
+        minusScore = false
+        player.score = 0
+      }
+    }
     if (player.pos.y > 720) {
       // If the player is in hardcore then going below 720y is handled normally.
       if (playerHardcore === true) {
@@ -110,11 +119,8 @@ k.scene("level-01", async () => {
         // If the player is not in hardcore then they are teleported back to safety.
       } else {
         player.pos = k.vec2(64, 128)
-        if (player.score >= 5) {
-          player.score -= 5
-        } else {
-          player.score -= player.score
-        }
+
+        minusScore = true
       }
     }
     player.on("death", () => {
@@ -128,13 +134,8 @@ k.scene("level-01", async () => {
       } else {
         player.pos = k.vec2(64, 128)
         healPlayer = true
-        if (player.score >= 5 && timeoutDeath === false) {
-          timeoutDeath = true
-          player.score = player.score - 5
-        } else if (timeoutDeath === false) {
-          timeoutDeath = true
-          player.score -= player.score
-        }
+
+        minusScore = true
       }
     })
   })
