@@ -100,7 +100,7 @@ export function spiderProjectile() {
   const player = getPlayer()
 
   // This code will apply to every spider, if conditions in the entities.js code are satisified.
-  get("spider").forEach((spider) => {
+  get("spiderProj").forEach((spider) => {
     // This variable will change based on each spider.
     // By doing this we can specify the direction of the projectile for individual spiders.
     // .unit will make every projectile a consistent speed.

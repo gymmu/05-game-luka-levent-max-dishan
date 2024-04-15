@@ -120,7 +120,9 @@ export function entityLogic() {
     // The rest of this code is a variation of the boss's code
     if (
       ant.pos.x + TILESIZE * 16 > player.pos.x &&
-      ant.pos.x - TILESIZE * 16 < player.pos.x
+      ant.pos.x - TILESIZE * 16 < player.pos.x &&
+      ant.pos.y + TILESIZE * 4 > player.pos.y &&
+      ant.pos.y - TILESIZE * 4 < player.pos.y
     )
       if (player.pos.x > ant.pos.x) {
         ant.move(40, 0)
@@ -144,18 +146,42 @@ export function entityLogic() {
     }
   })
 
+  k.onUpdate("noJumpAnt", (ant) => {
+    // The following code will only run if the ant is within a certain distance of the player.
+    // This is done so they don't walk off the map when the player cannot see the ant.
+    // The rest of this code is a variation of the boss's code
+    if (
+      ant.pos.x + TILESIZE * 16 > player.pos.x &&
+      ant.pos.x - TILESIZE * 16 < player.pos.x
+    )
+      if (player.pos.x > ant.pos.x) {
+        ant.move(40, 0)
+        if (rand(20) > 19.3) {
+          loop(360, () => {
+            ant.play("runRight")
+          })
+        }
+      } else {
+        ant.move(-40, 0)
+        if (rand(20) > 19.3) {
+          loop(360, () => {
+            ant.play("runLeft")
+          })
+        }
+      }
+  })
+
   //Spider AI
+  k.onUpdate("spider", (spider) => {
+    if (spider.isGrounded() && rand(20) > 19 && player.pos.y < spider.pos.y) {
+      spider.jump()
+    }
+  })
+
   k.onUpdate(() => {
-    //Codium fixed fixed this. I do not know what [if getSpider()] accomplishes. But it fixes the problem. Yay codium
-    if (getSpider()) {
-      const spider = getSpider()
-      if (projectileCountdown <= 0) {
-        spiderProjectile()
-        projectileCountdown = 60
-      }
-      if (spider.isGrounded() && rand(20) > 19 && player.pos.y < spider.pos.y) {
-        spider.jump()
-      }
+    if (projectileCountdown <= 0) {
+      spiderProjectile()
+      projectileCountdown = 60
     }
   })
 

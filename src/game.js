@@ -179,11 +179,18 @@ function createHPBar() {
   bar.add([k.text("HP", { size: 20, font: "sans-serif" }), k.anchor("right")])
 
   bar.add([
-    k.rect(HP_BAR_WIDTH, HP_BAR_HEIGHT),
+    k.rect((player.hp() / player.max_hp) * HP_BAR_WIDTH, HP_BAR_HEIGHT),
     k.outline(4, k.GREEN.darken(100)),
     k.color(0, 0, 0),
     k.anchor("left"),
     k.pos(10, 0),
+    {
+      // Damit wird in jedem Frame überprüft ob der HP-Balken angepasst werden muss.
+      update() {
+        const player = getPlayer()
+        this.width = (player.hp() / player.max_hp) * HP_BAR_WIDTH
+      },
+    },
   ])
 
   // Dieser Teil zeigt den grünenden Balken an.

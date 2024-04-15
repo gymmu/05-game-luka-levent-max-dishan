@@ -39,4 +39,9 @@ export default function loadSounds() {
   k.loadSound("voiceline24", "sounds/voiceline24.wav")
   k.loadSound("voiceline25", "sounds/voiceline25.wav")
   k.loadSound("voiceline26", "sounds/voiceline26.wav")
+  k.loadSound("fire1", "sounds/fire1.wav")
+  k.loadSound("fire2", "sounds/fire2.wav")
+  k.loadSound("fire3", "sounds/fire3.wav")
+  k.loadSound("fire4", "sounds/fire4.wav")
+  k.loadSound("fire5", "sounds/fire5.wav")
 }

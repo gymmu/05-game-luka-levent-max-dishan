@@ -38,7 +38,6 @@ k.scene("level-04", async () => {
     if (healPlayer === true) {
       player.heal(100)
       healPlayer = false
-      timeoutDeath = false
     }
     if (minusScore === true) {
       if (player.score >= 5) {

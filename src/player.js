@@ -46,14 +46,6 @@ export default function createPlayer() {
     },
   ])
 
-  k.onKeyPress("9", () => {
-    player.heal(50)
-  })
-
-  k.onKeyPress("8", () => {
-    player.heal(500000)
-  })
-
   /* Immer wenn sich die Position des Spielers ändert, wird die Kamera so
    * geschoben, dass der Spieler in der Mitte ist.
    */

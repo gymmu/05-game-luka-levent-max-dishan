@@ -45,12 +45,11 @@ k.scene("level-tutorial", async () => {
   // kommen wir ins nächste Level.
   k.onCollide("player", "goal", () => {
     k.play("teleport", { volume: 0.5 })
-    k.go("finish")
+    k.go("intro")
+    location.reload(true)
   })
 
-  // Diese Funktion wird bei jedem Frame ausgeführt. Bei einem Jump'n'Run ist
-  // es so das wenn der Spieler von einer PLattform stützt, dann hat man das
-  // Spiel verloren. Man könnte hier auch anders darauf reagieren, zum
-  // Beispiel den Spieler an einen Checkpoint zurück setzen, und die
-  // Lebenspunkte von dem Spieler anpassen.
+  k.onKeyPress("f", (c) => {
+    setFullscreen(!isFullscreen())
+  })
 })

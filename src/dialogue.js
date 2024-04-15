@@ -432,6 +432,11 @@ export function dialogue() {
       }
     })
   }
+  k.onKeyPressRepeat("shift", () => {
+    k.onKeyPress("m", () => {
+      dialogueLearning = 3
+    })
+  })
   // If the player has not picked up a flower, this text will show.
   onCollide("player", "npc", () => {
     if (dialogueLearning === -1) {

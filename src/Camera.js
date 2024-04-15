@@ -119,6 +119,10 @@ export function cameraLogic() {
       k.camPos(15.5 * TILESIZE, 8.5 * TILESIZE)
       k.camScale(1.05)
       return
+    } else if (currentLevel === 8) {
+      k.camPos(player.pos)
+      k.camScale(1.5)
+      return
     }
     // The following functions will determine  if the player has reached the edge of the screen,
     // and then excute the respective function.
