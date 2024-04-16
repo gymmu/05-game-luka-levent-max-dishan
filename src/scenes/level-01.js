@@ -117,7 +117,7 @@ k.scene("level-01", async () => {
         k.go("lose")
         // If the player is not in hardcore then they are teleported back to safety.
       } else {
-        player.pos = k.vec2(64, 128)
+        player.pos = k.vec2(64, 14 * TILESIZE)
 
         minusScore = true
       }
@@ -131,7 +131,7 @@ k.scene("level-01", async () => {
         // If the player is not in hardcore then they are teleported back to safety and healed.
         // The healPlayer variable is used because otherwise the codes ends up repeatedly healing the player.
       } else {
-        player.pos = k.vec2(64, 128)
+        player.pos = k.vec2(64, 14 * TILESIZE)
         healPlayer = true
 
         minusScore = true
