@@ -53,7 +53,7 @@ export function cameraLogic() {
   } else if (currentLevel === 2) {
     east = 29
   } else if (currentLevel === 3) {
-    east = 133
+    east = 183
   } else if (currentLevel === 4) {
     east = 124
   } else if (currentLevel === 5) {
