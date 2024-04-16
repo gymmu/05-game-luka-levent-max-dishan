@@ -38,6 +38,7 @@ export function cameraLogic() {
   } else if (currentLevel === 7) {
     south = 15
   } else if (currentLevel === 8) {
+    south = 15
   }
   // This centers the camera. The screen is 11 tiles tall.
   // South is later multiplied by the TileSize.
@@ -48,21 +49,21 @@ export function cameraLogic() {
   // Columns can be found at the bottom of the studio screen
   let east = 0
   if (currentLevel === 1) {
-    east = 9999999
+    east = 158
   } else if (currentLevel === 2) {
     east = 29
   } else if (currentLevel === 3) {
-    east = 999
+    east = 183
   } else if (currentLevel === 4) {
-    east = 999
+    east = 124
   } else if (currentLevel === 5) {
     east = 29
   } else if (currentLevel === 6) {
-    east = 999
+    east = 152
   } else if (currentLevel === 7) {
     east = 29
   } else if (currentLevel === 8) {
-    east = 999
+    east = 165
   }
   // This centers the camera. The screen is 20 tiles wide.
   // East is later multiplied by the TileSize.
@@ -119,11 +120,8 @@ export function cameraLogic() {
       k.camPos(15.5 * TILESIZE, 8.5 * TILESIZE)
       k.camScale(1.05)
       return
-    } else if (currentLevel === 8) {
-      k.camPos(player.pos)
-      k.camScale(1.5)
-      return
     }
+
     // The following functions will determine  if the player has reached the edge of the screen,
     // and then excute the respective function.
     else if (

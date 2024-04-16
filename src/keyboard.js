@@ -232,6 +232,11 @@ export function loadKeyboardRPG() {
     player.play("idleLeft")
   })
 
+  k.onKeyPressRepeat("tab", () => {
+    k.onKeyPress("8", () => {
+      dialogueLearning = 3
+    })
+  })
   k.onKeyPress("d", () => {
     player.play("runRight")
   })
