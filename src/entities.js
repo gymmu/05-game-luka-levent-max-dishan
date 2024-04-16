@@ -181,7 +181,7 @@ export function entityLogic() {
   k.onUpdate(() => {
     if (projectileCountdown <= 0) {
       spiderProjectile()
-      projectileCountdown = 60
+      projectileCountdown = 75
     }
   })
 
