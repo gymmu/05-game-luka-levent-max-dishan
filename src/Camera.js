@@ -118,7 +118,7 @@ export function cameraLogic() {
     // If the player is on the boss level then the camera will be stationary
     if (currentLevel === 9) {
       k.camPos(15.5 * TILESIZE, 8.5 * TILESIZE)
-      k.camScale(1.05)
+      k.camScale(1.07)
       return
     }
 
