@@ -52,7 +52,7 @@ k.scene("lose", async () => {
     k.anchor("top"),
   ])
 
-  k.onKeyPress("Enter", () => {
+  k.onKeyPress("enter", () => {
     k.go("intro")
     k.play("clicking", { volume: 0.5 })
     location.reload(true)

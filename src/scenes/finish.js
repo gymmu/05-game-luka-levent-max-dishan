@@ -47,7 +47,7 @@ k.scene("finish", () => {
     k.pos(k.width() / 2, k.height() / 2 + 40),
     k.anchor("top"),
   ])
-  k.onKeyPress("Enter", () => {
+  k.onKeyPress("enter", () => {
     k.play("clicking", { volume: 0.5 })
     k.go("dragon")
   })
