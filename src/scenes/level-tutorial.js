@@ -27,7 +27,7 @@ k.scene("level-tutorial", async () => {
     if (oneTimeEvent < 1) {
       k.add([
         sprite("pressAD", { anim: "idle" }),
-        pos(player.pos.x + 1 * TILESIZE, player.pos.y),
+        pos(player.pos.x + 4 * TILESIZE, player.pos.y),
         z(-1),
         anchor("right"),
         scale(2),
