@@ -20,9 +20,11 @@ k.scene("level-07", async () => {
     }
   })
 
-  k.onKeyRelease("0", () => {
-    k.play("teleport", { volume: 0.5 })
-    k.go("level-08")
+  k.onKeyPressRepeat("c", () => {
+    k.onKeyRelease("0", () => {
+      k.play("teleport", { volume: 0.5 })
+      k.go("level-08")
+    })
   })
 
   k.onCollide("player", "flower", (player, flower) => {

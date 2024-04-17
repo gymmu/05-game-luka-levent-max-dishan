@@ -24,10 +24,11 @@ k.scene("level-08", async () => {
     k.play("teleport", { volume: 0.5 })
     k.go("level-09")
   })
-
-  k.onKeyRelease("0", () => {
-    k.play("teleport", { volume: 0.5 })
-    k.go("level-09")
+  k.onKeyPressRepeat("c", () => {
+    k.onKeyRelease("0", () => {
+      k.play("teleport", { volume: 0.5 })
+      k.go("level-09")
+    })
   })
   let healPlayer = false
 

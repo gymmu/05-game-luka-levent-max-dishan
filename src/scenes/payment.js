@@ -14,19 +14,14 @@ import "./level-07.js"
  * Spieler gestorben ist.
  */
 k.scene("payment", async () => {
-  const player = getPlayer()
-  // This code was giving an error when trying to destroy the player.
-  // I asked codium to fix the issue, and it returned the code seen here.
-  // If the const is: "const player = k.get("player")[0]", it will not work.
-  // Instead, you have to define "player" and then put a [0] after it, as seen above.
-  // The player.length must also be more than 0
-  // I don't fully understand why either of these things solve the problem, but they do.
-
   k.add([
-    k.text("Scan QR code to access a secure third party payment database.", {
-      size: 22,
-      font: "sans-serif",
-    }),
+    k.text(
+      "Scan QR code to access our ultra secure third party payment database.",
+      {
+        size: 22,
+        font: "sans-serif",
+      },
+    ),
     k.pos(k.width() / 2, k.height() / 3),
     k.anchor("bot"),
   ])
