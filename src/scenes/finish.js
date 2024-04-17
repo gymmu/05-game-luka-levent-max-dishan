@@ -38,7 +38,7 @@ k.scene("finish", () => {
         size: 32,
         font: "sans-serif",
       }),
-      k.pos(k.width() / 2, k.height() / 2 + 30),
+      k.pos(k.width() / 2, k.height() / 2 - 80),
       k.anchor("center"),
     ])
   }
