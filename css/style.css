@@ -46,13 +46,13 @@ main > section:nth-child(2n-1) {
   border: 2px solid darkblue;
 }
 
-main > section > h2 {
+main > section {
   text-align: center;
 }
 
 .start-btn {
   padding: 1.5rem;
-  background-color: forestgreen;
+  background-color: cadetblue;
   color: white;
   font-weight: bold;
   text-decoration: none;
@@ -101,13 +101,10 @@ main > section > h2 {
 }
 
 .text-with-image > img {
-  border: 3px solid white;
-}
-
-.text-with-image > img {
   width: 70%;
+  border: 3px solid white;
 }
 
 #game-canvas {
-  border: 3px solid white;
+  border: 3px solid black;
 }
