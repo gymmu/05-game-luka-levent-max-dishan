@@ -477,6 +477,8 @@ let NPC_Number = 0
 // This tag will be used to distinguish between the different NPCs within the game
 
 export function npc(x, y) {
+  //everytime a new npc is created the NPC_Number is increased by 1
+  //this is important for the dialogue section
   NPC_Number += 1
 
   k.add([

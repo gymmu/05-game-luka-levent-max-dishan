@@ -22,6 +22,7 @@ import { getPlayer } from "../player.js"
  *
  */
 
+//this variable is the background music for the overworld
 export const overworldMusic = k.play("overworldMusic", {
   loop: true,
   volume: 0.3,
@@ -69,6 +70,7 @@ k.scene("level-01", async () => {
   // der Spieler mit einem Objekt kollidiert.
   addGeneralGameLogic()
 
+  //setting this to false makes the overworld music start playing
   overworldMusic.paused = false
 
   // Hier wird zusätzliche Spiellogik erstellt, die nur in diesem Level
@@ -100,6 +102,9 @@ k.scene("level-01", async () => {
       player.heal(100)
       healPlayer = false
     }
+    //this is a penalty for dying in normal mode, to prevent people from dying for fun
+    //every time a player does die, 5 coins get removed, to prevent the score from going below 0
+    //there's a if that checks for the score
     if (minusScore === true) {
       if (player.score >= 5) {
         player.score -= 5

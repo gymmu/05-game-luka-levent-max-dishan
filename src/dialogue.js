@@ -12,7 +12,8 @@ export function dialogue() {
 
   let dialogueVoiceLine = 0
 
-  //this is the least effective way to do this.
+  //this is the least effective way to do this
+  //each of these variables have a voiceline storred with in
 
   const voiceline1 = play("voiceline1", {
     loop: false,
@@ -457,15 +458,21 @@ export function dialogue() {
   })
 
   onCollideUpdate("player", "npc", () => {
+    //it's set to isKeyReleased instead of isKeyPressed, because the player will instantly
+    //go through all of the dialogue with one key press
     if (isKeyReleased("enter")) {
       movement = false
       destroyAll("dialogue")
       {
+        // This code is for the voice lines
+        // it checks the dialogueVoiceLine and dialogueState to determine which voice line to play
         if (dialogueVoiceLine === 1 && dialogueState === 0) {
+          //seek(0) is used to start the voice line at the beginning
           voiceline1.seek(0)
           voiceline1.paused = false
         }
         if (dialogueVoiceLine === 1 && dialogueState === 1) {
+          //voiceline1 is paused to prevent overlapping of voice lines
           voiceline1.paused = true
           voiceline2.seek(0)
           voiceline2.paused = false

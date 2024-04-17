@@ -105,6 +105,7 @@ export function loadKeyboardJumpAndRun() {
     // This will fetch the current time in milliseconds
     const currentTime = Date.now()
     // If the current time in milliseconds has a difference of more than 500 milliseconds than lastAttackTime, the player can attack
+    //if the player hasn't unlocked the sword yet, he can't use the sword
     if (currentTime - lastAttackTime > 500 && player.swordUnlocked === true) {
       // This will set lastAttackTime to the current time
 
@@ -123,6 +124,7 @@ export function loadKeyboardJumpAndRun() {
   let lastProjectileTime = 0
   k.onKeyPress("j", () => {
     const currentTime = Date.now()
+    //if the player hasn't unlocked the projectile yet, he can't use the projectile
     if (
       currentTime - lastProjectileTime > 1000 &&
       player.projectileUnlocked === true
