@@ -46,7 +46,7 @@ k.scene("lose", async () => {
     k.anchor("top"),
   ])
 
-  k.onKeyPress("Enter", () => {
+  k.onKeyPress("enter", () => {
     k.go("intro")
     k.play("clicking", { volume: 0.5 })
     location.reload(true)
@@ -56,6 +56,8 @@ k.scene("lose", async () => {
     setFullscreen(!isFullscreen())
   })
 
+  //this waits for everything to be executed first before it destroys the player
+  //this had to be done because of a bug
   Promise.resolve().then(() => {
     player.destroy()
   })

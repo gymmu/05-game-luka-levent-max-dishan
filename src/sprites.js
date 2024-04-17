@@ -43,8 +43,11 @@ export default function loadSprites() {
       sliceX: 4,
       sliceY: 6,
       anims: {
+        //idle left or right are the normal animation of the boss
         idleLeft: { from: 0, to: 3, loop: true, speed: 6 },
+        //whenever the boss attacks with his melee attack, it plays attackMelee left or right
         attackMeleeLeft: { from: 5, to: 6, loop: true, speed: 6 },
+        //whenever the boss attacks with his ranged attack, it plays attackRanged left or right
         attackRangedLeft: { from: 9, to: 10, loop: true, speed: 8 },
         idleRight: { from: 12, to: 15, loop: true, speed: 6 },
         attackMeleeRight: { from: 17, to: 18, loop: true, speed: 6 },
@@ -55,16 +58,14 @@ export default function loadSprites() {
 
   k.loadSpriteAtlas("sprites/npc1.png", {
     npc1: {
-      // Alles war hier kommt, gehört zum Sprite `hero`
-      x: 0, // x-Koordinate des Pixels wo das Sprite beginnt.
-      y: 0, // y-Koordinate des Pixels wo das Sprite beginnt.
-      width: 3 * TS, // Die Breite des Sprites in Pixeln. Hier sind jeweils 3 Animationen nebeneinander, deshalb 3 * TILESIZE
-      height: 2 * TS, // Die Höhe des Sprites in Pixeln. Hier sind die 4 Laufrichtungen untereinander, deshalb 4 * TILESIZE
-      sliceX: 3, // In der x-Richtung sind es 3 Kacheln, so wird es gleichmässig aufgeteilt.
-      sliceY: 2, // In der y-Richtung sind es 4 Kacheln, so wird es gleichmässig aufgeteilt.
+      x: 0,
+      y: 0,
+      width: 3 * TS,
+      height: 2 * TS,
+      sliceX: 3,
+      sliceY: 2,
       anims: {
-        // Hier werden die verschiedenen Animationen definiert.
-        runLeft: { from: 0, to: 2, loop: true, speed: 10 }, // Die Geschwindigkeit der Animation kann auch verändert werden.
+        runLeft: { from: 0, to: 2, loop: true, speed: 10 },
         idleLeft: 0,
         runRight: { from: 3, to: 5, loop: true, speed: 10 },
         idleRight: 3,
@@ -74,16 +75,14 @@ export default function loadSprites() {
 
   k.loadSpriteAtlas("sprites/spider.png", {
     spider: {
-      // Alles war hier kommt, gehört zum Sprite `hero`
-      x: 0, // x-Koordinate des Pixels wo das Sprite beginnt.
-      y: 0, // y-Koordinate des Pixels wo das Sprite beginnt.
-      width: 4 * TS, // Die Breite des Sprites in Pixeln. Hier sind jeweils 3 Animationen nebeneinander, deshalb 3 * TILESIZE
-      height: 1 * TS, // Die Höhe des Sprites in Pixeln. Hier sind die 4 Laufrichtungen untereinander, deshalb 4 * TILESIZE
-      sliceX: 4, // In der x-Richtung sind es 3 Kacheln, so wird es gleichmässig aufgeteilt.
-      sliceY: 1, // In der y-Richtung sind es 4 Kacheln, so wird es gleichmässig aufgeteilt.
+      x: 0,
+      y: 0,
+      width: 4 * TS,
+      height: 1 * TS,
+      sliceX: 4,
+      sliceY: 1,
       anims: {
-        // Hier werden die verschiedenen Animationen definiert.
-        idle: { from: 0, to: 3, loop: true, speed: 5 }, // Die Geschwindigkeit der Animation kann auch verändert werden.
+        idle: { from: 0, to: 3, loop: true, speed: 5 },
       },
     },
   })

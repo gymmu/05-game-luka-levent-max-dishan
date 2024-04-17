@@ -93,6 +93,8 @@ export function addGeneralGameLogic() {
       k.play("hit", { volume: 1 })
       player.isInvincible = true
 
+      //everytime the player gets hit by the spike, he will be invincible for 1 second
+      //setTimout delays certain actions for the amount of time, set in the second parameter
       setTimeout(() => {
         player.isInvincible = false
       }, 1000)
@@ -100,7 +102,9 @@ export function addGeneralGameLogic() {
   })
 
   k.onCollide("score", "player", (score, player) => {
+    //if the player collides with a coin he will get the amount of score debending on the coins scoreAmount
     player.score += score.scoreAmount
+    //every coin gives the player 100 points for the end of the game, that's the highscore
     player.endScore += score.scoreAmount * 100
     if (score.isConsumable === true) {
       score.destroy()
@@ -109,6 +113,7 @@ export function addGeneralGameLogic() {
   })
 
   k.onCollide("player", "swordGrounded", (player, swordGrounded) => {
+    //if you pick up the sword, it will unlock the ability to swing the sword
     if (swordGrounded.isConsumable === true) {
       swordGrounded.destroy()
     }
@@ -124,6 +129,7 @@ export function addGeneralGameLogic() {
   })
 
   k.onCollide("player", "projectileGrounded", (player, projectileGrounded) => {
+    //if you pick up the magical projectile, it will unlock the ability to shoot the projectile at enemys
     if (projectileGrounded.isConsumable === true) {
       projectileGrounded.destroy()
     }
@@ -252,6 +258,7 @@ function createScore() {
 
   const scoreboard = k.add([k.pos(50, 50), k.fixed(), k.z(10), "scoreboard"])
 
+  //this adds a coin sprite for the visual effect of collecting coins, instead of text which says Coins: 0x
   scoreboard.add([
     k.sprite("coin", { anim: "idle" }),
     k.scale(2.5),
@@ -266,6 +273,7 @@ function createScore() {
     k.pos(10, 0),
     {
       update() {
+        //this updates the score every frame
         this.text = player.score + "x"
       },
     },

@@ -1,6 +1,8 @@
 import { k } from "./game.js"
 
+//this function loads all sounds
 export default function loadSounds() {
+  //all sounds are in the "sounds" folder
   k.loadSound("jump", "sounds/jump.wav")
   k.loadSound("slash", "sounds/sword.wav")
   k.loadSound("teleport", "sounds/teleport.wav")

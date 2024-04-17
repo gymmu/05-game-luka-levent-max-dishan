@@ -117,9 +117,14 @@ k.scene("intro", () => {
   // pro Szene anders angegeben werden. Hier wird mit `space` zur nächsten
   // Szene gewechselt. In der nächsten Szene können wir `space` dann auch zum
   // Springen verwenden.
+
+  //this method is found in every scene
+  //it makes the game fullscreened if you press F, but by pressing F again you can turn off fullscreen
   k.onKeyPress("f", (c) => {
     setFullscreen(!isFullscreen())
   })
+
+  //it teleports the player to the next scene, where they get sent, depends on the button they press
   onClick("normal", () => {
     k.play("clicking", { volume: 1 })
     k.go("level-01")

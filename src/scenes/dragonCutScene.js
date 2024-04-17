@@ -62,6 +62,7 @@ k.scene("dragon", () => {
         "Cutscene",
       ])
       CutsceneState++
+      //it will play a different sound depending on the cutscene state
       if (CutsceneState === 1) {
         k.play("fire1", { volume: 0.5 })
       }
@@ -84,6 +85,8 @@ k.scene("dragon", () => {
         k.play("fire2", { volume: 0.5 })
       }
       if (CutsceneState === 8) {
+        //this breaks the sound for a specific reason (volume), but we still keeped it in the game
+        //because it makes a terrifying sound
         k.play("fire3", { volume: 100000000000000000, speed: 2, loop: true })
         destroyAll("tomb")
         k.add([
