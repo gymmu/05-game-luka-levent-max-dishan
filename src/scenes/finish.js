@@ -43,11 +43,11 @@ k.scene("finish", () => {
     ])
   }
   k.add([
-    k.text("Press SPACE to continue", { size: 22, font: "sans-serif" }),
+    k.text("Press Enter to continue", { size: 22, font: "sans-serif" }),
     k.pos(k.width() / 2, k.height() / 2 + 40),
     k.anchor("top"),
   ])
-  k.onKeyPress("space", () => {
+  k.onKeyPress("Enter", () => {
     k.play("clicking", { volume: 0.5 })
     k.go("dragon")
   })

@@ -44,7 +44,7 @@ k.scene("lose", async () => {
     ])
   }
   k.add([
-    k.text("Press SPACE to restart", {
+    k.text("Press Enter to restart", {
       size: 22,
       font: "sans-serif",
     }),
@@ -52,7 +52,7 @@ k.scene("lose", async () => {
     k.anchor("top"),
   ])
 
-  k.onKeyPress("space", () => {
+  k.onKeyPress("Enter", () => {
     k.go("intro")
     k.play("clicking", { volume: 0.5 })
     location.reload(true)

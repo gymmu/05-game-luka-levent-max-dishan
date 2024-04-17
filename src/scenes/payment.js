@@ -39,4 +39,7 @@ k.scene("payment", async () => {
     k.fixed(),
     "backgroundTag",
   ])
+  k.onKeyPress("f", (c) => {
+    setFullscreen(!isFullscreen())
+  })
 })
