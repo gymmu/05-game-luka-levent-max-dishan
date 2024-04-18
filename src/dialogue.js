@@ -172,8 +172,10 @@ export function dialogue() {
   })
 
   // This is used for cheats
-  k.onKeyPress("7", () => {
-    dialogueLearning = dialogueLearning + 1
+  k.onKeyPressRepeat("c", () => {
+    k.onKeyPress("7", () => {
+      dialogueLearning = dialogueLearning + 1
+    })
   })
 
   // This will show a dialouge when the player picks up the flower.
@@ -189,20 +191,22 @@ export function dialogue() {
       "enter",
       scale(2),
     ])
+    // This adds the text
     add([
       pos(k.camPos().x - TILESIZE * 8, k.camPos().y - TILESIZE * 4.5),
       z(2),
-      color(0, 0, 0),
+      color(0, 0, 0), // specifies color in RGB format
       text(
         "As you consume the flower you feel that you are better able to understand the language of the insects around you.",
         {
-          size: 20, // 48 pixels tall
-          width: TILESIZE * 16, // it'll wrap to next line when width exceeds this value
-          font: "sans-serif", // specify any font you loaded or browser built-in
+          size: 20, // specifies how many pixels tall the text should be
+          width: TILESIZE * 16, // This will wrap to next line when width exceeds this value
+          font: "sans-serif", // Speciiesy specific font
         },
       ),
       "dialogue",
     ])
+    // This adds the dialouge box
     add([
       rect(TILESIZE * 16 + 4, TILESIZE * 3 + 4),
       outline(1),
@@ -433,6 +437,8 @@ export function dialogue() {
       }
     })
   }
+
+  // This is a cheat code available to the player after completing the game.
   k.onKeyPressRepeat("shift", () => {
     k.onKeyPress("m", () => {
       dialogueLearning = 3

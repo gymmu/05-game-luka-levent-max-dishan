@@ -82,22 +82,29 @@ k.scene("level-01", async () => {
     k.go("level-02")
   })
 
-  k.onKeyRelease("0", () => {
-    k.play("teleport", { volume: 0.5 })
-    k.go("level-02")
+  // This is used as a cheat code for skipping levels.
+  // If the you hold down C and release 0 then the level will be skipped.
+  // You will have to release C and press it down again after teleporting to a new level.
+  k.onKeyPressRepeat("c", () => {
+    k.onKeyRelease("0", () => {
+      k.play("teleport", { volume: 0.5 })
+      k.go("level-02")
+    })
   })
 
-  // Diese Funktion wird bei jedem Frame ausgeführt. Bei einem Jump'n'Run ist
-  // es so das wenn der Spieler von einer PLattform stützt, dann hat man das
-  // Spiel verloren. Man könnte hier auch anders darauf reagieren, zum
-  // Beispiel den Spieler an einen Checkpoint zurück setzen, und die
-  // Lebenspunkte von dem Spieler anpassen.
   let healPlayer = false
   let minusScore = false
 
-  // This code will handle respawning and death.
+  // This code runs on every frame.
+  // It deals with respawning, score adjusting, and death.
+  // This was put into each run and jump level individually because Kaboom was interfering with exporting variables from
+  // a file in the scenes folder to a file in the src folder.
+  // The only changes in between each code is the respawn location.
   k.onUpdate(() => {
     const player = getPlayer()
+    // This function will heal the player for 100 health.
+    // the healPlayer and minusScore functions are true/false statements because otherwise
+    // the code will sometimes run twice upon a players death.
     if (healPlayer === true) {
       player.heal(100)
       healPlayer = false
@@ -115,15 +122,15 @@ k.scene("level-01", async () => {
       }
     }
     if (player.pos.y > 720) {
-      // If the player is in hardcore then going below 720y is handled normally.
+      // If the player is in hardcore then going below 720y will kill them.
       if (playerHardcore === true) {
         overworldMusic.paused = true
         k.play("death", { volume: 0.5 })
         k.go("lose")
         // If the player is not in hardcore then they are teleported back to safety.
+        // Adjustions with health were not made due to issues with Kaboom health detection.
       } else {
         player.pos = k.vec2(64, 14 * TILESIZE)
-
         minusScore = true
       }
     }
@@ -134,11 +141,9 @@ k.scene("level-01", async () => {
         k.play("death", { volume: 0.5 })
         k.go("lose")
         // If the player is not in hardcore then they are teleported back to safety and healed.
-        // The healPlayer variable is used because otherwise the codes ends up repeatedly healing the player.
       } else {
         player.pos = k.vec2(64, 14 * TILESIZE)
         healPlayer = true
-
         minusScore = true
       }
     })

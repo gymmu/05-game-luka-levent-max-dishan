@@ -67,10 +67,6 @@ export function spike(x, y) {
     k.body({ isStatic: true }),
     k.area(),
     "spike",
-    // Hier können wir zusätzliche Eigenschaften von einem Spielobjekt angeben.
-    // Mit `isConsumable` könnten wir prüfen das dieses Objekt nur
-    // aufgelesen wird, wenn der Spieler die Eigenschaft `kochen` erlernt
-    // hat.
   ])
 }
 
@@ -222,9 +218,7 @@ export function noJumpAnt(x, y) {
       killScore: 100,
     },
     "noJumpAnt",
-    // This defines anything that is an enemy
     "enemy",
-    // This Tag will be used to define anything you are not meant to walk through
     "wall",
   ])
 }
@@ -251,14 +245,11 @@ export function boss(x, y) {
     k.scale(1.4),
     {
       dmgAmount: 10,
-      killScore: 1000,
       max_hp: 150,
     },
     "boss",
     "obstacle",
-    // This defines anything that is an enemy
     "enemy",
-    // This Tag will be used to define anything you are not meant to walk through
     "wall",
   ])
 }
@@ -477,16 +468,14 @@ let NPC_Number = 0
 // This tag will be used to distinguish between the different NPCs within the game
 
 export function npc(x, y) {
-  //everytime a new npc is created the NPC_Number is increased by 1
-  //this is important for the dialogue section
   NPC_Number += 1
-
   k.add([
     k.sprite("ladybug", { anim: "idle" }),
     k.pos(x * TILESIZE, y * TILESIZE),
     k.body({ isStatic: true }),
     k.area(),
     "npc",
+    // This creates a unique tag for each NPC in the game
     "npc_" + NPC_Number,
   ])
 }

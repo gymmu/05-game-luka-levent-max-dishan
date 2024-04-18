@@ -14,7 +14,7 @@ import { getProjectile } from "./Combat.js"
 // This specifies how long the phases of the boss are
 let bossPhaseCountdown = 120
 // This specifies how fast the boss can shoot projectiles
-let bossProjCountdown = 30
+let bossProjCountdown = 0
 // This phase allows the boss to use projectiles
 let projectilePhase = true
 // This phase makes the boss move faster and use a sword
@@ -22,16 +22,15 @@ let swordPhase = false
 // This phase makes the boss retreat and not attack
 let stunPhase = false
 // This specifies how fast the boss can attack with its sword
-let bossSwordCountdown = 30
+let bossSwordCountdown = 0
 // This specifies how long the stun phase is
-let bossStun = 120
+let bossStun = 0
 // This specifies the Projectile cooldown for the spider
-let projectileCountdown = 60
-let ladybugprojectileCountdown = 120
-let ladybugSwordCountdown = 90
+let projectileCountdown = 0
+let ladybugprojectileCountdown = 0
+let ladybugSwordCountdown = 0
 
-// This reduces most countdowns by 1 every frame
-
+// This is the function for the movements and attacks of all enemies.
 export function entityLogic() {
   k.onUpdate(() => {
     // This reduces most countdowns by 1 every frame
@@ -48,13 +47,12 @@ export function entityLogic() {
   k.onUpdate("boss", (boss) => {
     // If the players x position is greater than the boss's postion, the boss will move left.
     // If not, it will move right
+    // The speed of the boss's movement will change based on the phase it's in.
     if (player.pos.x > boss.pos.x) {
+      // This is used as a simple way to make the walking animation play.
       if (rand(20) > 19.3) {
-        loop(360, () => {
-          boss.play("idleRight")
-        })
+        boss.play("idleRight")
       }
-      // These if statements will change the movement of the boss based on the phase it's in.
       if (swordPhase === true) {
         boss.move(120, 0)
       } else if (stunPhase === true) {
@@ -64,9 +62,7 @@ export function entityLogic() {
       }
     } else {
       if (rand(20) > 19.3) {
-        loop(360, () => {
-          boss.play("idleLeft")
-        })
+        boss.play("idleLeft")
       }
       if (swordPhase === true) {
         boss.move(-120, 0)
@@ -76,7 +72,7 @@ export function entityLogic() {
         boss.move(-40, 0)
       }
     }
-    // This will randomly make the boss jump
+    // This will randomly make the boss jump when touching the ground
     if (boss.isGrounded()) {
       if (rand(20) > 19.3) {
         boss.jump()
@@ -85,7 +81,7 @@ export function entityLogic() {
     // These if statements will change the phase of the boss
     // The rand() is used to add a little luck to the boss.
     // But it will never run if the bossPhaseCountdown is not less than 0
-    if (bossPhaseCountdown <= 0 && projectilePhase === true && rand(120) < 2) {
+    if (bossPhaseCountdown <= 0 && projectilePhase === true && rand(150) < 2) {
       swordPhase = true
       projectilePhase = false
       bossPhaseCountdown = 300
@@ -93,19 +89,22 @@ export function entityLogic() {
       swordPhase = false
       stunPhase = true
       bossPhaseCountdown = 150
-    } else if (bossPhaseCountdown <= 0 && stunPhase === true && rand(120) < 2) {
+    } else if (bossPhaseCountdown <= 0 && stunPhase === true && rand(150) < 2) {
       stunPhase = false
       projectilePhase = true
       bossPhaseCountdown = 300
     }
+    // When in the projectile phase the boss will shoot projectiles every 45 frames.
     if (projectilePhase === true) {
       if (bossProjCountdown <= 0) {
         bossProjCountdown = 45
         bossProjectile()
       }
+      // When in the projectile phase the boss will use its sword every 60 frames.
     } else if (swordPhase === true && bossSwordCountdown <= 0) {
       if (player.pos.x > boss.pos.x) {
         bossSwordCountdown = 60
+        // The variable after the bossSlash is used to specify the direction of the sword.
         bossSlash(boss, false)
       } else {
         bossSlash(boss, true)
@@ -127,29 +126,21 @@ export function entityLogic() {
       if (player.pos.x > ant.pos.x) {
         ant.move(40, 0)
         if (rand(20) > 19.3) {
-          loop(360, () => {
-            ant.play("runRight")
-          })
+          ant.play("runRight")
         }
       } else {
         ant.move(-40, 0)
         if (rand(20) > 19.3) {
-          loop(360, () => {
-            ant.play("runLeft")
-          })
+          ant.play("runLeft")
         }
       }
     if (ant.isGrounded() && rand(20) > 19.3) {
-      loop(360, () => {
-        ant.jump()
-      })
+      ant.jump()
     }
   })
 
+  // This is the same code, but the ant is not able to jump.
   k.onUpdate("noJumpAnt", (ant) => {
-    // The following code will only run if the ant is within a certain distance of the player.
-    // This is done so they don't walk off the map when the player cannot see the ant.
-    // The rest of this code is a variation of the boss's code
     if (
       ant.pos.x + TILESIZE * 16 > player.pos.x &&
       ant.pos.x - TILESIZE * 16 < player.pos.x
@@ -157,27 +148,24 @@ export function entityLogic() {
       if (player.pos.x > ant.pos.x) {
         ant.move(40, 0)
         if (rand(20) > 19.3) {
-          loop(360, () => {
-            ant.play("runRight")
-          })
+          ant.play("runRight")
         }
       } else {
         ant.move(-40, 0)
         if (rand(20) > 19.3) {
-          loop(360, () => {
-            ant.play("runLeft")
-          })
+          ant.play("runLeft")
         }
       }
   })
 
-  //Spider AI
+  // This makes the spider sometimes jump if the player is above it.
   k.onUpdate("spider", (spider) => {
     if (spider.isGrounded() && rand(20) > 19 && player.pos.y < spider.pos.y) {
       spider.jump()
     }
   })
 
+  // This will execute the spiderProjectile function every 75 frames.
   k.onUpdate(() => {
     if (projectileCountdown <= 0) {
       spiderProjectile()
@@ -186,6 +174,7 @@ export function entityLogic() {
   })
 
   //Ladybug AI
+  // This is a combination of all the code leading up to this.
   k.onUpdate(() => {
     getLadybug().forEach((ladybug) => {
       if (ladybugprojectileCountdown <= 0) {
@@ -242,7 +231,7 @@ export function entityLogic() {
     })
   })
 
-  //The codes below specifies what will happen when a hitbox comes into contact with an entity
+  //The codes below specifies what will happen when a specified hitbox comes into contact with an entity
   onCollide(
     "ladybugSlashHitBox",
     "projectile",
@@ -251,8 +240,11 @@ export function entityLogic() {
     },
   )
   onCollide("spiderProjectile", "player", (spiderProjectile, player) => {
+    // This plays the hit sound
     k.play("hit", { volume: 1 })
+    // This will hurt the player by 10 HP
     player.hurt(10)
+    // This causes the screen to shake
     shake(5)
     destroy(spiderProjectile)
   })
@@ -281,11 +273,13 @@ export function entityLogic() {
     k.play("slash", { volume: 0.1 })
   })
 
+  // This retrieves an enemies score from their score in GameObjects and adds it to the players score upon death.
   k.on("death", "enemy", (enemy) => {
     destroy(enemy)
     player.endScore += enemy.killScore
   })
 
+  // When the boss dies, the player get 5000 more score.
   k.on("death", "boss", (boss) => {
     k.go("finish")
     player.endScore += 5000

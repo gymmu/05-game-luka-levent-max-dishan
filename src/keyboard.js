@@ -15,24 +15,26 @@ import { movement } from "./dialogue.js"
  * laden wir sie hier in einer eigenen Funktion.
  */
 
-// These are used for keeping track if the player is moving or not.
+// These are used for keeping track which direction the player is moving in.
 let movingLeft = false
 let movingRight = false
 // These are used to keep track of where the player is facing.
-// whenever an idle animation is played, "facingRight" and "facingLeft" are updated
 let facingRight = true
 let facingLeft = false
 export function loadKeyboardJumpAndRun() {
   const player = getPlayer()
-  // On key press left, the player will play the runLeft animation.
-  // If the code detects that the player should be moving left and right at the same time,
-  // then the idleLeft animation will be played.
+
   k.onKeyPress("a", () => {
+    // On key press left, the player will play the runLeft animation.
     player.play("runLeft")
     //This sets movingLeft to true, storing that the player should now be moving left.
     movingLeft = true
+    // If the player is moving left, then it should not be facing right.
     facingRight = false
+    // IF the player is moving left, it should now also be facing left.
     facingLeft = true
+    // If the player is holding down the "d" key, then movingRight will still be true.
+    // Because pressing both keys at the same time creates no moving, an idle animation is played.
     if (movingLeft === true && movingRight === true) {
       player.play("idleLeft")
       facingLeft = true
@@ -44,8 +46,9 @@ export function loadKeyboardJumpAndRun() {
   k.onKeyDown("a", () => {
     player.move(k.LEFT.scale(player.speed))
   })
-  // When the left key is released, the player will play the moving right animation if moveingRight is true.
+
   k.onKeyRelease("a", () => {
+    // If the player is holding down the "d" key when releasing "a", then the player should move right.
     if (movingRight === true) {
       player.play("runRight")
     } else {
@@ -57,6 +60,7 @@ export function loadKeyboardJumpAndRun() {
     movingLeft = false
   })
 
+  // This has the same logic as the "a" key function.
   k.onKeyPress("d", () => {
     player.play("runRight")
     movingRight = true
@@ -83,6 +87,7 @@ export function loadKeyboardJumpAndRun() {
     movingRight = false
   })
 
+  // If the player is grounded then it is able to jump.
   k.onKeyPress("space", () => {
     if (player.isGrounded()) {
       player.jump()
@@ -90,6 +95,19 @@ export function loadKeyboardJumpAndRun() {
     }
   })
 
+  // These are developer cheats that can be used to test the game.
+  k.onKeyPressRepeat("c", () => {
+    k.onKeyPress("8", () => {
+      player.heal(100)
+    })
+  })
+  k.onKeyPressRepeat("c", () => {
+    k.onKeyPress("9", () => {
+      player.heal(100000000)
+    })
+  })
+
+  // This is used to allow the player to use the upward slash.
   let lookingUp = false
   k.onKeyPress("w", () => {
     lookingUp = true
@@ -139,6 +157,7 @@ export function loadKeyboardJumpAndRun() {
     }
   })
 
+  // This makes the game fullscreen.
   onKeyPress("f", (c) => {
     setFullscreen(!isFullscreen())
   })
@@ -166,19 +185,24 @@ export function loadKeyboardRPG() {
     // if this box collides with a wall, the southCollision variable will be set to true
     // when this is set to true, the player cannot move south
     // this makes it much harder to glitch through walls, and makes the camera more steady
+    // However, I believe a part of this code will cause the game to lag under certain circumstances
+    // Such as: Playing an RPG level for a long time, or switching windows and coming back to the game later.
     add([
       pos(player.pos.x + 6, player.pos.y + 20),
       area({ shape: new Rect(vec2(0), 20, 13) }),
       lifespan(0.1),
       "southCollisionBox",
     ])
+    // Upon colliding with a wall, the southCollision variable will be set to true
     onCollide("southCollisionBox", "wall", () => {
       southCollision = true
       return
     })
+    // If the southCollision hitbox is not colliding with a wall, the southCollision variable will be set to false
     southCollision = false
   })
 
+  // The following three functions are for the other 3 directions of collisions
   onUpdate(() => {
     add([
       pos(player.pos.x, player.pos.y + 6),
@@ -226,6 +250,8 @@ export function loadKeyboardRPG() {
     player.play("runLeft")
   })
   k.onKeyDown("a", () => {
+    // If the westCollision is true, the player will not move west anymore
+    // However, the animation of westward movement will still play.
     if (westCollision === false && movement === true) {
       player.move(k.LEFT.scale(player.speed))
     }
@@ -234,11 +260,17 @@ export function loadKeyboardRPG() {
     player.play("idleLeft")
   })
 
-  k.onKeyPressRepeat("tab", () => {
+  k.onKeyPressRepeat("c", () => {
     k.onKeyPress("8", () => {
-      dialogueLearning = 3
+      player.heal(100)
     })
   })
+  k.onKeyPressRepeat("c", () => {
+    k.onKeyPress("9", () => {
+      player.heal(100)
+    })
+  })
+
   k.onKeyPress("d", () => {
     player.play("runRight")
   })
