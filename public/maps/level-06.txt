@@ -11,7 +11,7 @@ fff          f              t    f                      t  f                    
              c     o          r f                      f              r  o                    o                                
          ++++++++++++++      ++++                   +++              ++++                 ++++                   
                   t          oooo      f             ooo               fff                  ct                                eee
-   |   p            cc    c  e  o         e   o   e   o         f    e   c       f  ccc  e              c  r  c r  e          eee g
+       p            cc    c  e  o         e   o   e   o         f    e   c       f  ccc  e              c  r  c r  e          eee g
 +++++++++++         ++++++++++++++++ssss+++++++++++++++++++    ++++++++++++++sss++++++++++++++ssss+++++++++++++++++++   +++++++++++++
            b
            ++

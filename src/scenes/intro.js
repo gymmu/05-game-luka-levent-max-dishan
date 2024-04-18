@@ -6,6 +6,7 @@ import "./level-03.js"
 import "./level-04.js"
 import "./level-05.js"
 import "./level-06.js"
+import "./payment.js"
 import { getPlayer } from "../player.js"
 import { TILESIZE } from "../globals.js"
 export let playerHardcore = false
@@ -95,13 +96,35 @@ k.scene("intro", () => {
     "tutorial",
   ])
 
+  k.add([
+    k.text("Micro Transactions", { size: 32, font: "sans-serif" }),
+    k.pos(k.width() / 2, k.height() / 2 + 116),
+    k.area(),
+    k.color(0, 0, 0),
+    k.anchor("top"),
+  ])
+  k.add([
+    k.rect(TILESIZE * 16 + 4, TILESIZE * 1 + 4),
+    k.area(TILESIZE * 16 + 4, TILESIZE * 1 + 4),
+    k.outline(1),
+    k.color(210, 180, 140),
+    k.pos(k.width() / 2, k.height() / 2 + 116),
+    k.anchor("top"),
+    k.z(-1),
+    "tutorial1",
+  ])
   // Mit dieser Funktion können wir auf Tastendrucke reagieren. Diese können
   // pro Szene anders angegeben werden. Hier wird mit `space` zur nächsten
   // Szene gewechselt. In der nächsten Szene können wir `space` dann auch zum
   // Springen verwenden.
+
+  //this method is found in every scene
+  //it makes the game fullscreened if you press F, but by pressing F again you can turn off fullscreen
   k.onKeyPress("f", (c) => {
     setFullscreen(!isFullscreen())
   })
+
+  //it teleports the player to the next scene, where they get sent, depends on the button they press
   onClick("normal", () => {
     k.play("clicking", { volume: 1 })
     k.go("level-01")
@@ -115,5 +138,9 @@ k.scene("intro", () => {
   onClick("tutorial", () => {
     k.play("clicking", { volume: 0.5 })
     k.go("level-tutorial")
+  })
+  onClick("tutorial1", () => {
+    k.play("clicking", { volume: 0.5 })
+    k.go("payment")
   })
 })

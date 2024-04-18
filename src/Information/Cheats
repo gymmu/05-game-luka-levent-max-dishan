@@ -1,5 +1,5 @@
-0 = Teleport to next level
-9 = +50 health
-8 = infinite health
-7 = Progress dialouge learning
-hallo
+c + 0 = Teleport to next level
+c + 9 = +50 health
+c + 8 = infinite health
+c + 7 = Progress dialouge learning
+m + shift = unlock all dialogue

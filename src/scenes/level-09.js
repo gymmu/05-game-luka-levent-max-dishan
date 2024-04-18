@@ -8,6 +8,8 @@ import "./finish.js"
 import "./lose.js"
 import { overworldMusic } from "./level-01.js"
 
+//this is the boss fight music that's a bit more intense than the overworld muscic
+//it's storred in a variable
 export const bossMusic = play("bossFight", {
   loop: true,
   volume: 0.5,
@@ -19,6 +21,7 @@ k.scene("level-09", async () => {
   loadKeyboardJumpAndRun()
   await generateMapJumpAndRun("maps/level-09.txt")
 
+  //these turn off the overworld music and turn on the boss fight music
   overworldMusic.paused = true
   bossMusic.paused = false
 
@@ -36,9 +39,11 @@ k.scene("level-09", async () => {
     k.go("finish")
   })
 
-  k.onKeyRelease("0", () => {
-    k.play("teleport", { volume: 0.5 })
-    k.go("finish")
+  k.onKeyPressRepeat("c", () => {
+    k.onKeyRelease("0", () => {
+      k.play("teleport", { volume: 0.5 })
+      k.go("finish")
+    })
   })
   let healPlayer = false
 

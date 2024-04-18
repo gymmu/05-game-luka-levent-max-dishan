@@ -21,9 +21,11 @@ k.scene("level-02", async () => {
     player.pos = k.vec2(64, 128)
   })
 
-  k.onKeyRelease("0", () => {
-    k.play("teleport", { volume: 0.5 })
-    k.go("level-03")
+  k.onKeyPressRepeat("c", () => {
+    k.onKeyRelease("0", () => {
+      k.play("teleport", { volume: 0.5 })
+      k.go("level-03")
+    })
   })
 
   k.onCollide("player", "flower", (player, flower) => {

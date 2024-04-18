@@ -18,10 +18,12 @@ export function rightSlash() {
   // This adds the hitbox, which is invisible
   add([
     pos(player.pos.add(19, 8)),
+    // This specifies the size of the area being created.
     area({ shape: new Rect(vec2(0), 60, 20) }),
-    // Remove the slashes on the following line to see the hitbox
+    // Remove the slashes on the following line to see the hitbox.
     // rect(60, 20),
     lifespan(0.1),
+    // This tag is used to detect collision with enemies.
     "slashHitBox",
   ])
 }
@@ -39,6 +41,7 @@ export function leftSlash() {
     "slashHitBox",
   ])
 }
+
 // This code is the same, but in the upwards direction.
 // The sprites and hitbox are rotated 90 degrees.
 export function upwardSlash() {
@@ -73,12 +76,14 @@ export function leftProjectile() {
     area(),
     // It will disapear after 2 seconds
     lifespan(2),
+    // This tag is used to detect collision with enemies
     "projectile",
-    // It will move at a rate of 230 unites a second
+    // It will move at a rate of 230 pixels a second
     move(0, -230),
   ])
 }
 
+// This function is the same, but the direction is reversed.
 export function rightProjectile() {
   const player = getPlayer()
   add([
@@ -107,6 +112,7 @@ export function spiderProjectile() {
     const dir = player.pos.sub(spider.pos).unit()
     // This constricts movement to 0 on the y axis
     dir.y = 0
+    // If the position of the player on the x axis is great than the spiders, then the spider will fire right.
     if (dir.x > 0) {
       add([
         pos(spider.pos.add(0, 5)),
@@ -133,8 +139,8 @@ export function spiderProjectile() {
 
 // This is the same code, but for the ladybugs
 export function ladybugProjectile() {
+  const player = getPlayer()
   get("ladybug").forEach((ladybug) => {
-    const player = getPlayer()
     const dir = player.pos.sub(ladybug.pos).unit()
     dir.y = 0
     if (dir.x > 0) {

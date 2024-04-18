@@ -12,7 +12,8 @@ export function dialogue() {
 
   let dialogueVoiceLine = 0
 
-  //this is the least effective way to do this.
+  //this is the least effective way to do this
+  //each of these variables have a voiceline storred with in
 
   const voiceline1 = play("voiceline1", {
     loop: false,
@@ -171,8 +172,10 @@ export function dialogue() {
   })
 
   // This is used for cheats
-  k.onKeyPress("7", () => {
-    dialogueLearning = dialogueLearning + 1
+  k.onKeyPressRepeat("c", () => {
+    k.onKeyPress("7", () => {
+      dialogueLearning = dialogueLearning + 1
+    })
   })
 
   // This will show a dialouge when the player picks up the flower.
@@ -188,20 +191,22 @@ export function dialogue() {
       "enter",
       scale(2),
     ])
+    // This adds the text
     add([
       pos(k.camPos().x - TILESIZE * 8, k.camPos().y - TILESIZE * 4.5),
       z(2),
-      color(0, 0, 0),
+      color(0, 0, 0), // specifies color in RGB format
       text(
         "As you consume the flower you feel that you are better able to understand the language of the insects around you.",
         {
-          size: 20, // 48 pixels tall
-          width: TILESIZE * 16, // it'll wrap to next line when width exceeds this value
-          font: "sans-serif", // specify any font you loaded or browser built-in
+          size: 20, // specifies how many pixels tall the text should be
+          width: TILESIZE * 16, // This will wrap to next line when width exceeds this value
+          font: "sans-serif", // Speciiesy specific font
         },
       ),
       "dialogue",
     ])
+    // This adds the dialouge box
     add([
       rect(TILESIZE * 16 + 4, TILESIZE * 3 + 4),
       outline(1),
@@ -432,6 +437,8 @@ export function dialogue() {
       }
     })
   }
+
+  // This is a cheat code available to the player after completing the game.
   k.onKeyPressRepeat("shift", () => {
     k.onKeyPress("m", () => {
       dialogueLearning = 3
@@ -457,15 +464,21 @@ export function dialogue() {
   })
 
   onCollideUpdate("player", "npc", () => {
+    //it's set to isKeyReleased instead of isKeyPressed, because the player will instantly
+    //go through all of the dialogue with one key press
     if (isKeyReleased("enter")) {
       movement = false
       destroyAll("dialogue")
       {
+        // This code is for the voice lines
+        // it checks the dialogueVoiceLine and dialogueState to determine which voice line to play
         if (dialogueVoiceLine === 1 && dialogueState === 0) {
+          //seek(0) is used to start the voice line at the beginning
           voiceline1.seek(0)
           voiceline1.paused = false
         }
         if (dialogueVoiceLine === 1 && dialogueState === 1) {
+          //voiceline1 is paused to prevent overlapping of voice lines
           voiceline1.paused = true
           voiceline2.seek(0)
           voiceline2.paused = false

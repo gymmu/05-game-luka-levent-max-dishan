@@ -15,12 +15,6 @@ import "./level-07.js"
  */
 k.scene("lose", async () => {
   const player = getPlayer()
-  // This code was giving an error when trying to destroy the player.
-  // I asked codium to fix the issue, and it returned the code seen here.
-  // If the const is: "const player = k.get("player")[0]", it will not work.
-  // Instead, you have to define "player" and then put a [0] after it, as seen above.
-  // The player.length must also be more than 0
-  // I don't fully understand why either of these things solve the problem, but they do.
 
   k.add([
     k.text("Game over", { size: 44, font: "sans-serif" }),
@@ -44,7 +38,7 @@ k.scene("lose", async () => {
     ])
   }
   k.add([
-    k.text("Press SPACE to restart", {
+    k.text("Press Enter to restart", {
       size: 22,
       font: "sans-serif",
     }),
@@ -52,7 +46,7 @@ k.scene("lose", async () => {
     k.anchor("top"),
   ])
 
-  k.onKeyPress("space", () => {
+  k.onKeyPress("enter", () => {
     k.go("intro")
     k.play("clicking", { volume: 0.5 })
     location.reload(true)
@@ -62,6 +56,8 @@ k.scene("lose", async () => {
     setFullscreen(!isFullscreen())
   })
 
+  //this waits for everything to be executed first before it destroys the player
+  //this had to be done because of a bug
   Promise.resolve().then(() => {
     player.destroy()
   })
