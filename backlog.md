@@ -15,7 +15,7 @@
 - [x] Hintergrund fertig skalieren (Levent)
 - [x] Die Kamera fertig machen (Max)
 - [x] Die Map bearbeiten (Dishan)
-- [x] NPC 1 in bewegung setzten (Max)
+- [x] NPC 1 in bewegung setzen (Max)
 - [x] Fullscreen (Luka)
 - [x] Basic Combat Mechanic
 - [x] Level 3 ändern (Dishan)
@@ -25,7 +25,7 @@
 - [x] Finish sword (Max)
 - [x] Add projectiles (Max)
 - [x] New Enemy (Max/Luka)
-- [x] Dokumention(Dishan)
+- [x] Dokumentation(Dishan)
 - [x] NPC dialouge in RPG maps (Max/Luka)
 - [x] 1-2 more run and jump maps (Dishan/Levent)
 - [x] One RPG map between every run and jump map. Just big enough for a few
